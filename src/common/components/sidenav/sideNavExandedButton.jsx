@@ -1,5 +1,3 @@
-import React from 'react'
-
 export default function sideNavExandedButton({ toggleBarFunction, icon, isOpen, label }) {
   return (
     <button onClick={toggleBarFunction} className="group animation transition-all">

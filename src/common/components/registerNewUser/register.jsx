@@ -1,5 +1,5 @@
 import React from 'react'
-import RightSide from '../login/rightSIde'
+import RightSide from '../reusable/rightSide'
 import RegisterForm from '../registerNewUser/registerForm'
 export default function register() {
   return (
