@@ -2,39 +2,45 @@ import axios from 'axios'
 import Cookies from 'js-cookie'
 import { useEffect, useState } from 'react'
 import { BiUser } from 'react-icons/bi'
-import Image from 'next/image'
-import pfp from '../../../../public/assets/user.jpg'
 export default function userInfo() {
   const [user, setUser] = useState(null)
   useEffect(() => {
-    const getId = async () => {
+    const getUserData = async () => {
       try {
-        const response = await axios.get('http://localhost:3003/login/protected', {
-          headers: {
-            authorization: Cookies.get('nuevamenteToken'),
-          },
-        })
-        setUser(response.data.decoded)
+        const data = {
+          nuevamentetoken: Cookies.get('nuevamenteToken'),
+        }
+        const response = await axios.post('http://localhost:3003/user/getUserData', data)
+        const myInfo = response.data.userInfo
+        setUser(myInfo)
+        setUserImage(myInfo.url_foto_perfil_usuario)
       } catch (error) {
         console.log(error)
       }
     }
-    getId()
+    getUserData()
   }, [])
-
+  console.log(user)
   /*corregir los undefined y manejar los context, aplicar el primer principio solid */
   return (
-    <div className="flex justify-between gap-5">
-      <div className=" flex items-center justify-center">
+    <div className="flex justify-between gap-5 b">
+      <div className=" flex items-center justify-center ">
         <div className="rounded-full ">
-          <Image src={pfp} width={60} className="rounded-full" alt={<BiUser />} />
+          <img src={userImage} className="w-[4rem] h-[4rem] rounded-full " alt="Imagen usuario" />
         </div>
       </div>
       <div className="flex items-center">
-        <div>
-          <p className="text-xl font-bold">{user !== null ? `Saul Cornejo` : 'no tienes acceso'}</p>
-          <p className="text-gray-500 font-light">Estudiante</p>
-        </div>
+        {user ? (
+          <div>
+            <p className="text-xl font-bold">{user.nombre_usuario}</p>
+            <p className="text-gray-500 font-light">{user.rol_usuario}</p>
+          </div>
+        ) : (
+          <div role="status" className="max-w-sm animate-pulse animation duration-300">
+            <div className="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-28 mb-4"></div>
+            <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 w-28 mb-2.5"></div>
+          </div>
+        )}
       </div>
     </div>
   )
