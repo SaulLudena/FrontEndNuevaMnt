@@ -63,7 +63,7 @@ export default function courseVideoModules() {
           {({ open }) => (
             <>
               <Disclosure.Button className="flex w-full justify-between rounded-lg bg-[#FFF409] p-5 text-left text-sm font-medium focus:outline-none  focus-visible:ring-opacity-75">
-                <span>Modulo 1</span>
+                <span>Modulo 2</span>
                 <BsChevronUp className={`${open ? 'rotate-180 transform' : ''} h-5 w-5 `} />
               </Disclosure.Button>
               <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500 ">
@@ -131,7 +131,7 @@ export default function courseVideoModules() {
           {({ open }) => (
             <>
               <Disclosure.Button className="flex w-full justify-between rounded-lg bg-[#FFF409] p-5 text-left text-sm font-medium focus:outline-none  focus-visible:ring-opacity-75">
-                <span>Modulo 1</span>
+                <span>Modulo 3</span>
                 <BsChevronUp className={`${open ? 'rotate-180 transform' : ''} h-5 w-5 `} />
               </Disclosure.Button>
               <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500 ">

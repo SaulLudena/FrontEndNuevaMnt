@@ -1,9 +1,9 @@
 import axios from 'axios'
 import Cookies from 'js-cookie'
+import Image from 'next/image'
 import { useEffect, useState } from 'react'
-import { BiUser } from 'react-icons/bi'
 export default function userInfo() {
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState({})
   useEffect(() => {
     const getUserData = async () => {
       try {
@@ -13,20 +13,18 @@ export default function userInfo() {
         const response = await axios.post('http://localhost:3003/user/getUserData', data)
         const myInfo = response.data.userInfo
         setUser(myInfo)
-        setUserImage(myInfo.url_foto_perfil_usuario)
       } catch (error) {
         console.log(error)
       }
     }
     getUserData()
   }, [])
-  console.log(user)
-  /*corregir los undefined y manejar los context, aplicar el primer principio solid */
+
   return (
     <div className="flex justify-between gap-5 b">
       <div className=" flex items-center justify-center ">
         <div className="rounded-full ">
-          <img src={userImage} className="w-[4rem] h-[4rem] rounded-full " alt="Imagen usuario" />
+          <img src={user.url_foto_perfil_usuario} className="w-[4rem] h-[4rem] object-cover rounded-full " />
         </div>
       </div>
       <div className="flex items-center">

@@ -11,8 +11,10 @@ export default function () {
       <div className="flex flex-col h-full justify-between">
         <div className="flex justify-between">
           <p className="font-bold text-xl">Preguntas y respuestas del curso</p>
-          <div className=" rotate-45 w-10 h-10 flex items-center justify-center rounded-full bg-yellow-400">
-            <AiOutlineArrowUp className="text-black" />
+          <div>
+            <div className=" rotate-45 w-10 h-10 flex items-center justify-center rounded-full bg-yellow-400">
+              <AiOutlineArrowUp className="text-black" />
+            </div>
           </div>
         </div>
         <div>

@@ -25,6 +25,8 @@
     "react-hook-form": "^7.41.5",
     "react-icons": "^4.6.0",
     "react-sessionstorage": "^1.0.5",
+    "recharts": "^2.4.3",
+    "video-react": "^0.16.0",
     "yup": "^0.32.11"
   },
   "devDependencies": {
