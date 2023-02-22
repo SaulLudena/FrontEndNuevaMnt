@@ -13,13 +13,13 @@ const courseData = [
       {
         lessonId: 1,
         title: 'Introduccion',
-        lessonVideoUrl: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
+        lessonVideoUrl: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4',
         posterVideo: 'https://images.genius.com/e7bc4bc0ad72f28752e27630299d2442.700x700x1.jpg',
       },
       {
         lessonId: 2,
         title: 'Metodologia',
-        lessonVideoUrl: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
+        lessonVideoUrl: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4',
         posterVideo: 'https://images.genius.com/e7bc4bc0ad72f28752e27630299d2442.700x700x1.jpg',
       },
     ],
@@ -31,7 +31,7 @@ const courseData = [
       {
         lessonId: 1,
         title: 'Concepto practicos 1',
-        lessonVideoUrl: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
+        lessonVideoUrl: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
         posterVideo: 'https://images.genius.com/e7bc4bc0ad72f28752e27630299d2442.700x700x1.jpg',
       },
       {
@@ -43,7 +43,7 @@ const courseData = [
       {
         lessonId: 3,
         title: 'Concepto practicos 3',
-        lessonVideoUrl: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
+        lessonVideoUrl: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4',
         posterVideo: 'https://images.genius.com/e7bc4bc0ad72f28752e27630299d2442.700x700x1.jpg',
       },
     ],
@@ -52,8 +52,12 @@ const courseData = [
 
 export default function WatchModules({ isOpen }) {
   const [isOpenProp, setIsOpenProp] = useState(isOpen)
-  const [videoSelected, setVideoSelected] = useState('')
-  const setVideoOnPlayer = () => {}
+  const [videoSelected, setVideoSelected] = useState(''),
+    [posterUrlImage, setPosterUrlImage] = useState('')
+  const setVideoOnPlayer = (videoIndex) => {
+    setVideoSelected(videoIndex)
+  }
+
   return (
     <div
       className={`${isOpen ? 'fixed inset-0' : 'hidden opacity-0'} bg-[#000000f7] py-10 text-white  overflow-y-auto`}
@@ -77,9 +81,9 @@ export default function WatchModules({ isOpen }) {
         </div>
         <div className=" h-[93%]">
           <div className=" grid grid-cols-3 gap-10 grid-rows-4  h-full">
-            <div className="bg-white text-black row-span-6 p-5 rounded-lg">
+            <div className="bg-white text-black row-span-6 p-5 rounded-lg overflow-y-auto">
               <div className=" grid gap-3">
-                {courseData.map((course, index) => {
+                {courseData.map((course) => {
                   return (
                     <Disclosure as="div" key={course.module}>
                       {({ open }) => (
@@ -91,17 +95,40 @@ export default function WatchModules({ isOpen }) {
                             <BsChevronUp className={`${open ? 'rotate-180 transform' : ''} h-5 w-5 `} />
                           </Disclosure.Button>
                           <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500 ">
-                            {course.lesson.map((less) => {
+                            {course.lesson.map((less, index) => {
                               return (
-                                <div className=" flex justify-between p-4 items-center cursor-pointer hover:bg-gray-100 ">
-                                  <div className="flex gap-2 items-center">
-                                    <div className="p-2 rounded-full ">
-                                      <BsFillPlayFill />
+                                <div
+                                  className={`flex  hover:bg-gray-100 w-full cursor-pointer rounded-lg `}
+                                  key={less.lessonId}
+                                >
+                                  <button
+                                    className=" flex w-full"
+                                    onClick={() => {
+                                      setVideoSelected(less.lessonVideoUrl)
+                                      console.log(`el indice seleccionado es ${index + 1}`)
+                                    }}
+                                  >
+                                    <div className=" flex justify-between  p-4 w-full items-center  ">
+                                      <div className="flex gap-2 items-center">
+                                        <div className="p-2 rounded-full ">
+                                          <BsFillPlayFill />
+                                        </div>
+                                        <p>{less.title}</p>
+                                      </div>
+                                      <div>
+                                        <p>01:20:021</p>
+                                      </div>
                                     </div>
-                                    <p>{less.title}</p>
-                                  </div>
-                                  <div>
-                                    <p>01:20:021</p>
+                                  </button>
+
+                                  <div className="flex items-center  w-20 justify-center ">
+                                    <input
+                                      id="bordered-checkbox-1"
+                                      type="checkbox"
+                                      value=""
+                                      name="bordered-checkbox"
+                                      className="w-7 h-7 "
+                                    />
                                   </div>
                                 </div>
                               )

@@ -1,20 +1,25 @@
-import Link from 'next/link'
-import React from 'react'
-import Image from 'next/image'
-import LogoSrc from '../../../../public/assets/nuevamente_logo.png'
 import { AiFillStar } from 'react-icons/ai'
 /*recibir props y utilizarlos */
 export default function courseDetailTitle() {
   return (
-    <div className=" 2xl:col-span-2 lg:col-span-1  h-full grid">
-      <div className="py-5 px-10  bg-stone-800 rounded-xl flex flex-col justify-center gap-3">
-        <p className="text-white text-2xl font-bold ">Marketing para Networkers</p>
-        <div className="flex gap-1">
-          <AiFillStar className="text-[#FFF409]" />
-          <AiFillStar className="text-[#FFF409]" />
-          <AiFillStar className="text-[#FFF409]" />
-          <AiFillStar className="text-white" />
-          <AiFillStar className="text-white" />
+    <div className=" relative 2xl:col-span-2 lg:col-span-1  h-full grid bg-white rounded-xl">
+      <div className="bg-[#000000] rounded-xl">
+        <img
+          src="https://res.cloudinary.com/dbtzbuew2/image/upload/v1671035838/cld-sample.jpg"
+          alt=""
+          className="w-full h-56 object-cover opacity-[12%] rounded-xl"
+        />
+        <div className="absolute border-2 top-0 w-full h-full flex items-center rounded-`xl">
+          <div className=" grid gap-3 max-w-[90%] w-full m-auto">
+            <p className="text-white text-2xl font-bold ">Marketing para Networkers</p>
+            <div className="flex gap-1">
+              <AiFillStar className="text-[#FFF409]" />
+              <AiFillStar className="text-[#FFF409]" />
+              <AiFillStar className="text-[#FFF409]" />
+              <AiFillStar className="text-white" />
+              <AiFillStar className="text-white" />
+            </div>
+          </div>
         </div>
       </div>
     </div>
