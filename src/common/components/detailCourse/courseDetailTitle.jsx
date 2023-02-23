@@ -9,9 +9,9 @@ export default function courseDetailTitle() {
           alt=""
           className="w-full h-56 object-cover opacity-[12%] rounded-xl"
         />
-        <div className="absolute border-2 top-0 w-full h-full flex items-center rounded-`xl">
+        <div className="absolute border-2 top-0 w-full h-full flex items-center rounded-xl">
           <div className=" grid gap-3 max-w-[90%] w-full m-auto">
-            <p className="text-white text-2xl font-bold ">Marketing para Networkers</p>
+            <p className="text-white text-3xl font-bold ">Marketing para Networkers</p>
             <div className="flex gap-1">
               <AiFillStar className="text-[#FFF409]" />
               <AiFillStar className="text-[#FFF409]" />

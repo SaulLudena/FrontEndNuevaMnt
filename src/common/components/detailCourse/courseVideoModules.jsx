@@ -18,10 +18,7 @@ export default function courseVideoModules() {
                     <div className="p-2 rounded-full ">
                       <BsFillPlayFill />
                     </div>
-                    <p>
-                      If you're unhappy with your purchase for any reason, email us within 90 days and we'll refund you
-                      in full, no questions asked.
-                    </p>
+                    <p>If you're unhappy with your purchase</p>
                   </div>
                   <div>
                     <p>01:20:021</p>

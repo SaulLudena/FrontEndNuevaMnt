@@ -52,10 +52,10 @@ const courseData = [
 
 export default function WatchModules({ isOpen }) {
   const [isOpenProp, setIsOpenProp] = useState(isOpen)
-  const [videoSelected, setVideoSelected] = useState(''),
-    [posterUrlImage, setPosterUrlImage] = useState('')
-  const setVideoOnPlayer = (videoIndex) => {
-    setVideoSelected(videoIndex)
+  const [closeModal, setCloseModal] = useState(true)
+  const [videoSelected, setVideoSelected] = useState('')
+  const CloseModal = () => {
+    setCloseModal(!closeModal)
   }
 
   return (
@@ -143,14 +143,7 @@ export default function WatchModules({ isOpen }) {
             </div>
 
             <div className="col-span-2 row-span-3  justify-center">
-              <Player
-                width="100%"
-                height="100%"
-                className="rounded-md"
-                fluid={false}
-                poster={posterUrlImage}
-                src={videoSelected}
-              >
+              <Player width="100%" height="100%" className="rounded-md" fluid={false} src={videoSelected}>
                 <BigPlayButton position="center" />
               </Player>
             </div>
