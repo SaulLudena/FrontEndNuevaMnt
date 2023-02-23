@@ -16,7 +16,7 @@ export default function Cart() {
   }
 
   return (
-    <div>
+    <div className="border-2 border-black  grid">
       {products.length === 0 ? (
         <p>No hay productos en el carrito</p>
       ) : (
@@ -31,7 +31,9 @@ export default function Cart() {
           ))}
         </ul>
       )}
-      <button onClick={handleCheckout}>Comprar</button>
+      <div className="flex justify-center">
+        <button className="p-4 flex justify-center rounded-2xl bg-[#FFF409]">Seguir comprando</button>
+      </div>
     </div>
   )
 }

@@ -22,5 +22,5 @@ export async function middleware(request) {
   }
 }
 export const config = {
-  matcher: ['/dashboard/:path*', '/masCursos/:path*', '/miAprendizaje/:path*'],
+  matcher: ['/dashboard/:path*', '/masCursos/:path*', '/miAprendizaje/:path*', '/shoppingCart/:path*'],
 }
