@@ -44,6 +44,7 @@ export default function LeftSide() {
   const togglePassword = () => {
     setShowPassword(!showPassword)
   }
+
   return (
     <>
       <LoginError statusError={apiError} apiMessage={apiMessage} />
@@ -105,12 +106,12 @@ export default function LeftSide() {
                 Iniciar ahora ?
               </button>
 
-              <p className="text-left mt-5 text-sm">
-                ¿No tienes una cuenta?{' '}
-                <Link href="/registrar" className="font-bold">
+              <span className="text-left mt-5 text-sm flex gap-1 items-center">
+                <p>¿No tienes una cuenta?</p>
+                <Link href="/registrar" className="font-bold hover:bg-black hover:text-white px-3 py-1 rounded-full ">
                   Registrate
                 </Link>
-              </p>
+              </span>
             </form>
           </div>
         </div>

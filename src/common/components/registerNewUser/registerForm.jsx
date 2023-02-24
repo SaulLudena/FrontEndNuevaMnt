@@ -104,8 +104,6 @@ export default function registerForm() {
     } catch (error) {
       console.log(error)
     }
-
-    /*setear los nuevos estados y mostrarlos en el formulario de registro (para el jueves) */
   }
 
   return (
@@ -325,12 +323,12 @@ export default function registerForm() {
                 Registrarme
               </button>
 
-              <p className="text-left mt-5">
-                ¿Ya tienes una cuenta?{' '}
-                <Link href="/" className="font-bold">
-                  Inicia sesión
+              <span className="text-left mt-5 text-sm flex gap-1 items-center">
+                <p>¿Ya tienes una cuenta?</p>
+                <Link href="/" className="font-bold hover:bg-black hover:text-white px-3 py-1 rounded-full ">
+                  Inicia sesion
                 </Link>
-              </p>
+              </span>
             </form>
           </div>
         </div>

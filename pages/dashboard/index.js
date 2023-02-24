@@ -3,7 +3,6 @@ import SideNav from '../../src/common/components/sidenav/sidenav'
 import DashboardElements from '../../src/common/components/DashboardElements/dashboardElements'
 /*Importando head tag */
 import Head from 'next/head'
-import axios from 'axios'
 
 export default function Dashboard() {
   //crear un layout que contenga el topnav y los elementos de dashboard

@@ -1,5 +1,6 @@
 import { RiShutDownLine, RiLightbulbLine } from 'react-icons/ri'
 import { FiBell, FiUser } from 'react-icons/fi'
+
 import { BiShoppingBag } from 'react-icons/bi'
 import { AiOutlineShoppingCart, AiOutlineInfoCircle } from 'react-icons/ai'
 import UserInfo from '../userInfo/userInfo'
@@ -35,7 +36,7 @@ export default function topNav() {
             <div className="transition duration-200  group-hover:bg-gray-200 p-4 rounded-xl">
               <FiBell className="text-gray-700" />
               <div className="absolute translate-x-4 -translate-y-7 ">
-                <div className=" w-2 h-2 bg-teal-500 rounded-full"></div>
+                <div className=" w-2 h-2 bg-rose-600 rounded-full"></div>
               </div>
             </div>
           </Menu.Button>

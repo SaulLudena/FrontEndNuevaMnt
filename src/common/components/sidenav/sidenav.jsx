@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 /*Importando iconos */
 import { AiOutlineHome } from 'react-icons/ai'
 import { BiSearch } from 'react-icons/bi'
@@ -9,6 +9,7 @@ import SidenavItem from '../sidenav/sidenavItem'
 import SideNavButtom from '../sidenav/sideNavExandedButton'
 import Logo from '../reusable/logo'
 import Cookies from 'js-cookie'
+import Link from 'next/link'
 
 export default function sidenav() {
   const [isOpen, setIsOpen] = useState(Cookies.get('globalState') || true)
@@ -22,7 +23,9 @@ export default function sidenav() {
       <div className={`flex flex-col justify-between h-full    ${isOpen ? 'w-72' : ' w-40'} duration-500`}>
         {/*Logo */}
         <div className=" h-32 flex items-center justify-center">
-          <Logo />
+          <Link href="/dashboard/">
+            <Logo />
+          </Link>
         </div>
         {/*Componentizando las opciones de navegacion*/}
         <div className="px-0 flex flex-col h-full pt-14">
