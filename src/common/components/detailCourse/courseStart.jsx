@@ -5,7 +5,7 @@ export default function courseStart() {
   const [isOpen, setIsOpen] = useState(false)
   return (
     <>
-      <div className=" 2xl:col-span-2 lg:col-span-1 h-96">
+      <div className=" 2xl:col-span-2 lg:col-span-2 h-96">
         <div className="rounded-xl border-2 flex   h-full bg-gradient-to-t from-[#FFF409] via-stone-900 to-black opacity-90">
           <div className=" w-full flex flex-col items-center justify-center gap-5">
             <div>

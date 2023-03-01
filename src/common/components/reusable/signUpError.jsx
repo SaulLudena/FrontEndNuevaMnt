@@ -5,7 +5,7 @@ import Stack from '@mui/material/Stack'
 export default function SignUpError({ statusError, apiMessage }) {
   if (statusError) {
     return (
-      <div className={`flex justify-center absolute py-14 w-full `}>
+      <div className={`flex justify-center absolute py-14 w-full z-20`}>
         <div>
           <Stack sx={{ width: '30rem' }} className="shadow-lg">
             <Alert severity="error">

@@ -6,7 +6,7 @@ export default function courseReview() {
   return (
     <Link
       href={``}
-      className="p-5 bg-white rounded-xl 2xl:col-span-1 lg:col-span-1 hover:shadow-xl transition duration-200 "
+      className="p-5 bg-white rounded-xl 2xl:col-span-1 lg:col-span-2 hover:shadow-xl transition duration-200 "
     >
       <div className="flex flex-col justify-between h-full">
         <div className="flex justify-between ">

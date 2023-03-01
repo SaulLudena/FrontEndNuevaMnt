@@ -1,13 +1,13 @@
 import { RiShutDownLine, RiLightbulbLine } from 'react-icons/ri'
 import { FiBell, FiUser } from 'react-icons/fi'
-
 import { BiShoppingBag } from 'react-icons/bi'
 import { AiOutlineShoppingCart, AiOutlineInfoCircle } from 'react-icons/ai'
 import UserInfo from '../userInfo/userInfo'
 import cookies from 'js-cookie'
 import Link from 'next/link'
 import { Menu, Transition } from '@headlessui/react'
-import { Fragment } from 'react'
+import { Fragment, useEffect, useState } from 'react'
+
 const logout = () => {
   cookies.remove('nuevamenteToken')
   if (process.browser) {
@@ -16,6 +16,12 @@ const logout = () => {
 }
 
 export default function topNav() {
+  const [countCart, setCountCart] = useState(0)
+  useEffect(() => {
+    const existingItem = JSON.parse(localStorage.getItem('selectedItems'))
+    !existingItem ? setCountCart(0) : setCountCart(existingItem.length)
+  })
+
   return (
     <div className="flex items-center justify-between ">
       <div>
@@ -27,6 +33,11 @@ export default function topNav() {
           <Menu.Button className=" group group-hover:text-gray-700 flex justify-between text-xl rounded-3xl text-gray-400">
             <Link href="/shoppingCart/" className="transition duration-200  group-hover:bg-gray-200 p-4 rounded-xl">
               <AiOutlineShoppingCart className="text-gray-700" />
+              <div className="absolute translate-x-4 -translate-y-9  text-sm text-white rounded-full ">
+                <div className="">
+                  <p className="px-[0.3rem] bg-black rounded-full">{countCart}</p>
+                </div>
+              </div>
             </Link>
           </Menu.Button>
         </Menu>

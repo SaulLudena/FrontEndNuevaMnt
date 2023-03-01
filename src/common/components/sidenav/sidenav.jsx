@@ -19,8 +19,8 @@ export default function sidenav() {
     Cookies.set('globalState', isOpen)
   }
   return (
-    <div className={`flex h-screen  ${isOpen ? 'w-72 p-5' : ' w-40 p-3'} duration-500`}>
-      <div className={`flex flex-col justify-between h-full    ${isOpen ? 'w-72' : ' w-40'} duration-500`}>
+    <div className={`flex h-screen  ${isOpen ? 'w-72 p-5' : ' w-40 p-3'} duration-500 `}>
+      <div className={`flex flex-col justify-between h-full    ${isOpen ? 'w-72' : ' w-40'} duration-500 `}>
         {/*Logo */}
         <div className=" h-32 flex items-center justify-center">
           <Link href="/dashboard/">

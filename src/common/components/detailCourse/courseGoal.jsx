@@ -5,7 +5,9 @@ export default function courseGoal() {
         <div className="grid gap-2">
           <h1 className="font-bold text-xl">Metodologia</h1>
           <p className="text-gray-700">
-            En este curso aprendas distintas tácticas que en el mundo moderno significan tener éxito en los negocios,{' '}
+            En este curso aprendas distintas tácticas que en el mundo moderno significan tener éxito en los negocios, en
+            los negocios en los negocios en los negocios en los negocios en los negocios en los negocios en los negocios
+            s
           </p>
         </div>
         <div className="grid gap-2">

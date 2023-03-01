@@ -19,7 +19,7 @@ export default function DetailCourse({ courseId }) {
           <CourseGoal />
           <CourseReview />
         </div>
-        <div className="grid lg:grid-cols-2  2xl:grid-cols-4  2xl:grid-rows-auto  gap-10  h-full ">
+        <div className="grid lg:grid-cols-2  2xl:grid-cols-4  2xl:grid-rows-auto  gap-10   ">
           <CourseVideoModules />
           <CourseStart />
         </div>
