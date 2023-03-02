@@ -8,32 +8,35 @@ import Link from 'next/link'
 import { Menu, Transition } from '@headlessui/react'
 import { Fragment, useEffect, useState } from 'react'
 
-const logout = () => {
-  cookies.remove('nuevamenteToken')
-  if (process.browser) {
-    window.location.reload()
-  }
-}
-
 export default function topNav() {
+  const logout = () => {
+    cookies.remove('nuevamenteToken')
+    if (process.browser) {
+      window.location.reload()
+    }
+  }
+
   const [countCart, setCountCart] = useState(0)
-  useEffect(() => {
+  const updateCartCount = () => {
     const existingItem = JSON.parse(localStorage.getItem('selectedItems'))
     !existingItem ? setCountCart(0) : setCountCart(existingItem.length)
-  })
+  }
+  useEffect(() => {
+    updateCartCount()
+  }, [])
 
   return (
     <div className="flex items-center justify-between ">
       <div>
         <UserInfo />
       </div>
-      <div className="flex gap-2 items-center">
+      <div className="flex items-center gap-2">
         {/*Boton menu para ir al carrito de compras */}
         <Menu className="relative" as="div">
-          <Menu.Button className=" group group-hover:text-gray-700 flex justify-between text-xl rounded-3xl text-gray-400">
-            <Link href="/shoppingCart/" className="transition duration-200  group-hover:bg-gray-200 p-4 rounded-xl">
+          <Menu.Button className="flex justify-between text-xl text-gray-400 group group-hover:text-gray-700 rounded-3xl">
+            <Link href="/shoppingCart/" className="p-4 transition duration-200 group-hover:bg-gray-200 rounded-xl">
               <AiOutlineShoppingCart className="text-gray-700" />
-              <div className="absolute translate-x-4 -translate-y-9  text-sm text-white rounded-full ">
+              <div className="absolute text-sm text-white translate-x-4 rounded-full -translate-y-9 ">
                 <div className="">
                   <p className="px-[0.3rem] bg-black rounded-full">{countCart}</p>
                 </div>
@@ -43,11 +46,11 @@ export default function topNav() {
         </Menu>
         {/*Boton menu para ver mis notificaciones */}
         <Menu className="relative" as="div">
-          <Menu.Button className=" group group-hover:text-gray-700 flex justify-between text-xl rounded-3xl text-gray-400">
-            <div className="transition duration-200  group-hover:bg-gray-200 p-4 rounded-xl">
+          <Menu.Button className="flex justify-between text-xl text-gray-400 group group-hover:text-gray-700 rounded-3xl">
+            <div className="p-4 transition duration-200 group-hover:bg-gray-200 rounded-xl">
               <FiBell className="text-gray-700" />
               <div className="absolute translate-x-4 -translate-y-7 ">
-                <div className=" w-2 h-2 bg-rose-600 rounded-full"></div>
+                <div className="w-2 h-2 rounded-full bg-rose-600"></div>
               </div>
             </div>
           </Menu.Button>
@@ -60,17 +63,17 @@ export default function topNav() {
             leaveFrom="transform opacity-100 scale-100"
             leaveTo="transform opacity-0 scale-95"
           >
-            <Menu.Items className="mt-2 flex flex-col absolute z-10  border-gray-300 right-0  w-56 origin-top-right divide-y  rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-              <Menu.Item className=" p-3 hover:bg-gray-50 hover:text-black text-gray-600 rounded-t-lg flex items-center gap-3">
+            <Menu.Items className="absolute right-0 z-10 flex flex-col w-56 mt-2 origin-top-right bg-white border-gray-300 divide-y rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+              <Menu.Item className="flex items-center gap-3 p-3 text-gray-600 rounded-t-lg hover:bg-gray-50 hover:text-black">
                 {({ active }) => (
                   <a href="#">
                     <p>Mis notificaciones</p>
                   </a>
                 )}
               </Menu.Item>
-              <Menu.Item className=" p-3 hover:bg-gray-50 hover:text-black text-gray-600 rounded-t-lg flex items-center gap-3">
+              <Menu.Item className="flex items-center gap-3 p-3 text-gray-600 rounded-t-lg hover:bg-gray-50 hover:text-black">
                 {({ active }) => (
-                  <div className="py-2 px-5 flex gap-5 items-start">
+                  <div className="flex items-start gap-5 px-5 py-2">
                     <img
                       src="https://images.genius.com/e7bc4bc0ad72f28752e27630299d2442.700x700x1.jpg"
                       className="w-10 h-10 rounded-full"
@@ -82,9 +85,9 @@ export default function topNav() {
                   </div>
                 )}
               </Menu.Item>
-              <Menu.Item className=" p-3 hover:bg-gray-50 hover:text-black text-gray-600 rounded-t-lg flex items-center gap-3">
+              <Menu.Item className="flex items-center gap-3 p-3 text-gray-600 rounded-t-lg hover:bg-gray-50 hover:text-black">
                 {({ active }) => (
-                  <div className="py-2 px-5 flex gap-5 items-start">
+                  <div className="flex items-start gap-5 px-5 py-2">
                     <img
                       src="https://images.genius.com/e7bc4bc0ad72f28752e27630299d2442.700x700x1.jpg"
                       className="w-10 h-10 rounded-full"
@@ -101,11 +104,11 @@ export default function topNav() {
         </Menu>
         {/*Boton menu para ver mis Lux's */}
         <Menu className="relative" as="div">
-          <Menu.Button className=" group group-hover:text-gray-700 flex justify-between text-xl rounded-3xl text-gray-400">
-            <div className="transition duration-200  group-hover:bg-gray-200 p-4 rounded-xl">
+          <Menu.Button className="flex justify-between text-xl text-gray-400 group group-hover:text-gray-700 rounded-3xl">
+            <div className="p-4 transition duration-200 group-hover:bg-gray-200 rounded-xl">
               <RiLightbulbLine className="text-gray-700" />
               <div className="absolute translate-x-4 -translate-y-7 ">
-                <div className=" w-2 h-2 bg-amber-400 rounded-full"></div>
+                <div className="w-2 h-2 rounded-full bg-amber-400"></div>
               </div>
             </div>
           </Menu.Button>
@@ -118,17 +121,17 @@ export default function topNav() {
             leaveFrom="transform opacity-100 scale-100"
             leaveTo="transform opacity-0 scale-95"
           >
-            <Menu.Items className="mt-2 flex flex-col absolute z-10  border-gray-300 right-0  w-56 origin-top-right divide-y  rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-              <Menu.Item className=" p-3 hover:bg-gray-50 hover:text-black text-gray-600 rounded-t-lg flex items-center gap-3">
+            <Menu.Items className="absolute right-0 z-10 flex flex-col w-56 mt-2 origin-top-right bg-white border-gray-300 divide-y rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+              <Menu.Item className="flex items-center gap-3 p-3 text-gray-600 rounded-t-lg hover:bg-gray-50 hover:text-black">
                 {({ active }) => (
                   <a href="#">
                     <p>Mis lux's</p>
                   </a>
                 )}
               </Menu.Item>
-              <Menu.Item className=" p-3 hover:bg-gray-50 hover:text-black text-gray-600 rounded-t-lg flex items-center gap-3">
+              <Menu.Item className="flex items-center gap-3 p-3 text-gray-600 rounded-t-lg hover:bg-gray-50 hover:text-black">
                 {({ active }) => (
-                  <div className="py-2 px-5 flex gap-5 items-start">
+                  <div className="flex items-start gap-5 px-5 py-2">
                     <img
                       src="https://images.genius.com/e7bc4bc0ad72f28752e27630299d2442.700x700x1.jpg"
                       className="w-10 h-10 rounded-full"
@@ -140,9 +143,9 @@ export default function topNav() {
                   </div>
                 )}
               </Menu.Item>
-              <Menu.Item className=" p-3 hover:bg-gray-50 hover:text-black text-gray-600 rounded-t-lg flex items-center gap-3">
+              <Menu.Item className="flex items-center gap-3 p-3 text-gray-600 rounded-t-lg hover:bg-gray-50 hover:text-black">
                 {({ active }) => (
-                  <div className="py-2 px-5 flex gap-5 items-start">
+                  <div className="flex items-start gap-5 px-5 py-2">
                     <img
                       src="https://images.genius.com/e7bc4bc0ad72f28752e27630299d2442.700x700x1.jpg"
                       className="w-10 h-10 rounded-full"
@@ -159,8 +162,8 @@ export default function topNav() {
         </Menu>
         {/*Boton menu para ver mis opciones de logout entre otras */}
         <Menu className="relative" as="div">
-          <Menu.Button className=" group group-hover:text-gray-700 flex justify-between text-xl rounded-3xl text-gray-400">
-            <div className="transition duration-200  group-hover:bg-gray-200 p-4 rounded-xl">
+          <Menu.Button className="flex justify-between text-xl text-gray-400 group group-hover:text-gray-700 rounded-3xl">
+            <div className="p-4 transition duration-200 group-hover:bg-gray-200 rounded-xl">
               <FiUser className="text-gray-700" />
             </div>
           </Menu.Button>
@@ -173,8 +176,8 @@ export default function topNav() {
             leaveFrom="transform opacity-100 scale-100"
             leaveTo="transform opacity-0 scale-95"
           >
-            <Menu.Items className="mt-2 flex flex-col absolute z-10  border-gray-300 right-0  w-56 origin-top-right divide-y  rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-              <Menu.Item className=" p-3 hover:bg-gray-50 hover:text-black text-gray-600 rounded-t-lg flex items-center gap-3">
+            <Menu.Items className="absolute right-0 z-10 flex flex-col w-56 mt-2 origin-top-right bg-white border-gray-300 divide-y rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+              <Menu.Item className="flex items-center gap-3 p-3 text-gray-600 rounded-t-lg hover:bg-gray-50 hover:text-black">
                 {({ active }) => (
                   <a className={`${active && 'bg-blue-500'} `} href="#">
                     <FiUser />
@@ -182,7 +185,7 @@ export default function topNav() {
                   </a>
                 )}
               </Menu.Item>
-              <Menu.Item className="p-3 hover:bg-gray-50 hover:text-black text-gray-600 flex items-center gap-3">
+              <Menu.Item className="flex items-center gap-3 p-3 text-gray-600 hover:bg-gray-50 hover:text-black">
                 {({ active }) => (
                   <a className={`${active && 'bg-blue-500'} `} href="#">
                     <BiShoppingBag />
@@ -190,7 +193,7 @@ export default function topNav() {
                   </a>
                 )}
               </Menu.Item>
-              <Menu.Item className=" p-3 hover:bg-gray-50 hover:text-black text-gray-600 flex items-center gap-3">
+              <Menu.Item className="flex items-center gap-3 p-3 text-gray-600 hover:bg-gray-50 hover:text-black">
                 {({ active }) => (
                   <a className={`${active && 'bg-blue-500'} `} href="#">
                     <AiOutlineInfoCircle />
@@ -199,7 +202,7 @@ export default function topNav() {
                 )}
               </Menu.Item>
               <Menu.Item
-                className="cursor-pointer p-3 hover:bg-gray-50 hover:text-black text-gray-600 flex items-center gap-3 rounded-b-lg"
+                className="flex items-center gap-3 p-3 text-gray-600 rounded-b-lg cursor-pointer hover:bg-gray-50 hover:text-black"
                 onClick={() => {
                   logout()
                 }}
