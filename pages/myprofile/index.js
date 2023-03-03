@@ -1,19 +1,20 @@
 /*Importando coponentes */
 import SideNav from '../../src/common/components/sidenav/sidenav'
-import ShoppingCart from '../../src/common/components/shoppinfCart/shoppingCart'
+import Myprofile from '../../src/common/components/myprofile/myprofile'
 /*Importando head tag */
 import Head from 'next/head'
 
-export default function Dashboard() {
+export default function index() {
   //crear un layout que contenga el topnav y los elementos de dashboard
   return (
     <>
       <Head>
-        <title>Carrito de compras</title>
+        <title>Mi perfil</title>
       </Head>
       <div className=" w-full h-screen flex ">
         <SideNav />
-        <ShoppingCart />
+
+        <Myprofile />
       </div>
     </>
   )

@@ -34,6 +34,7 @@ export default function LeftSide() {
         Cookies.set('nuevamenteToken', token)
         if (process.browser) {
           window.location.href = '/dashboard'
+          localStorage.removeItem('selectedItems')
         }
       }
     } catch (error) {

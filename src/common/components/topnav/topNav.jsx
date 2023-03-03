@@ -13,17 +13,9 @@ export default function topNav() {
     cookies.remove('nuevamenteToken')
     if (process.browser) {
       window.location.reload()
+      localStorage.removeItem('selectedItems')
     }
   }
-
-  const [countCart, setCountCart] = useState(0)
-  const updateCartCount = () => {
-    const existingItem = JSON.parse(localStorage.getItem('selectedItems'))
-    !existingItem ? setCountCart(0) : setCountCart(existingItem.length)
-  }
-  useEffect(() => {
-    updateCartCount()
-  }, [])
 
   return (
     <div className="flex items-center justify-between ">
@@ -36,11 +28,6 @@ export default function topNav() {
           <Menu.Button className="flex justify-between text-xl text-gray-400 group group-hover:text-gray-700 rounded-3xl">
             <Link href="/shoppingCart/" className="p-4 transition duration-200 group-hover:bg-gray-200 rounded-xl">
               <AiOutlineShoppingCart className="text-gray-700" />
-              <div className="absolute text-sm text-white translate-x-4 rounded-full -translate-y-9 ">
-                <div className="">
-                  <p className="px-[0.3rem] bg-black rounded-full">{countCart}</p>
-                </div>
-              </div>
             </Link>
           </Menu.Button>
         </Menu>
@@ -179,10 +166,10 @@ export default function topNav() {
             <Menu.Items className="absolute right-0 z-10 flex flex-col w-56 mt-2 origin-top-right bg-white border-gray-300 divide-y rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
               <Menu.Item className="flex items-center gap-3 p-3 text-gray-600 rounded-t-lg hover:bg-gray-50 hover:text-black">
                 {({ active }) => (
-                  <a className={`${active && 'bg-blue-500'} `} href="#">
+                  <Link className={`${active && 'bg-blue-500'} `} href="/myprofile">
                     <FiUser />
                     <p>Mi perfil</p>
-                  </a>
+                  </Link>
                 )}
               </Menu.Item>
               <Menu.Item className="flex items-center gap-3 p-3 text-gray-600 hover:bg-gray-50 hover:text-black">

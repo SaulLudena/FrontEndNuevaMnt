@@ -58,7 +58,7 @@ export default function moreCourses() {
               return (
                 <div
                   key={course.course_id}
-                  className="p-10 rounded-xl  bg-gradient-to-r from-[#FFF409] via-white to-white opacity-90"
+                  className="p-5 rounded-xl  bg-gradient-to-r from-[#FFF409] via-white to-white opacity-90"
                 >
                   <div className="flex gap-14">
                     <div className="flex justify-between">

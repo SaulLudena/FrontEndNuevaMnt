@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import ShopItem from './shopItem'
 export default function Cart() {
   const [data, setData] = useState([])
-  const [buttonDisable, setButtonDisable] = useState(false)
   useEffect(() => {
     if (typeof window !== 'undefined' && window.localStorage) {
       const storedData = JSON.parse(localStorage.getItem('selectedItems'))
@@ -24,8 +23,6 @@ export default function Cart() {
   }
 
   const eliminarProducto = (id) => {
-    console.log(id)
-
     //filtrar todos los productos que no hayan sido removidos
     const carritoActualizado = data.filter((item) => item.course_id != id)
     //actualiza la lista visible al usuario
@@ -66,8 +63,15 @@ export default function Cart() {
           </div>
           <div className="flex">
             <button
-              className="w-full py-5 font-bold text-white bg-black rounded-lg"
+              className={
+                !data.length <= 0
+                  ? 'w-full py-5 font-bold text-white bg-black rounded-lg'
+                  : 'w-full py-5 font-bold text-[#686868] bg-[#d6d6d6] rounded-lg'
+              }
               disabled={!data.length <= 0 ? false : true}
+              onClick={() => {
+                console.log(`Comprando los siguientes cursos`)
+              }}
             >
               PAGAR
             </button>
