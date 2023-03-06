@@ -13,7 +13,7 @@ export default function Cart() {
     let total = 0
     if (data) {
       data.forEach((item) => {
-        total += item.course_price
+        total += parseInt(item.precio_curso)
       })
     } else {
       return
@@ -24,7 +24,7 @@ export default function Cart() {
 
   const eliminarProducto = (id) => {
     //filtrar todos los productos que no hayan sido removidos
-    const carritoActualizado = data.filter((item) => item.course_id != id)
+    const carritoActualizado = data.filter((item) => item.id_curso != id)
     //actualiza la lista visible al usuario
     setData(carritoActualizado)
     //actualizar la lista en el localStorage
@@ -39,7 +39,7 @@ export default function Cart() {
         <div className="grid gap-10">
           {!data.length <= 0 ? (
             data.map((item, index) => {
-              return <ShopItem key={item.course_id} item={item} index={index} removeProduct={eliminarProducto} />
+              return <ShopItem key={item.id_curso} item={item} index={index} removeProduct={eliminarProducto} />
             })
           ) : (
             <p>Tu carrito esta vacio</p>

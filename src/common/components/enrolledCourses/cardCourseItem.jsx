@@ -9,7 +9,7 @@ export default function CardCourseItem({ courseObject }) {
   return (
     <Link
       href={`/miAprendizaje/detalleCurso/${courseObject.courseId}`}
-      className="p-5 bg-white rounded-xl group-hover:shadow-xl"
+      className="p-5 bg-white rounded-xl hover:shadow-xl transition duration-150"
     >
       <div className="flex flex-col gap-10 ">
         <div className="flex justify-between ">

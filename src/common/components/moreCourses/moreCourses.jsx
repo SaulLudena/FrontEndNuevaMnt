@@ -1,37 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import TopNav from '../topnav/topNav'
 import { AiFillStar, AiFillCheckCircle, AiOutlineShoppingCart } from 'react-icons/ai'
-export default function moreCourses() {
+export default function moreCourses({ myInfo }) {
   const [selectedItems, setSelectedItems] = useState([])
-  const [courses, setCourse] = useState([
-    {
-      course_id: 1,
-      course_title: 'Marketing para networkers',
-      enrrolled_people: 14,
-      course_description:
-        'lorem ipsum more nato vim sere lorem ipsum more nato vim serevlorem ipsum more nato vim sere',
-      course_teacher: 'Jeff Blas',
-      course_rathe: 24,
-      course_price: 1200,
-      course_url_image:
-        'https://www.eleconomista.com.mx/__export/1631370087765/sites/eleconomista/img/2021/09/09/que_es_el_marketing_digital_principal_nayelly_tenorio_ilustracion.png_783160999.png',
-    },
-    {
-      course_id: 2,
-      course_title: 'Fotografia para principantes',
-      enrrolled_people: 20,
-      course_description:
-        'lorem ipsum more nato vim sere lorem ipsum more nato vim serevlorem ipsum more nato vim sere',
-      course_teacher: 'Jesus Branco',
-      course_rathe: 24,
-      course_price: 1100,
-      course_url_image: 'https://conceptodefinicion.de/wp-content/uploads/2015/04/fotografia.png',
-    },
-  ])
+  const [courses, setCourse] = useState([])
+
+  useEffect(() => {
+    setCourse(myInfo)
+  })
 
   const handleAddToCart = (item, index) => {
+    console.log(item, index)
     const newSelectedItems = [...selectedItems]
-    newSelectedItems[index] = { ...item, disabled: true }
+    newSelectedItems.unshift({ ...item, disabled: true })
     setSelectedItems(newSelectedItems)
     localStorage.setItem('selectedItems', JSON.stringify(newSelectedItems))
   }
@@ -53,29 +34,29 @@ export default function moreCourses() {
           </div>
           <div className=" grid 2xl:grid-cols-1 gap-10">
             {courses.map((course, index) => {
-              const disabled = selectedItems.find((item) => item.course_id === course.course_id)?.disabled
+              const disabled = selectedItems.find((item) => item.id_curso === course.id_curso)?.disabled
               return (
                 <div
-                  key={course.course_id}
+                  key={course.id_curso}
                   className="p-5 rounded-xl  bg-gradient-to-r from-[#FFF409] via-white to-white opacity-90"
                 >
                   <div className="flex gap-14">
                     <div className="flex justify-between">
                       <img
-                        src={course.course_url_image}
+                        src={course.url_imagen_principal_curso}
                         alt="Course image"
                         className="  rounded-lg object-cover w-[25rem] h-[15rem]"
                       />
                     </div>
                     <div className="w-full flex flex-col justify-around">
-                      <h1 className="text-2xl font-bold ">{course.course_title}</h1>
+                      <h1 className="text-2xl font-bold ">{course.nombre_curso}</h1>
                       <p className="font-medium">
-                        <strong>Personas inscritas :</strong> {course.enrrolled_people}
+                        <strong>Personas inscritas :</strong> {23}
                       </p>
-                      <p>Descripcion: {course.course_description}</p>
+                      <p>Descripcion: {course.descripcion_curso.substr(0, 100)}</p>
                       <span className="flex gap-1">
                         <p>Dictado por:</p>
-                        <p className="font-bold">{course.course_teacher}</p>
+                        <p className="font-bold">{course.tb_usuario.nombre_usuario}</p>
                       </span>
                       <div className="flex gap-1">
                         <AiFillStar className="text-[#FFF409]" />
@@ -109,7 +90,7 @@ export default function moreCourses() {
                     </div>
                     <div className="flex flex-col-reverse  justify-start w-60 ">
                       <div className="flex justify-end h-full">
-                        <p className="text-xl font-medium">S/. {course.course_price}</p>
+                        <p className="text-xl font-medium">S/. {parseInt(course.precio_curso)}</p>
                       </div>
                     </div>
                   </div>
