@@ -51,7 +51,7 @@ export default function FormProfile() {
         </div>
         <hr />
         <div className={styles.inputGroup}>
-          <p className="font-medium">Apodo</p>
+          <p className="font-medium">Foto perfil de usuario</p>
           <div className="border-2 borde-black">
             <img
               src="https://i.natgeofe.com/n/548467d8-c5f1-4551-9f58-6817a8d2c45e/NationalGeographic_2572187_square.jpg"

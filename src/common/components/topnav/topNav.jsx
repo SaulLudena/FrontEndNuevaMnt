@@ -13,7 +13,7 @@ export default function topNav() {
     cookies.remove('nuevamenteToken')
     if (process.browser) {
       window.location.reload()
-      localStorage.removeItem('selectedItems')
+      localStorage.setItem('selectedItems', JSON.stringify([]))
     }
   }
 

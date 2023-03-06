@@ -14,7 +14,7 @@ export default function moreCourses() {
       course_rathe: 24,
       course_price: 1200,
       course_url_image:
-        'https://i.natgeofe.com/n/548467d8-c5f1-4551-9f58-6817a8d2c45e/NationalGeographic_2572187_square.jpg',
+        'https://www.eleconomista.com.mx/__export/1631370087765/sites/eleconomista/img/2021/09/09/que_es_el_marketing_digital_principal_nayelly_tenorio_ilustracion.png_783160999.png',
     },
     {
       course_id: 2,
@@ -25,8 +25,7 @@ export default function moreCourses() {
       course_teacher: 'Jesus Branco',
       course_rathe: 24,
       course_price: 1100,
-      course_url_image:
-        'https://i.natgeofe.com/n/548467d8-c5f1-4551-9f58-6817a8d2c45e/NationalGeographic_2572187_square.jpg',
+      course_url_image: 'https://conceptodefinicion.de/wp-content/uploads/2015/04/fotografia.png',
     },
   ])
 
@@ -65,7 +64,7 @@ export default function moreCourses() {
                       <img
                         src={course.course_url_image}
                         alt="Course image"
-                        className="  rounded-lg object-cover w-[20rem]"
+                        className="  rounded-lg object-cover w-[25rem] h-[15rem]"
                       />
                     </div>
                     <div className="w-full flex flex-col justify-around">
