@@ -1,12 +1,17 @@
 import Link from 'next/link'
+import { useState } from 'react'
 
-export default function sidenavItem({ route, label, icon, isOpen }) {
+export default function SidenavItem({ route, label, icon, isOpen }) {
+  const [isActive, setActive] = useState(false)
+  const toggleItem = () => {
+    setActive(true)
+  }
   return (
-    <Link href={route} className="group">
+    <Link href={route} className="group" onClick={toggleItem}>
       <div
-        className={`group-hover:text-gray-800 group-hover:bg-[#FFF409] flex justify-between py-3 rounded-xl text-gray-400 ${
-          isOpen ? 'px-12' : 'px-5 py-5 text-8xl'
-        }`}
+        className={`group-hover:text-gray-800 ${
+          isActive ? `bg-[#FFF409]` : 'group-hover:bg-[#FFF409]'
+        }  flex justify-between py-3 rounded-xl text-gray-400 ${isOpen ? 'px-12' : 'px-5 py-5 text-8xl'}`}
       >
         <div className={`flex ${isOpen ? 'flex gap-5' : 'gap-3  flex-col'} items-center  h-full w-full duration-300`}>
           {icon}

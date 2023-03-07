@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 /*Importando iconos */
 import { AiOutlineHome } from 'react-icons/ai'
 import { BiSearch } from 'react-icons/bi'
@@ -12,12 +12,22 @@ import Cookies from 'js-cookie'
 import Link from 'next/link'
 
 export default function sidenav() {
-  const [isOpen, setIsOpen] = useState(Cookies.get('globalState') || true)
+  const [isOpen, setIsOpen] = useState(true)
+  useEffect(() => {
+    // Obtener el estado del sidenav del localStorage
+    const storedState = localStorage.getItem('sidenavState')
+    if (storedState === 'closed') {
+      setIsOpen(false)
+    }
+  }, [])
 
   const toggleSidenav = () => {
-    setIsOpen(!isOpen)
-    Cookies.set('globalState', isOpen)
+    const newState = !isOpen
+    setIsOpen(newState)
+    // Guardar el estado del sidenav en localStorage
+    localStorage.setItem('sidenavState', newState ? 'open' : 'closed')
   }
+
   return (
     <div className={`flex h-screen  ${isOpen ? 'w-72 p-5' : ' w-40 p-3'} duration-500 `}>
       <div className={`flex flex-col justify-between h-full    ${isOpen ? 'w-72' : ' w-40'} duration-500 `}>

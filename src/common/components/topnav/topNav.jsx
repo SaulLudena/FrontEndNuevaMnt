@@ -2,6 +2,7 @@ import { RiShutDownLine, RiLightbulbLine } from 'react-icons/ri'
 import { FiBell, FiUser } from 'react-icons/fi'
 import { BiShoppingBag } from 'react-icons/bi'
 import { AiOutlineShoppingCart, AiOutlineInfoCircle } from 'react-icons/ai'
+import { GoGear } from 'react-icons/go'
 import UserInfo from '../userInfo/userInfo'
 import cookies from 'js-cookie'
 import Link from 'next/link'
@@ -151,7 +152,7 @@ export default function topNav() {
         <Menu className="relative" as="div">
           <Menu.Button className="flex justify-between text-xl text-gray-400 group group-hover:text-gray-700 rounded-3xl">
             <div className="p-4 transition duration-200 group-hover:bg-gray-200 rounded-xl">
-              <FiUser className="text-gray-700" />
+              <GoGear className="text-gray-700" />
             </div>
           </Menu.Button>
           <Transition
