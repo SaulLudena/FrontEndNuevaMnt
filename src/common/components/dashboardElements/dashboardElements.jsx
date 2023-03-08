@@ -11,7 +11,6 @@ import { useEffect, useState } from 'react'
 import Cookies from 'js-cookie'
 import axios from 'axios'
 import Link from 'next/link'
-
 import { GrAction } from 'react-icons/gr'
 
 export default function DashboardElements() {
@@ -78,7 +77,7 @@ export default function DashboardElements() {
               </div>
             </div>
             <div className=" lg:col-span-2 2xl:col-span-2 w-full bg-white rounded-xl hover:shadow-lg transition duration-100">
-              <Link href="/dashboard/coursesMaintenance" className="flex gap-3  h-full">
+              <Link href="/dashboard/zonaDeMentores" className="flex gap-3  h-full">
                 <div className="bg-[#FFF409] w-10 rounded-tl-xl rounded-bl-xl"></div>
                 <div className="p-5 flex items-center gap-6">
                   <div>
@@ -86,7 +85,7 @@ export default function DashboardElements() {
                       <GrAction size={100} className="text-emerald-800" />
                     </div>
                   </div>
-                  <p className="font-semibold text-gray-800">Gestion de cursos</p>
+                  <p className="font-semibold text-gray-800">Zona de mentores</p>
                 </div>
               </Link>
             </div>

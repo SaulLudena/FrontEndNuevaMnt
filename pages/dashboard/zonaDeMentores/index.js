@@ -1,10 +1,6 @@
-/*Importando coponentes */
-
-/*Importando head tag */
-import axios from 'axios'
-import Cookies from 'js-cookie'
 import Head from 'next/head'
 import Layout from '../../../src/common/components/layout'
+import CourseMaintenance from '../../../src/common/components/dashboardElements/courseMaintenance/courseMaintenance'
 export default function Dashboard() {
   //crear un layout que contenga el topnav y los elementos de dashboard
   return (
@@ -13,7 +9,9 @@ export default function Dashboard() {
         <title>Nuevamente</title>
       </Head>
       <div className=" w-full h-screen flex ">
-        <Layout>a</Layout>
+        <Layout>
+          <CourseMaintenance />
+        </Layout>
       </div>
     </>
   )

@@ -1,5 +1,4 @@
 /*Importando coponentes */
-import SideNav from '../../src/common/components/sidenav/sidenav'
 import Myprofile from '../../src/common/components/myprofile/myprofile'
 /*Importando head tag */
 import Head from 'next/head'

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import TopNav from '../topnav/topNav'
 import { AiFillStar, AiFillCheckCircle, AiOutlineShoppingCart } from 'react-icons/ai'
+import Link from 'next/link'
 export default function moreCourses({ myInfo }) {
   const [selectedItems, setSelectedItems] = useState([])
   const [courses, setCourse] = useState([])
@@ -71,16 +72,19 @@ export default function moreCourses({ myInfo }) {
                           onClick={() => {
                             handleAddToCart(course, index)
                           }}
-                          className={`${disabled ? 'bg-white ' : 'bg-white'}  px-5 py-2 rounded-full shadow-lg`}
+                          className={`${disabled ? 'bg-white ' : 'bg-white'} rounded-full shadow-lg`}
                           disabled={disabled}
                         >
                           {disabled ? (
-                            <span className="flex items-center gap-2 animation duration-300">
+                            <Link
+                              href="/shoppingCart"
+                              className="flex items-center gap-2 animation duration-300   px-5 py-2 "
+                            >
                               <AiFillCheckCircle className="text-emerald-500" />
-                              <p>Agregado</p>
-                            </span>
+                              <p>Ver carrito</p>
+                            </Link>
                           ) : (
-                            <span className="flex items-center gap-2 animation duration-300">
+                            <span className="flex items-center gap-2 animation duration-300  px-5 py-2 ">
                               <AiOutlineShoppingCart className="text-emerald-500" />
                               <p>Agregar al carrito</p>
                             </span>
