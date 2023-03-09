@@ -29,11 +29,11 @@ export default function moreCourses({ myInfo }) {
     <div className={`flex flex-1 overflow-hidden w-full pt-5 pr-5 pb-5`}>
       <div className="bg-[#F7F7F7] rounded-xl h-full p-9 flex flex-col gap-4 overflow-y-scroll scroller w-full ">
         <TopNav />
-        <div className=" grid gap-10">
-          <div className="text-3xl font-bold  w-full grid gap-2">
+        <div className="grid gap-10 ">
+          <div className="grid w-full gap-2 text-3xl font-bold">
             <h1>Adquiere los mejores cursos</h1>
           </div>
-          <div className=" grid 2xl:grid-cols-1 gap-10">
+          <div className="grid gap-10 2xl:grid-cols-1">
             {courses.map((course, index) => {
               const disabled = selectedItems.find((item) => item.id_curso === course.id_curso)?.disabled
               return (
@@ -49,7 +49,7 @@ export default function moreCourses({ myInfo }) {
                         className="  rounded-lg object-cover w-[25rem] h-[15rem]"
                       />
                     </div>
-                    <div className="w-full flex flex-col justify-around">
+                    <div className="flex flex-col justify-around w-full">
                       <h1 className="text-2xl font-bold ">{course.nombre_curso}</h1>
                       <p className="font-medium">
                         <strong>Personas inscritas :</strong> {23}
@@ -78,13 +78,13 @@ export default function moreCourses({ myInfo }) {
                           {disabled ? (
                             <Link
                               href="/shoppingCart"
-                              className="flex items-center gap-2 animation duration-300   px-5 py-2 "
+                              className="flex items-center gap-2 px-5 py-2 duration-300 animation "
                             >
                               <AiFillCheckCircle className="text-emerald-500" />
                               <p>Ver carrito</p>
                             </Link>
                           ) : (
-                            <span className="flex items-center gap-2 animation duration-300  px-5 py-2 ">
+                            <span className="flex items-center gap-2 px-5 py-2 duration-300 animation ">
                               <AiOutlineShoppingCart className="text-emerald-500" />
                               <p>Agregar al carrito</p>
                             </span>
@@ -92,7 +92,7 @@ export default function moreCourses({ myInfo }) {
                         </button>
                       </div>
                     </div>
-                    <div className="flex flex-col-reverse  justify-start w-60 ">
+                    <div className="flex flex-col-reverse justify-start w-60 ">
                       <div className="flex justify-end h-full">
                         <p className="text-xl font-medium">S/. {parseInt(course.precio_curso)}</p>
                       </div>

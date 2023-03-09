@@ -1,5 +1,5 @@
 import TopNav from '../topnav/topNav'
-import BigCardPresentation from '../bigCardPresentation/bigCardPresentation'
+import BigCardPresentation from '../bigCardPresentation'
 import TotalCoursesCard from '../totalCourses/totalCourses'
 import CompletedCourses from '../completedCourse/completedCourses'
 import OfferCard from '../offerCard/offerCard'
@@ -60,13 +60,13 @@ export default function DashboardElements() {
           <FastAccessCourse />
         </div>
         {user.id_tipo_usuario === 1 && user.rol_usuario === 'Administrador' ? (
-          <div className="grid gap-10 lg:grid-cols-4 2xl:grid-cols-4 2xl:grid-rows-4 lg:grid-rows-2">
-            <div className=" lg:col-span-2 2xl:col-span-2 w-full bg-white rounded-xl">
+          <div className="grid gap-10 lg:grid-cols-4 2xl:grid-cols-4  lg:grid-rows-2">
+            <div className="w-full bg-white  lg:col-span-2 2xl:col-span-2 rounded-xl">
               <div className="flex gap-3">
                 <div className="bg-[#FFF409] w-10 rounded-tl-xl rounded-bl-xl"></div>
-                <div className="p-5 grid gap-6">
+                <div className="grid gap-6 p-5">
                   <p className="font-semibold text-gray-800">Ver cursos impartidos</p>
-                  <span className="flex gap-3 items-end">
+                  <span className="flex items-end gap-3">
                     <h1 className="text-3xl font-bold text-center">6</h1>
                     <p>cursos impartidos</p>
                   </span>
@@ -76,12 +76,12 @@ export default function DashboardElements() {
                 </div>
               </div>
             </div>
-            <div className=" lg:col-span-2 2xl:col-span-2 w-full bg-white rounded-xl hover:shadow-lg transition duration-100">
-              <Link href="/dashboard/zonaDeMentores" className="flex gap-3  h-full">
+            <div className="w-full transition duration-100 bg-white  lg:col-span-2 2xl:col-span-2 rounded-xl hover:shadow-lg">
+              <Link href="/dashboard/zonaDeMentores" className="flex h-full gap-3">
                 <div className="bg-[#FFF409] w-10 rounded-tl-xl rounded-bl-xl"></div>
-                <div className="p-5 flex items-center gap-6">
+                <div className="flex items-center gap-6 p-5">
                   <div>
-                    <div className=" p-4  rounded-full ">
+                    <div className="p-4 rounded-full ">
                       <GrAction size={100} className="text-emerald-800" />
                     </div>
                   </div>
@@ -90,23 +90,23 @@ export default function DashboardElements() {
               </Link>
             </div>
 
-            <div className=" lg:col-span-2 2xl:col-span-2 w-full bg-white rounded-xl">
+            <div className="w-full bg-white  lg:col-span-2 2xl:col-span-2 rounded-xl">
               <div className="flex h-full gap-3">
                 <div className="bg-[#FFF409] w-10 rounded-tl-xl rounded-bl-xl"></div>
-                <div className="p-5 grid gap-6 b">
+                <div className="grid gap-6 p-5 b">
                   <p className="font-semibold text-gray-800">Ganancia actual</p>
-                  <span className="flex  gap-3 items-end">
+                  <span className="flex items-end gap-3">
                     <h1 className="text-3xl font-bold text-center">s/. 2000.00</h1>
                   </span>
                 </div>
               </div>
             </div>
-            <div className=" lg:col-span-2 2xl:col-span-2 w-full bg-white rounded-xl">
+            <div className="w-full bg-white  lg:col-span-2 2xl:col-span-2 rounded-xl">
               <div className="flex h-full gap-3">
                 <div className="bg-[#FFF409] w-10 rounded-tl-xl rounded-bl-xl"></div>
-                <div className="p-5 grid gap-6 b">
+                <div className="grid gap-6 p-5 b">
                   <p className="font-semibold text-gray-800">Ganancia promedio mensual</p>
-                  <span className="flex  gap-3 items-end">
+                  <span className="flex items-end gap-3">
                     <h1 className="text-3xl font-bold text-center">s/. 2000.00</h1>
                   </span>
                 </div>
