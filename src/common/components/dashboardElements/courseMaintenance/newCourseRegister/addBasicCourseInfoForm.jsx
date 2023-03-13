@@ -1,5 +1,6 @@
-import { reusableStyles } from '../../../../styles/styles'
-export default function BasicCourseForm() {
+import React from 'react'
+import { reusableStyles } from '../../../../../styles/styles'
+export default function BasicCourseInfoForm() {
   return (
     <div className="mt-10">
       <form action="" className="grid gap-10">
@@ -54,7 +55,7 @@ export default function BasicCourseForm() {
         </div>
         <div className="flex justify-center">
           <div>
-            <button className=" bg-yellow-400 rounded-lg  px-10 py-4">Registrar curso</button>
+            <button className="px-10 py-4 bg-yellow-400 rounded-lg ">Registrar curso</button>
           </div>
         </div>
       </form>

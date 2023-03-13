@@ -5,11 +5,7 @@ export async function middleware(request) {
     return NextResponse.redirect(new URL('/', request.url))
   }
   try {
-    //una vez decodificado el token podremos darle paso al dashboard, sino
-    //lo mandamos al login (como siempre xd)
-    // const decodedToken = await jose.jwtVerify(jwt, 'a')
-
-    const data = await fetch('http://localhost:3003/login/protected', {
+    await fetch('http://localhost:3003/login/protected', {
       headers: {
         authorization: jwt.value,
       },
