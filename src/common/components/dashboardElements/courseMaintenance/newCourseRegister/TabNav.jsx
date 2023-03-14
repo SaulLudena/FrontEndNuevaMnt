@@ -1,17 +1,22 @@
-import { Disclosure, Tab, Transition } from '@headlessui/react'
-
+import { Disclosure } from '@headlessui/react'
 import { reusableStyles } from '../../../../../styles/styles'
-import { BsChevronUp, BsFillPencilFill, BsFillCameraVideoFill, BsTrash, BsFillPlusCircleFill } from 'react-icons/bs'
-import { VscSymbolStructure } from 'react-icons/vsc'
-import { GrAttachment } from 'react-icons/gr'
-import { AiOutlineInfoCircle, AiFillCheckCircle } from 'react-icons/ai'
-import { MdViewModule, MdPlayLesson } from 'react-icons/md'
+import { BsChevronUp } from 'react-icons/bs'
+import { AiFillCheckCircle } from 'react-icons/ai'
+import { useForm } from 'react-hook-form'
 
+import Course_basic_info from './course_basic_info'
+import Course_video_preview from './course_video_preview'
+import Course_builder from './course_builder'
+import Course_resources from './course_resources'
+import Course_extra_info from './course_extra_info'
 export default function TabNav() {
+  const { register, handleSubmit } = useForm()
+
+  const onSubmit = (data) => console.log(data)
   return (
     <div className="">
       <div className="grid grid-cols-12 gap-10">
-        <form className="col-span-8 flex flex-col gap-5">
+        <form className="col-span-8 flex flex-col gap-5" onSubmit={handleSubmit(onSubmit)}>
           <div>
             <div className=" h-auto">
               <button className="px-10 py-4 flex items-center gap-3 justify-center rounded-lg bg-[#FFF409]">
@@ -20,399 +25,14 @@ export default function TabNav() {
             </div>
           </div>
           <div className="grid gap-3">
-            <Disclosure>
-              {({ open }) => (
-                <>
-                  <Disclosure.Button className={reusableStyles.disclosureItem}>
-                    <div className="flex items-center gap-2">
-                      <BsFillPencilFill size={15} />
-                      <span>Informacion del curso</span>
-                    </div>
-                    <BsChevronUp className={`${open ? 'rotate-180 transform' : ''} h-5 w-5 `} />
-                  </Disclosure.Button>
-                  <Transition
-                    enter="transition duration-400 ease-in-out"
-                    enterFrom="transform scale-95 opacity-0"
-                    enterTo="transform scale-100 opacity-100"
-                    leave="transition duration-40 ease-in-out"
-                    leaveFrom="transform scale-100 opacity-100"
-                    leaveTo="transform scale-95 opacity-0"
-                  >
-                    <Disclosure.Panel className=" text-sm px-10">
-                      <div className=" bg-white p-5 flex flex-col gap-5">
-                        <div className="grid gap-3">
-                          <p className="font-medium">Titulo del curso</p>
-                          <input type="text" className={reusableStyles.inputFormForCourseMaintenance} />
-                        </div>
-                        <div className="grid gap-3">
-                          <p className="font-medium">Slug del curso</p>
-                          <input type="text" className={reusableStyles.inputFormForCourseMaintenance} />
-                        </div>
-                        <div className="grid gap-3">
-                          <p className="font-medium">Sobre el curso</p>
-                          <textarea type="text" className={reusableStyles.inputFormForCourseMaintenance} rows={6} />
-                        </div>
-                        <div className="grid gap-3">
-                          <p className="font-medium">Titulo del curso</p>
-                          <input type="text" className={reusableStyles.inputFormForCourseMaintenance} />
-                        </div>
-                        <div className="grid gap-3">
-                          <p className="font-medium">Selecciona una categoria</p>
-                          <select className={reusableStyles.inputFormForCourseMaintenance}>
-                            <option>Negocios</option>
-                            <option>Tecnologia</option>
-                            <option>Emprendimiento</option>
-                          </select>
-                        </div>
-                        <div className="grid gap-3">
-                          <p className="font-medium">Precio del curso</p>
-                          <div className="flex gap-5">
-                            <div>
-                              <div class="flex items-center  ">
-                                <input
-                                  id="default-radio-1"
-                                  type="radio"
-                                  value=""
-                                  name="default-radio"
-                                  className="w-4 h-4 text-blue-600 border-2 border-black  bg-red-300 "
-                                />
-                                <label
-                                  for="default-radio-1"
-                                  class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                                >
-                                  Gratis
-                                </label>
-                              </div>
-                            </div>
-                            <div>
-                              <div class="flex items-center">
-                                <input
-                                  checked
-                                  id="default-radio-2"
-                                  type="radio"
-                                  value=""
-                                  name="default-radio"
-                                  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                                />
-                                <label
-                                  for="default-radio-2"
-                                  className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                                >
-                                  Pagado
-                                </label>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="grid gap-3">
-                          <p className="font-medium">Thumbnail del curso</p>
-                          <div className="grid grid-cols-2 gap-10">
-                            <div className="col-span-1">
-                              <input type="file" className={reusableStyles.inputFormForCourseMaintenance} />
-                            </div>
-                            <div className="col-span-1">
-                              <p className="font-medium ">Pro tip:</p>
-                              <ul className="list-disc rid gap-4 text-gray-700">
-                                <li>El tamaño de la imagen debe ser 700x430 pixeles</li>
-                                <li>Debes seleccionar una imagen</li>
-                              </ul>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </Disclosure.Panel>
-                  </Transition>
-                </>
-              )}
-            </Disclosure>
-            <Disclosure>
-              {({ open }) => (
-                <>
-                  <Disclosure.Button className={reusableStyles.disclosureItem}>
-                    <div className="flex items-center gap-3">
-                      <BsFillCameraVideoFill />
-                      <span>Video</span>
-                    </div>
-                    <BsChevronUp className={`${open ? 'rotate-180 transform' : ''} h-5 w-5 `} />
-                  </Disclosure.Button>
-                  <Transition
-                    enter="transition duration-400 ease-in-out"
-                    enterFrom="transform scale-95 opacity-0"
-                    enterTo="transform scale-100 opacity-100"
-                    leave="transition duration-40 ease-in-out"
-                    leaveFrom="transform scale-100 opacity-100"
-                    leaveTo="transform scale-95 opacity-0"
-                  >
-                    <Disclosure.Panel className=" text-sm px-10">
-                      <div className=" bg-white p-5 flex flex-col gap-5">
-                        <div className="grid gap-3">
-                          <p className="font-medium">Video de introduccion al curso (Vimeo)</p>
-                          <input
-                            type="text"
-                            className={reusableStyles.inputFormForCourseMaintenance}
-                            placeholder="Pega una URL de video de vimeo"
-                          />
-                        </div>
-                      </div>
-                    </Disclosure.Panel>
-                  </Transition>
-                </>
-              )}
-            </Disclosure>
-            <Disclosure>
-              {({ open }) => (
-                <>
-                  <Disclosure.Button className={reusableStyles.disclosureItem}>
-                    <div className="flex items-center gap-3">
-                      <VscSymbolStructure />
-                      <span>Maquetador de cursos</span>
-                    </div>
-                    <BsChevronUp className={`${open ? 'rotate-180 transform' : ''} h-5 w-5 `} />
-                  </Disclosure.Button>
-                  <Transition
-                    enter="transition duration-400 ease-in-out"
-                    enterFrom="transform scale-95 opacity-0"
-                    enterTo="transform scale-100 opacity-100"
-                    leave="transition duration-40 ease-in-out"
-                    leaveFrom="transform scale-100 opacity-100"
-                    leaveTo="transform scale-95 opacity-0"
-                  >
-                    <Disclosure.Panel className=" text-sm px-10">
-                      <div className=" bg-white p-5 flex flex-col gap-5">
-                        <div className="grid gap-3">
-                          {/*Aqui se imprimen los n modulos con sus respectivas lecciones */}
-                          <div className="">
-                            <Disclosure>
-                              {({ open }) => (
-                                <>
-                                  <Disclosure.Button className={reusableStyles.courseModuleStyleCard}>
-                                    <div className="flex justify-between items-center gap-2 w-full">
-                                      <div className="flex items-center gap-2">
-                                        <MdViewModule />
-                                        <span>Introduccion</span>
-                                      </div>
-                                      <div className="flex gap-3 pr-4 ">
-                                        <div className=" p-1 hover:bg-red-200">
-                                          <BsFillPencilFill />
-                                        </div>
-                                        <div className="p-1 hover:bg-red-200">
-                                          <BsTrash />
-                                        </div>
-                                      </div>
-                                    </div>
-                                    <BsChevronUp className={`${open ? 'rotate-180 transform' : ''} h-5 w-5 `} />
-                                  </Disclosure.Button>
+            {/*Menu expandible de informacion principal del curso Y PASAR LAS PROPS !!!!!*/}
+            <Course_basic_info register={register} />
+            {/*Menu expandible de  video Y PASAR LAS PROPS !!!!!*/}
+            <Course_video_preview register={register} />
+            {/*Menu expandible del maquetador de curso Y PASAR LAS PROPS !!!!!*/}
+            <Course_builder register={register} />
 
-                                  <Transition
-                                    enter="transition duration-400 ease-in-out"
-                                    enterFrom="transform scale-95 opacity-0"
-                                    enterTo="transform scale-100 opacity-100"
-                                    leave="transition duration-40 ease-in-out"
-                                    leaveFrom="transform scale-100 opacity-100"
-                                    leaveTo="transform scale-95 opacity-0"
-                                  >
-                                    <Disclosure.Panel className=" text-sm">
-                                      <div className="px-5 py-2">
-                                        <div>
-                                          <div className="grid gap-2">
-                                            {/*esto es una leccion */}
-                                            <div className="p-3 bg-gray-50 flex justify-between">
-                                              <div className="flex items-center gap-3">
-                                                <MdPlayLesson />
-                                                <p className="">Leccion 1: Video introductorio</p>
-                                              </div>
-                                              <div className="flex gap-3 ">
-                                                <div className=" p-1 hover:bg-red-200">
-                                                  <BsFillPencilFill />
-                                                </div>
-                                                <div className="p-1 hover:bg-red-200">
-                                                  <BsTrash />
-                                                </div>
-                                              </div>
-                                            </div>
-                                            {/*esto es una leccion */}
-                                            <div className="p-3 bg-gray-50 flex justify-between">
-                                              <div className="flex items-center gap-3">
-                                                <MdPlayLesson />
-                                                <p className="">Leccion 1: Video introductorio</p>
-                                              </div>
-                                              <div className="flex gap-3  ">
-                                                <div className=" p-1 hover:bg-red-200">
-                                                  <BsFillPencilFill />
-                                                </div>
-                                                <div className="p-1 hover:bg-red-200">
-                                                  <BsTrash />
-                                                </div>
-                                              </div>
-                                            </div>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </Disclosure.Panel>
-                                  </Transition>
-                                </>
-                              )}
-                            </Disclosure>
-                          </div>
-                          <div className="">
-                            <Disclosure>
-                              {({ open }) => (
-                                <>
-                                  <Disclosure.Button className={reusableStyles.courseModuleStyleCard}>
-                                    <div className="flex justify-between items-center gap-2 w-full">
-                                      <div className="flex items-center gap-2">
-                                        <MdViewModule />
-                                        <span>Introduccion</span>
-                                      </div>
-                                      <div className="flex gap-3 pr-4 ">
-                                        <div className=" p-1 hover:bg-red-200">
-                                          <BsFillPencilFill />
-                                        </div>
-                                        <div className="p-1 hover:bg-red-200">
-                                          <BsTrash />
-                                        </div>
-                                      </div>
-                                    </div>
-                                    <BsChevronUp className={`${open ? 'rotate-180 transform' : ''} h-5 w-5 `} />
-                                  </Disclosure.Button>
-
-                                  <Transition
-                                    enter="transition duration-400 ease-in-out"
-                                    enterFrom="transform scale-95 opacity-0"
-                                    enterTo="transform scale-100 opacity-100"
-                                    leave="transition duration-40 ease-in-out"
-                                    leaveFrom="transform scale-100 opacity-100"
-                                    leaveTo="transform scale-95 opacity-0"
-                                  >
-                                    <Disclosure.Panel className=" text-sm">
-                                      <div className="px-5 py-2">
-                                        <div>
-                                          <div className="grid gap-2">
-                                            {/*esto es una leccion */}
-                                            <div className="p-3 bg-gray-50 flex justify-between">
-                                              <div className="flex items-center gap-3">
-                                                <MdPlayLesson />
-                                                <p className="">Leccion 1: Video introductorio</p>
-                                              </div>
-                                              <div className="flex gap-3 ">
-                                                <div className=" p-1 hover:bg-red-200">
-                                                  <BsFillPencilFill />
-                                                </div>
-                                                <div className="p-1 hover:bg-red-200">
-                                                  <BsTrash />
-                                                </div>
-                                              </div>
-                                            </div>
-                                            {/*esto es una leccion */}
-                                            <div className="p-3 bg-gray-50 flex justify-between">
-                                              <div className="flex items-center gap-3">
-                                                <MdPlayLesson />
-                                                <p className="">Leccion 1: Video introductorio</p>
-                                              </div>
-                                              <div className="flex gap-3  ">
-                                                <div className=" p-1 hover:bg-red-200">
-                                                  <BsFillPencilFill />
-                                                </div>
-                                                <div className="p-1 hover:bg-red-200">
-                                                  <BsTrash />
-                                                </div>
-                                              </div>
-                                            </div>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </Disclosure.Panel>
-                                  </Transition>
-                                </>
-                              )}
-                            </Disclosure>
-                          </div>
-                          <div className="">
-                            <Disclosure>
-                              {({ open }) => (
-                                <>
-                                  <Disclosure.Button className={reusableStyles.courseModuleStyleCard}>
-                                    <div className="flex justify-between items-center gap-2 w-full">
-                                      <div className="flex items-center gap-2">
-                                        <MdViewModule />
-                                        <span>Introduccion</span>
-                                      </div>
-                                      <div className="flex gap-3 pr-4 ">
-                                        <div className=" p-1 hover:bg-red-200">
-                                          <BsFillPencilFill />
-                                        </div>
-                                        <div className="p-1 hover:bg-red-200">
-                                          <BsTrash />
-                                        </div>
-                                      </div>
-                                    </div>
-                                    <BsChevronUp className={`${open ? 'rotate-180 transform' : ''} h-5 w-5 `} />
-                                  </Disclosure.Button>
-
-                                  <Transition
-                                    enter="transition duration-400 ease-in-out"
-                                    enterFrom="transform scale-95 opacity-0"
-                                    enterTo="transform scale-100 opacity-100"
-                                    leave="transition duration-40 ease-in-out"
-                                    leaveFrom="transform scale-100 opacity-100"
-                                    leaveTo="transform scale-95 opacity-0"
-                                  >
-                                    <Disclosure.Panel className=" text-sm">
-                                      <div className="px-5 py-2">
-                                        <div>
-                                          <div className="grid gap-2">
-                                            {/*esto es una leccion */}
-                                            <div className="p-3 bg-gray-50 flex justify-between">
-                                              <div className="flex items-center gap-3">
-                                                <MdPlayLesson />
-                                                <p className="">Leccion 1: Video introductorio</p>
-                                              </div>
-                                              <div className="flex gap-3 ">
-                                                <div className=" p-1 hover:bg-red-200">
-                                                  <BsFillPencilFill />
-                                                </div>
-                                                <div className="p-1 hover:bg-red-200">
-                                                  <BsTrash />
-                                                </div>
-                                              </div>
-                                            </div>
-                                            {/*esto es una leccion */}
-                                            <div className="p-3 bg-gray-50 flex justify-between">
-                                              <div className="flex items-center gap-3">
-                                                <MdPlayLesson />
-                                                <p className="">Leccion 1: Video introductorio</p>
-                                              </div>
-                                              <div className="flex gap-3  ">
-                                                <div className=" p-1 hover:bg-red-200">
-                                                  <BsFillPencilFill />
-                                                </div>
-                                                <div className="p-1 hover:bg-red-200">
-                                                  <BsTrash />
-                                                </div>
-                                              </div>
-                                            </div>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </Disclosure.Panel>
-                                  </Transition>
-                                </>
-                              )}
-                            </Disclosure>
-                          </div>
-                        </div>
-                        <div>
-                          <button className="px-5 py-3 bg-yellow-400 rounded-lg flex items-center gap-3">
-                            <BsFillPlusCircleFill />
-                            Agregar un nuevo modulo
-                          </button>
-                        </div>
-                      </div>
-                    </Disclosure.Panel>
-                  </Transition>
-                </>
-              )}
-            </Disclosure>
+            {/*Menu expandible de google meet (no hay contenido)*/}
             <Disclosure>
               {({ open }) => (
                 <>
@@ -425,6 +45,7 @@ export default function TabNav() {
                 </>
               )}
             </Disclosure>
+            {/*Menu expandible de zoom meeting (no hay contenido)*/}
             <Disclosure>
               {({ open }) => (
                 <>
@@ -439,92 +60,10 @@ export default function TabNav() {
                 </>
               )}
             </Disclosure>
-            <Disclosure>
-              {({ open }) => (
-                <>
-                  <Disclosure.Button className={reusableStyles.disclosureItem}>
-                    <div className="flex items-center gap-3">
-                      <GrAttachment />
-                      <span>Recursos del curso</span>
-                    </div>
-                    <BsChevronUp className={`${open ? 'rotate-180 transform' : ''} h-5 w-5 `} />
-                  </Disclosure.Button>
-                  <Transition
-                    enter="transition duration-400 ease-in-out"
-                    enterFrom="transform scale-95 opacity-0"
-                    enterTo="transform scale-100 opacity-100"
-                    leave="transition duration-40 ease-in-out"
-                    leaveFrom="transform scale-100 opacity-100"
-                    leaveTo="transform scale-95 opacity-0"
-                  >
-                    <Disclosure.Panel className=" text-sm px-10">
-                      <div className=" bg-white p-5 flex flex-col gap-5">
-                        <input type="file" />
-                      </div>
-                    </Disclosure.Panel>
-                  </Transition>
-                </>
-              )}
-            </Disclosure>
-            <Disclosure>
-              {({ open }) => (
-                <>
-                  <Disclosure.Button className={reusableStyles.disclosureItem}>
-                    <div className="flex items-center gap-3">
-                      <AiOutlineInfoCircle />
-                      <span>Datos adicionales</span>
-                    </div>
-                    <BsChevronUp className={`${open ? 'rotate-180 transform' : ''} h-5 w-5 `} />
-                  </Disclosure.Button>
-                  <Transition
-                    enter="transition duration-400 ease-in-out"
-                    enterFrom="transform scale-95 opacity-0"
-                    enterTo="transform scale-100 opacity-100"
-                    leave="transition duration-40 ease-in-out"
-                    leaveFrom="transform scale-100 opacity-100"
-                    leaveTo="transform scale-95 opacity-0"
-                  >
-                    <Disclosure.Panel className=" text-sm px-10">
-                      <div className=" bg-white p-5 flex flex-col gap-5">
-                        <div className="grid gap-3">
-                          <p className="font-medium">¿Qué aprenderé?</p>
-                          <input type="text" className={reusableStyles.inputFormForCourseMaintenance} />
-                        </div>
-                        <div className="grid gap-3">
-                          <p className="font-medium">Público objetivo</p>
-                          <input type="text" className={reusableStyles.inputFormForCourseMaintenance} />
-                        </div>
-                        <div className="grid gap-3">
-                          <p className="font-medium">Duración total del curso</p>
-                          <div className="grid grid-cols-2 gap-5">
-                            <div className="col-span-1 grid gap-1">
-                              <input type="number" className={reusableStyles.inputFormForCourseMaintenance} />
-                              <p className="text-gray-600">Horas</p>
-                            </div>
-                            <div className="col-span-1 grid gap-1">
-                              <input type="number" className={reusableStyles.inputFormForCourseMaintenance} />
-                              <p className="text-gray-600">Minutos</p>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="grid gap-3">
-                          <p className="font-medium">Materiales Incluidos</p>
-                          <input type="text" className={reusableStyles.inputFormForCourseMaintenance} />
-                        </div>
-                        <div className="grid gap-3">
-                          <p className="font-medium">Requisitos/instrucciones</p>
-                          <input type="text" className={reusableStyles.inputFormForCourseMaintenance} />
-                        </div>
-                        <div className="grid gap-3">
-                          <p className="font-medium">Etiqueta del curso</p>
-                          <input type="text" className={reusableStyles.inputFormForCourseMaintenance} />
-                        </div>
-                      </div>
-                    </Disclosure.Panel>
-                  </Transition>
-                </>
-              )}
-            </Disclosure>
+            {/*Menu expandible de recursos del curso Y PASAR LAS PROPS !!!!!*/}
+            <Course_resources register={register} />
+            {/*Menu expandible de datos adicionales Y PASAR LAS PROPS !!!!!*/}
+            <Course_extra_info register={register} />
           </div>
         </form>
         <div className="col-span-4">
