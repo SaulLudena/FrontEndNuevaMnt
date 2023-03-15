@@ -63,11 +63,11 @@ export default function Course_basic_info({ register }) {
                   <p className="font-medium">Precio del curso</p>
                   <div className="grid grid-cols-2 gap-5">
                     <label htmlFor="field-wind" className={reusableStyles.inputFormForCourseMaintenance}>
-                      <input {...register('weather')} type="radio" value="wind" id="field-wind" className="mr-3" />
+                      <input {...register('precio_curso')} type="radio" value={0} id="field-wind" className="mr-3" />
                       <p>Gratis</p>
                     </label>
                     <label htmlFor="field-sun" className={reusableStyles.inputFormForCourseMaintenance}>
-                      <input {...register('weather')} type="radio" value="sun" id="field-sun" className="mr-3" /> De
+                      <input {...register('precio_curso')} type="radio" value={1} id="field-sun" className="mr-3" /> De
                       pago
                     </label>
                   </div>

@@ -14,7 +14,7 @@ export default function TabNav() {
 
   const onSubmit = (data) => console.log(data)
   return (
-    <div className="">
+    <div className=" ">
       <div className="grid grid-cols-12 gap-10">
         <form className="col-span-8 flex flex-col gap-5" onSubmit={handleSubmit(onSubmit)}>
           <div>

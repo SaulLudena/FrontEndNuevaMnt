@@ -1,11 +1,9 @@
-const styles = {
-  inputGroup: 'flex justify-between padding items-center',
-}
+import { reusableStyles } from '../../../styles/styles'
 export default function FormProfile() {
   return (
-    <form className="">
+    <form className=" bg-white rounded-xl ">
       <div>
-        <div className="bg-white">
+        <div className="bg-gradient-to-br from-white via-white to-gray-300">
           <img
             src="https://i.natgeofe.com/n/548467d8-c5f1-4551-9f58-6817a8d2c45e/NationalGeographic_2572187_square.jpg"
             alt="portada"
@@ -23,44 +21,41 @@ export default function FormProfile() {
             </div>
             <div className="grid items-center">
               <div>
-                <h1 className="text-3xl font-bold">Jeff Blas</h1>
+                <h1 className="text-3xl font-bold text-gray-900">Jeff Blas</h1>
                 <h1 className="text-lg">Mr Jeff</h1>
               </div>
             </div>
           </div>
-          <div className=" mt-3 flex items-start gap-5">
-            <button className="px-3 py-2 bg-white">Cancelar</button>
-            <button className="px-3 py-2 bg-black text-white">Guardar</button>
-          </div>
         </div>
       </div>
-      <div className=" w-2/3 grid gap-3">
-        <div className={styles.inputGroup}>
-          <p className="font-medium">Nombre</p>
-          <input type="text" value="Jeff Blas" className="border px-4 py-3 outline-none rounded-lg border-gray-200" />
+      <div className=" px-10">
+        <h1 className="text-2xl font-medium ">Actualiza tu informacion</h1>
+      </div>
+      <div className=" grid gap-10 grid-cols-2 bg-white p-10 rounded-xl">
+        <div className="grid gap-3">
+          <p>Nombre</p>
+          <input type="text" className={reusableStyles.inputFormForCourseMaintenance} value="Jeff Blas" />
         </div>
-        <hr />
-        <div className={styles.inputGroup}>
-          <p className="font-medium">Apellido</p>
-          <input type="text" value="Ascencios" className="border px-4 py-3 outline-none rounded-lg border-gray-200" />
+        <div className=" grid gap-3">
+          <p>Apellido</p>
+          <input type="text" className={reusableStyles.inputFormForCourseMaintenance} value="Ascencios" />
         </div>
-        <hr />
-        <div className={styles.inputGroup}>
-          <p className="font-medium">Apodo</p>
-          <input type="text" value="Pep" className="border px-4 py-3 outline-none rounded-lg border-gray-200" />
+        <div className=" grid gap-3">
+          <p>Nombre de usuario</p>
+          <input type="text" className={reusableStyles.inputFormForCourseMaintenance} value="Jeffo" />
         </div>
-        <hr />
-        <div className={styles.inputGroup}>
-          <p className="font-medium">Foto perfil de usuario</p>
-          <div className="border-2 borde-black">
-            <img
-              src="https://i.natgeofe.com/n/548467d8-c5f1-4551-9f58-6817a8d2c45e/NationalGeographic_2572187_square.jpg"
-              alt="portada"
-              className="w-10 object-cover rounded-full border-[7px] border-[#F7F7F7]"
-            />
-          </div>
+        <div className=" grid gap-3">
+          <p>Numero de telefono</p>
+          <input type="text" className={reusableStyles.inputFormForCourseMaintenance} value="94524621" />
         </div>
-        <hr />
+        <div className=" grid gap-3">
+          <p>Habilidad / ocupacion</p>
+          <input type="text" className={reusableStyles.inputFormForCourseMaintenance} value="Emprendedor" />
+        </div>
+        <div className=" grid gap-3">
+          <p>Biografia</p>
+          <input type="text" className={reusableStyles.inputFormForCourseMaintenance} value="Lorem ipsum" />
+        </div>
       </div>
     </form>
   )

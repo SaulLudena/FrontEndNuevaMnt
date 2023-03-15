@@ -1,7 +1,6 @@
-import { Tab } from '@headlessui/react'
-import React, { Fragment } from 'react'
+import React from 'react'
 import TopNav from '../../topnav/topNav'
-import TabNav from '../courseMaintenance/newCourseRegister/TabNav'
+import AddNewCourseForm from '../courseMaintenance/newCourseRegister/add_new_course_form'
 export default function courseMaintenanceCreate() {
   return (
     <div className="flex flex-1 w-full pt-5 pb-5 pr-5 overflow-hidden">
@@ -11,7 +10,7 @@ export default function courseMaintenanceCreate() {
           <h1>Crea un nuevo curso</h1>
         </div>
         <div className="">
-          <TabNav />
+          <AddNewCourseForm />
         </div>
       </div>
     </div>

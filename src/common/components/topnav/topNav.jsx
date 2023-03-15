@@ -167,9 +167,9 @@ export default function topNav() {
             <Menu.Items className="absolute right-0 z-10 flex flex-col w-56 mt-2 origin-top-right bg-white border-gray-300 divide-y rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
               <Menu.Item className="flex items-center gap-3 p-3 text-gray-600 rounded-t-lg hover:bg-gray-50 hover:text-black">
                 {({ active }) => (
-                  <Link className={`${active && 'bg-blue-500'} `} href="/myprofile">
+                  <Link className={`${active && 'bg-blue-500'} `} href="/ajustes">
                     <FiUser />
-                    <p>Mi perfil</p>
+                    <p>Ajustes</p>
                   </Link>
                 )}
               </Menu.Item>

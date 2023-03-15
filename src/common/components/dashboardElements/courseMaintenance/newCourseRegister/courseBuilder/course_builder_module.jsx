@@ -4,12 +4,12 @@ import { BsChevronUp, BsFillPencilFill, BsTrash } from 'react-icons/bs'
 import { MdPlayLesson, MdViewModule } from 'react-icons/md'
 import { reusableStyles } from '../../../../../../styles/styles'
 
-export default function Course_builder_module({ titulo }) {
-  const testhandle = () => {
-    console.log('testing')
-  }
+export default function Course_builder_module({ titulo, removeModule }) {
   /*una funcion para abrir y cerrar modal */
-  const addNewLesson = () => {}
+  const addLesson = () => {}
+  const removeLesson = (key) => {
+    console.log(key)
+  }
   /*una funcion para mandar datos a la api */
   return (
     <div className="">
@@ -23,15 +23,10 @@ export default function Course_builder_module({ titulo }) {
                   <span>{titulo}</span>
                 </div>
                 <div className="flex gap-3 pr-4 relative">
-                  <div className="p-1 hover:bg-red-200">
+                  <div className="p-2  hover:bg-red-200">
                     <BsFillPencilFill />
                   </div>
-                  <div
-                    className="p-1 hover:bg-red-200 "
-                    onClick={() => {
-                      addNewLesson()
-                    }}
-                  >
+                  <div className="p-2 hover:bg-red-200 " onClick={removeModule}>
                     <BsTrash />
                   </div>
                 </div>
