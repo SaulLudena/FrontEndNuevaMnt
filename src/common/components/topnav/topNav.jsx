@@ -7,7 +7,7 @@ import UserInfo from '../userInfo/userInfo'
 import cookies from 'js-cookie'
 import Link from 'next/link'
 import { Menu, Transition } from '@headlessui/react'
-import { Fragment, useEffect, useState } from 'react'
+import { Fragment } from 'react'
 
 export default function topNav() {
   const logout = () => {
@@ -19,7 +19,7 @@ export default function topNav() {
   }
 
   return (
-    <div className="flex items-center justify-between ">
+    <div className="sticky flex items-center justify-between w-full ">
       <div>
         <UserInfo />
       </div>
