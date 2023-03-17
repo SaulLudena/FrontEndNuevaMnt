@@ -8,7 +8,6 @@ import { BiBrain } from 'react-icons/bi'
 import SidenavItem from '../sidenav/sidenavItem'
 import SideNavButtom from '../sidenav/sideNavExandedButton'
 import Logo from '../reusable/logo'
-import Cookies from 'js-cookie'
 import Link from 'next/link'
 
 export default function sidenav() {
@@ -32,19 +31,19 @@ export default function sidenav() {
     <div className={`flex h-screen  ${isOpen ? 'w-72 p-5' : ' w-40 p-3'} duration-500 `}>
       <div className={`flex flex-col justify-between h-full    ${isOpen ? 'w-72' : ' w-40'} duration-500 `}>
         {/*Logo */}
-        <div className=" h-32 flex items-center justify-center">
+        <div className="flex items-center justify-center h-32 ">
           <Link href="/dashboard/">
             <Logo />
           </Link>
         </div>
         {/*Componentizando las opciones de navegacion*/}
-        <div className="px-0 flex flex-col h-full pt-14">
+        <div className="flex flex-col h-full px-0 pt-14">
           <SidenavItem
             route="/dashboard/"
             label="Principal"
             icon={
               <AiOutlineHome
-                className="group-hover:text-gray-800 text-gray-700 text-xl duration-300"
+                className="text-xl text-gray-700 duration-300 group-hover:text-gray-800"
                 size={isOpen ? 25 : 35}
               />
             }
@@ -55,7 +54,7 @@ export default function sidenav() {
             label="Mi&nbsp;aprendizaje"
             icon={
               <BiBrain
-                className="group-hover:text-gray-800 text-gray-700 text-xl duration-300 "
+                className="text-xl text-gray-700 duration-300 group-hover:text-gray-800 "
                 size={isOpen ? 25 : 35}
               />
             }
@@ -66,7 +65,7 @@ export default function sidenav() {
             label="Más&nbsp;cursos"
             icon={
               <BiSearch
-                className="group-hover:text-gray-800 text-gray-700 text-xl duration-300 "
+                className="text-xl text-gray-700 duration-300 group-hover:text-gray-800 "
                 size={isOpen ? 25 : 35}
               />
             }
@@ -74,12 +73,12 @@ export default function sidenav() {
           />
         </div>
 
-        <div className="px-0 flex flex-col gap-0 h-32 ">
+        <div className="flex flex-col h-32 gap-0 px-0 ">
           {/*Componentizando el boton para expandir y cerrar el sidenav */}
           <SideNavButtom
             toggleBarFunction={toggleSidenav}
             icon={
-              <RiMenuUnfoldFill className="group-hover:text-gray-700 text-gray-400 text-xl" size={isOpen ? 25 : 35} />
+              <RiMenuUnfoldFill className="text-xl text-gray-400 group-hover:text-gray-700" size={isOpen ? 25 : 35} />
             }
             isOpen={isOpen}
             label="Contraer"

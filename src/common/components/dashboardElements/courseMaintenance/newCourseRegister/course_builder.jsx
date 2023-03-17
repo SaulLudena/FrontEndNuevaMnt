@@ -13,12 +13,17 @@ export default function Course_builder({ register }) {
   const [leccionesInfo, setLeccionesInfo] = useState([])
   const [buttondisabled, setButtonDisabled] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
+
+  const removeModule = (index) => {
+    console.log('has seleccionado el componenete con id ' + index)
+  }
   /*funciones para los modulos*/
   const addNewModule = () => {
+    setModulos([...modulos, <Course_builder_module />])
     setButtonDisabled(true)
     setIsOpen(false)
   }
-  const removeModule = () => {}
+
   /*funciones para el modal */
   const openModal = () => {
     setButtonDisabled(false)
@@ -47,7 +52,7 @@ export default function Course_builder({ register }) {
                 </Transition.Child>
 
                 <div className="fixed inset-0 overflow-y-auto">
-                  <div className="flex min-h-full items-center justify-center p-4 text-center">
+                  <div className="flex items-center justify-center min-h-full p-4 text-center">
                     <Transition.Child
                       as={Fragment}
                       enter="ease-out duration-50"
@@ -57,11 +62,11 @@ export default function Course_builder({ register }) {
                       leaveFrom="opacity-100 scale-100"
                       leaveTo="opacity-0 scale-95"
                     >
-                      <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-xl bg-white p-5 text-left align-middle shadow-xl transition-all">
+                      <Dialog.Panel className="w-full max-w-md p-5 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-xl">
                         <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900">
                           Agregando un nuevo modulo
                         </Dialog.Title>
-                        <div className=" bg-white mt-5 flex flex-col gap-5">
+                        <div className="flex flex-col gap-5 mt-5 bg-white ">
                           <div className="grid gap-3">
                             <p className="font-medium">Nombre del modulo</p>
                             <input
@@ -81,7 +86,7 @@ export default function Course_builder({ register }) {
                           </div>
                         </div>
 
-                        <div className="mt-10 flex justify-between">
+                        <div className="flex justify-between mt-10">
                           <div>
                             <button
                               type="button"
@@ -120,14 +125,16 @@ export default function Course_builder({ register }) {
             leaveFrom="transform scale-100 opacity-100"
             leaveTo="transform scale-95 opacity-0"
           >
-            <Disclosure.Panel className=" text-sm px-10">
-              <div className=" bg-white p-5 flex flex-col gap-5">
+            <Disclosure.Panel className="px-10 text-sm ">
+              <div className="flex flex-col gap-5 p-5 bg-white ">
                 <div className="grid gap-3">
                   {/*Aqui se imprimen los n modulos con sus respectivas lecciones */}
-                  <Course_builder_module />
+                  {modulos.map((componente, index) => {
+                    return <div key={index}>{componente}</div>
+                  })}
                 </div>
                 <div>
-                  <button className="px-5 py-3 bg-yellow-400 rounded-lg flex items-center gap-3" onClick={openModal}>
+                  <button className="flex items-center gap-3 px-5 py-3 bg-yellow-400 rounded-lg" onClick={openModal}>
                     <BsFillPlusCircleFill />
                     Agregar un nuevo modulo
                   </button>

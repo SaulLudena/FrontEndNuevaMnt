@@ -7,13 +7,13 @@ export default function SidenavItem({ route, label, icon, isOpen }) {
     setActive(true)
   }
   return (
-    <Link href={route} className="group" onClick={toggleItem}>
+    <Link href={route} className=" group" onClick={toggleItem}>
       <div
         className={`group-hover:text-gray-800 ${
           isActive ? `bg-[#FFF409]` : 'group-hover:bg-[#FFF409]'
-        }  flex justify-between py-3 rounded-xl text-gray-400 ${isOpen ? 'px-12' : 'px-5 py-5 text-8xl'}`}
+        }  flex justify-between py-3 rounded-xl text-gray-400 ${isOpen ? 'px-12' : 'px-3 py-3 text-8xl'}`}
       >
-        <div className={`flex ${isOpen ? 'flex gap-5' : 'gap-3  flex-col'} items-center  h-full w-full duration-300`}>
+        <div className={`flex ${isOpen ? 'flex gap-5' : 'gap-1  flex-col'} items-center  h-full w-full duration-300`}>
           {icon}
           <p className="text-sm break-normal duration-300">{label}</p>
         </div>

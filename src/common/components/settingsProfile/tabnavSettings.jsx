@@ -1,6 +1,8 @@
 import { Tab } from '@headlessui/react'
 import { Fragment } from 'react'
-import FormProfile from '../myprofile/formProfile'
+import FormProfile from './formProfile'
+import FormUpdatePassword from './formUpdatePassword'
+import FormSocialMedia from './formSocialMedia'
 export default function TabnavSettings() {
   return (
     <Tab.Group>
@@ -47,8 +49,12 @@ export default function TabnavSettings() {
         <Tab.Panel>
           <FormProfile />
         </Tab.Panel>
-        <Tab.Panel>Content 2</Tab.Panel>
-        <Tab.Panel>Content 2</Tab.Panel>
+        <Tab.Panel>
+          <FormUpdatePassword />
+        </Tab.Panel>
+        <Tab.Panel>
+          <FormSocialMedia />
+        </Tab.Panel>
         {/* ... */}
       </Tab.Panels>
     </Tab.Group>

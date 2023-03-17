@@ -19,7 +19,7 @@ export default function topNav() {
   }
 
   return (
-    <div className="sticky flex items-center justify-between w-full ">
+    <div className="flex items-center justify-between w-full ">
       <div>
         <UserInfo />
       </div>

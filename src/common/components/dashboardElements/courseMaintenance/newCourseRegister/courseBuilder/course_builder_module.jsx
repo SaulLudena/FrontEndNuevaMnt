@@ -17,13 +17,13 @@ export default function Course_builder_module({ titulo, removeModule }) {
         {({ open }) => (
           <>
             <Disclosure.Button className={reusableStyles.courseModuleStyleCard}>
-              <div className="flex justify-between items-center gap-2 w-full">
+              <div className="flex items-center justify-between w-full gap-2">
                 <div className="flex items-center gap-2">
                   <MdViewModule />
                   <span>{titulo}</span>
                 </div>
-                <div className="flex gap-3 pr-4 relative">
-                  <div className="p-2  hover:bg-red-200">
+                <div className="relative flex gap-3 pr-4">
+                  <div className="p-2 hover:bg-red-200">
                     <BsFillPencilFill />
                   </div>
                   <div className="p-2 hover:bg-red-200 " onClick={removeModule}>
@@ -42,21 +42,21 @@ export default function Course_builder_module({ titulo, removeModule }) {
               leaveFrom="transform scale-100 opacity-100"
               leaveTo="transform scale-95 opacity-0"
             >
-              <Disclosure.Panel className=" text-sm">
+              <Disclosure.Panel className="text-sm ">
                 <div className="px-5 py-2">
-                  <div className="py-2 bg-gray-50 flex justify-between">
-                    <button className="bg-yellow-400 px-4 py-2 rounded-lg">Nueva leccion</button>
+                  <div className="flex justify-between py-2 bg-gray-50">
+                    <button className="px-4 py-2 bg-yellow-400 rounded-lg">Nueva leccion</button>
                   </div>
                   <div>
                     <div className="grid gap-2">
                       {/*esto es una leccion */}
-                      <div className="p-3 bg-gray-50 flex justify-between">
+                      <div className="flex justify-between p-3 bg-gray-50">
                         <div className="flex items-center gap-3">
                           <MdPlayLesson />
                           <p className="">Leccion 1: Video introductorio</p>
                         </div>
                         <div className="flex gap-3 ">
-                          <div className=" p-1 hover:bg-red-200">
+                          <div className="p-1  hover:bg-red-200">
                             <BsFillPencilFill />
                           </div>
                           <div className="p-1 hover:bg-red-200">
@@ -65,13 +65,13 @@ export default function Course_builder_module({ titulo, removeModule }) {
                         </div>
                       </div>
                       {/*esto es una leccion */}
-                      <div className="p-3 bg-gray-50 flex justify-between">
+                      <div className="flex justify-between p-3 bg-gray-50">
                         <div className="flex items-center gap-3 ">
                           <MdPlayLesson />
                           <p className="">Leccion 1: Video introductorio</p>
                         </div>
-                        <div className="flex gap-3  ">
-                          <div className=" p-1 hover:bg-red-200">
+                        <div className="flex gap-3 ">
+                          <div className="p-1  hover:bg-red-200">
                             <BsFillPencilFill />
                           </div>
                           <div className="p-1 hover:bg-red-200">
