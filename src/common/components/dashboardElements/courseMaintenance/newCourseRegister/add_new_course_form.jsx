@@ -9,10 +9,34 @@ import Course_video_preview from './course_video_preview'
 import Course_builder from './course_builder'
 import Course_resources from './course_resources'
 import Course_extra_info from './course_extra_info'
+import { useState } from 'react'
 export default function TabNav() {
   const { register, handleSubmit } = useForm()
 
-  const onSubmit = (data) => console.log(data)
+  const onSubmit = (data) => {
+    const courseObject = {
+      titulo_curso: data.titulo_curso,
+      slug_curso: data.slug_curso,
+      descripcion_curso: data.descripcion_curso,
+      categoria: data.categoria_curso,
+      precio_curso: data.precio_curso,
+      thumbnail_curso: data.thumbnail_curso,
+      url_preview_curso: data.url_preview_curso,
+      modulos_curso: [
+        {
+          nombre_modulo: data.nombre_modulo,
+          resumen_modulo: data.resumen_modulo,
+          lecciones: [
+            {
+              nombre_leccion: 'leccion 1',
+              url_leccion: 'http://vimeo.com',
+            },
+          ],
+        },
+      ],
+    }
+    console.log(courseObject)
+  }
   return (
     <div className=" ">
       <div className="grid grid-cols-12 gap-10">

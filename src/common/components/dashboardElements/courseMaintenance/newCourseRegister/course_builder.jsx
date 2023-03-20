@@ -8,22 +8,20 @@ import Course_builder_module from './courseBuilder/course_builder_module'
 export default function Course_builder({ register }) {
   /*estados */
   const [modulos, setModulos] = useState([])
-  const [modulesInfo, setModulesInfo] = useState([])
-  const [lecciones, setLecciones] = useState([])
-  const [leccionesInfo, setLeccionesInfo] = useState([])
+  const [nombre_modulo, setNombreModulo] = useState('')
   const [buttondisabled, setButtonDisabled] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
 
-  const removeModule = (index) => {
-    console.log('has seleccionado el componenete con id ' + index)
-  }
   /*funciones para los modulos*/
   const addNewModule = () => {
-    setModulos([...modulos, <Course_builder_module />])
+    setModulos([...modulos, <Course_builder_module nombre_modulo={nombre_modulo} register={register} />])
     setButtonDisabled(true)
     setIsOpen(false)
   }
-
+  /*funcion para actualizar el valor del estado */
+  const updateNombreModulo = (event) => {
+    setNombreModulo(event.target.value)
+  }
   /*funciones para el modal */
   const openModal = () => {
     setButtonDisabled(false)
@@ -73,6 +71,7 @@ export default function Course_builder({ register }) {
                               type="text"
                               className={reusableStyles.inputFormForCourseMaintenance}
                               {...register('nombre_modulo')}
+                              onChange={updateNombreModulo}
                             />
                           </div>
                           <div className="grid gap-3">
@@ -134,7 +133,10 @@ export default function Course_builder({ register }) {
                   })}
                 </div>
                 <div>
-                  <button className="flex items-center gap-3 px-5 py-3 bg-yellow-400 rounded-lg" onClick={openModal}>
+                  <button
+                    className="flex items-center gap-3 px-5 py-3 bg-yellow-400 rounded-lg outline-none"
+                    onClick={openModal}
+                  >
                     <BsFillPlusCircleFill />
                     Agregar un nuevo modulo
                   </button>
