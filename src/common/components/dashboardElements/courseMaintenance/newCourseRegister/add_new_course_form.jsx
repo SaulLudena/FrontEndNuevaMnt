@@ -9,10 +9,9 @@ import Course_video_preview from './course_video_preview'
 import Course_builder from './course_builder'
 import Course_resources from './course_resources'
 import Course_extra_info from './course_extra_info'
-import { useState } from 'react'
+
 export default function TabNav() {
   const { register, handleSubmit } = useForm()
-
   const onSubmit = (data) => {
     const courseObject = {
       titulo_curso: data.titulo_curso,
