@@ -1,10 +1,10 @@
 import { Disclosure, Transition } from '@headlessui/react'
 import React from 'react'
-import { BsChevronUp, BsFillPlusCircleFill } from 'react-icons/bs'
+import { BsChevronUp, BsFillPlusCircleFill, BsFillTrashFill, BsPencilFill } from 'react-icons/bs'
 import { VscSymbolStructure } from 'react-icons/vsc'
 import { reusableStyles } from '../../../../../../styles/styles'
 
-export default function course_module_item() {
+export default function course_module_item({ register, removeModule, index }) {
   return (
     <div>
       <Disclosure>
@@ -13,11 +13,25 @@ export default function course_module_item() {
             <div className={reusableStyles.courseModuleStyleCard}>
               <div className="flex items-center gap-3">
                 <VscSymbolStructure />
-                <span>Introduccion</span>
+                <span></span>
+                <p>Introduccion</p>
               </div>
-              <Disclosure.Button>
-                <BsChevronUp className={`${open ? 'rotate-180 transform' : ''} h-5 w-5 `} />
-              </Disclosure.Button>
+              <div className="flex items-center gap-1 ">
+                <div className="hover:bg-gray-100 p-3 rounded-full">
+                  <BsPencilFill />
+                </div>
+                <div
+                  className="hover:bg-gray-100 p-3 rounded-full"
+                  onClick={() => {
+                    removeModule(index)
+                  }}
+                >
+                  <BsFillTrashFill />
+                </div>
+                <Disclosure.Button className="hover:bg-gray-100 p-3 rounded-full">
+                  <BsChevronUp className={`${open ? 'rotate-180 transform' : ''} transition duration-200 `} />
+                </Disclosure.Button>
+              </div>
             </div>
             <Transition
               enter="transition duration-400 ease-in-out"

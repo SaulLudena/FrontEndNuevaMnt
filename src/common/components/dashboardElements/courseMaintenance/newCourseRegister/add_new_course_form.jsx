@@ -2,7 +2,7 @@ import { Disclosure } from '@headlessui/react'
 import { reusableStyles } from '../../../../../styles/styles'
 import { BsChevronUp } from 'react-icons/bs'
 import { AiFillCheckCircle } from 'react-icons/ai'
-import { useForm } from 'react-hook-form'
+import { useFieldArray, useForm } from 'react-hook-form'
 
 import Course_basic_info from './course_basic_info'
 import Course_video_preview from './course_video_preview'
@@ -11,7 +11,17 @@ import Course_resources from './course_resources'
 import Course_extra_info from './course_extra_info'
 
 export default function TabNav() {
-  const { register, handleSubmit } = useForm()
+  const { register, handleSubmit, control } = useForm({
+    defaultValues: {
+      modules: [{ moduleName: '', lesson: [{ lessonName: '' }] }],
+    },
+  })
+
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: 'modulos',
+  })
+
   const onSubmit = (data) => {
     const courseObject = {
       titulo_curso: data.titulo_curso,
@@ -34,7 +44,7 @@ export default function TabNav() {
         },
       ],
     }
-    console.log(courseObject)
+    console.log(data.modulos)
   }
   return (
     <div className=" ">
@@ -53,7 +63,7 @@ export default function TabNav() {
             {/*Menu expandible de  video Y PASAR LAS PROPS !!!!!*/}
             <Course_video_preview register={register} />
             {/*Menu expandible del maquetador de curso Y PASAR LAS PROPS !!!!!*/}
-            <Course_builder register={register} />
+            <Course_builder register={register} fields={fields} append={append} remove={remove} />
 
             {/*Menu expandible de google meet (no hay contenido)*/}
             <Disclosure>

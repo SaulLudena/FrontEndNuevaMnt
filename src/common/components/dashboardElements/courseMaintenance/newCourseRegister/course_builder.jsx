@@ -1,9 +1,9 @@
 import { Disclosure, Transition } from '@headlessui/react'
 import { reusableStyles } from '../../../../../styles/styles'
 import { VscSymbolStructure } from 'react-icons/vsc'
-import { BsChevronUp, BsFillPlusCircleFill } from 'react-icons/bs'
+import { BsChevronUp } from 'react-icons/bs'
 import Course_builder_module from './courseBuilder/course_builder_module'
-export default function Course_builder({ register }) {
+export default function Course_builder({ register, fields, append, remove }) {
   return (
     <Disclosure>
       {({ open }) => (
@@ -24,7 +24,7 @@ export default function Course_builder({ register }) {
             leaveTo="transform scale-95 opacity-0"
           >
             <Disclosure.Panel className="px-10 text-sm ">
-              <Course_builder_module register={register} />
+              <Course_builder_module register={register} fields={fields} append={append} remove={remove} />
             </Disclosure.Panel>
           </Transition>
         </>
