@@ -4,7 +4,7 @@ import { BsChevronUp, BsFillPlusCircleFill, BsFillTrashFill, BsPencilFill } from
 import { VscSymbolStructure } from 'react-icons/vsc'
 import { reusableStyles } from '../../../../../../styles/styles'
 
-export default function course_module_item({ register, removeModule, index }) {
+export default function course_module_item({ register, removeModule, index, moduleName }) {
   return (
     <div>
       <Disclosure>
@@ -14,21 +14,21 @@ export default function course_module_item({ register, removeModule, index }) {
               <div className="flex items-center gap-3">
                 <VscSymbolStructure />
                 <span></span>
-                <p>Introduccion</p>
+                <p>{moduleName}</p>
               </div>
               <div className="flex items-center gap-1 ">
-                <div className="hover:bg-gray-100 p-3 rounded-full">
+                <div className="p-3 rounded-full hover:bg-gray-100">
                   <BsPencilFill />
                 </div>
                 <div
-                  className="hover:bg-gray-100 p-3 rounded-full"
+                  className="p-3 rounded-full hover:bg-gray-100"
                   onClick={() => {
                     removeModule(index)
                   }}
                 >
                   <BsFillTrashFill />
                 </div>
-                <Disclosure.Button className="hover:bg-gray-100 p-3 rounded-full">
+                <Disclosure.Button className="p-3 rounded-full hover:bg-gray-100">
                   <BsChevronUp className={`${open ? 'rotate-180 transform' : ''} transition duration-200 `} />
                 </Disclosure.Button>
               </div>
@@ -42,20 +42,20 @@ export default function course_module_item({ register, removeModule, index }) {
               leaveTo="transform scale-95 opacity-0"
             >
               <Disclosure.Panel className="px-5 text-sm ">
-                <div className=" flex flex-col gap-2 mt-3 ">
+                <div className="flex flex-col gap-2 mt-3 ">
                   <div>
-                    <button className="cursor-pointer flex items-center gap-3 px-4 py-2 bg-yellow-400 rounded-lg outline-none">
+                    <button className="flex items-center gap-3 px-4 py-2 bg-yellow-400 rounded-lg outline-none cursor-pointer">
                       <BsFillPlusCircleFill />
                       Agregar leccion
                     </button>
                   </div>
-                  <div className="border-2 border/black bg-gray-100 p-2 rounded-md">
+                  <div className="p-2 bg-gray-100 border-2 rounded-md border/black">
                     <p>Clase 01</p>
                   </div>
-                  <div className="border-2 border/black bg-gray-100 p-2 rounded-md">
+                  <div className="p-2 bg-gray-100 border-2 rounded-md border/black">
                     <p>Clase 01</p>
                   </div>
-                  <div className="border-2 border/black bg-gray-100 p-2 rounded-md">
+                  <div className="p-2 bg-gray-100 border-2 rounded-md border/black">
                     <p>Clase 01</p>
                   </div>
                 </div>

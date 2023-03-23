@@ -17,7 +17,7 @@ export default function Course_lesson_item() {
               <p className="">Leccion 1: Video introductorio</p>
             </div>
             <div className="flex gap-3 ">
-              <div className="p-1  hover:bg-red-200">
+              <div className="p-1 hover:bg-red-200">
                 <BsFillPencilFill />
               </div>
               <div className="p-1 hover:bg-red-200">
@@ -32,7 +32,7 @@ export default function Course_lesson_item() {
               <p className="">Leccion 1: Video introductorio</p>
             </div>
             <div className="flex gap-3 ">
-              <div className="p-1  hover:bg-red-200">
+              <div className="p-1 hover:bg-red-200">
                 <BsFillPencilFill />
               </div>
               <div className="p-1 hover:bg-red-200">
