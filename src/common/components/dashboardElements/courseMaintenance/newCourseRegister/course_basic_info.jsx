@@ -22,8 +22,8 @@ export default function Course_basic_info({ register }) {
             leaveFrom="transform scale-100 opacity-100"
             leaveTo="transform scale-95 opacity-0"
           >
-            <Disclosure.Panel className=" text-sm px-10">
-              <div className=" bg-white p-5 flex flex-col gap-5">
+            <Disclosure.Panel className="px-10 text-sm ">
+              <div className="flex flex-col gap-5 p-5 bg-white ">
                 <div className="grid gap-3">
                   <p className="font-medium">Titulo del curso</p>
                   <input
@@ -84,7 +84,7 @@ export default function Course_basic_info({ register }) {
                     </div>
                     <div className="col-span-1">
                       <p className="font-medium ">Pro tip:</p>
-                      <ul className="list-disc rid gap-4 text-gray-700">
+                      <ul className="gap-4 text-gray-700 list-disc rid">
                         <li>El tamaño de la imagen debe ser 700x430 pixeles</li>
                         <li>Debes seleccionar una imagen</li>
                       </ul>

@@ -1,10 +1,11 @@
 import { Disclosure, Transition } from '@headlessui/react'
 import React from 'react'
-import { BsChevronUp, BsFillPlusCircleFill, BsFillTrashFill, BsPencilFill } from 'react-icons/bs'
+import { BsChevronUp, BsFillTrashFill, BsPencilFill } from 'react-icons/bs'
 import { VscSymbolStructure } from 'react-icons/vsc'
 import { reusableStyles } from '../../../../../../styles/styles'
 
-export default function course_module_item({ register, removeModule, index, moduleName }) {
+import Course_builder_lesson from './course_builder_lesson'
+export default function course_module_item({ removeModule, index, moduleName }) {
   return (
     <div>
       <Disclosure>
@@ -17,11 +18,11 @@ export default function course_module_item({ register, removeModule, index, modu
                 <p>{moduleName}</p>
               </div>
               <div className="flex items-center gap-1 ">
-                <div className="p-3 rounded-full hover:bg-gray-100">
+                <div className="p-3 rounded-full cursor-pointer hover:bg-gray-100">
                   <BsPencilFill />
                 </div>
                 <div
-                  className="p-3 rounded-full hover:bg-gray-100"
+                  className="p-3 rounded-full cursor-pointer hover:bg-gray-100"
                   onClick={() => {
                     removeModule(index)
                   }}
@@ -43,21 +44,7 @@ export default function course_module_item({ register, removeModule, index, modu
             >
               <Disclosure.Panel className="px-5 text-sm ">
                 <div className="flex flex-col gap-2 mt-3 ">
-                  <div>
-                    <button className="flex items-center gap-3 px-4 py-2 bg-yellow-400 rounded-lg outline-none cursor-pointer">
-                      <BsFillPlusCircleFill />
-                      Agregar leccion
-                    </button>
-                  </div>
-                  <div className="p-2 bg-gray-100 border-2 rounded-md border/black">
-                    <p>Clase 01</p>
-                  </div>
-                  <div className="p-2 bg-gray-100 border-2 rounded-md border/black">
-                    <p>Clase 01</p>
-                  </div>
-                  <div className="p-2 bg-gray-100 border-2 rounded-md border/black">
-                    <p>Clase 01</p>
-                  </div>
+                  <Course_builder_lesson />
                 </div>
               </Disclosure.Panel>
             </Transition>

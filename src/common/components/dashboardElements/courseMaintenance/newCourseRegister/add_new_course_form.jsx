@@ -11,11 +11,7 @@ import Course_resources from './course_resources'
 import Course_extra_info from './course_extra_info'
 
 export default function TabNav() {
-  const { register, handleSubmit, control } = useForm({
-    defaultValues: {
-      modules: [{ moduleName: '', lesson: [{ lessonName: '' }] }],
-    },
-  })
+  const { register, handleSubmit, control } = useForm()
 
   const { fields, append, remove } = useFieldArray({
     control,
@@ -23,35 +19,14 @@ export default function TabNav() {
   })
 
   const onSubmit = (data) => {
-    const courseObject = {
-      titulo_curso: data.titulo_curso,
-      slug_curso: data.slug_curso,
-      descripcion_curso: data.descripcion_curso,
-      categoria: data.categoria_curso,
-      precio_curso: data.precio_curso,
-      thumbnail_curso: data.thumbnail_curso,
-      url_preview_curso: data.url_preview_curso,
-      modulos_curso: [
-        {
-          nombre_modulo: data.nombre_modulo,
-          resumen_modulo: data.resumen_modulo,
-          lecciones: [
-            {
-              nombre_leccion: 'leccion 1',
-              url_leccion: 'http://vimeo.com',
-            },
-          ],
-        },
-      ],
-    }
-    console.log(data.modulos)
+    console.log(data)
   }
   return (
-    <div className=" ">
+    <div className="">
       <div className="grid grid-cols-12 gap-10">
-        <form className="col-span-8 flex flex-col gap-5" onSubmit={handleSubmit(onSubmit)}>
+        <form className="flex flex-col col-span-8 gap-5" onSubmit={handleSubmit(onSubmit)}>
           <div>
-            <div className=" h-auto">
+            <div className="h-auto ">
               <button className="px-10 py-4 flex items-center gap-3 justify-center rounded-lg bg-[#FFF409]">
                 <AiFillCheckCircle /> Publicar curso
               </button>
@@ -100,9 +75,9 @@ export default function TabNav() {
           </div>
         </form>
         <div className="col-span-4">
-          <p className="font-medium text-2xl"> Consejos para la subida de cursos</p>
+          <p className="text-2xl font-medium"> Consejos para la subida de cursos</p>
           <div>
-            <ul className="list-disc p-5 grid gap-4 text-gray-700">
+            <ul className="grid gap-4 p-5 text-gray-700 list-disc">
               <li>Set the Course Price option or make it free.</li>
               <li>Standard size for the course thumbnail is 700x430.</li>
               <li>Video section controls the course overview video.</li>
