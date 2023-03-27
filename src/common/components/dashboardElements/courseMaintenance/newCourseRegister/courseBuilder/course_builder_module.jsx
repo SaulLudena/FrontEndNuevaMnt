@@ -100,6 +100,8 @@ export default function Course_builder_module({ register, fields, append, remove
               index={index}
               removeModule={remove}
               moduleName={item.moduleName}
+              append={append}
+              fields={fields}
             />
           )
         })}

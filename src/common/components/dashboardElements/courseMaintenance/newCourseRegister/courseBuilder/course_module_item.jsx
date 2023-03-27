@@ -5,7 +5,7 @@ import { VscSymbolStructure } from 'react-icons/vsc'
 import { reusableStyles } from '../../../../../../styles/styles'
 
 import Course_builder_lesson from './course_builder_lesson'
-export default function course_module_item({ removeModule, index, moduleName }) {
+export default function course_module_item({ removeModule, index, moduleName, append, fields }) {
   return (
     <div>
       <Disclosure>
@@ -44,7 +44,7 @@ export default function course_module_item({ removeModule, index, moduleName }) 
             >
               <Disclosure.Panel className="px-5 text-sm ">
                 <div className="flex flex-col gap-2 mt-3 ">
-                  <Course_builder_lesson />
+                  <Course_builder_lesson append={append} fields={fields} />
                 </div>
               </Disclosure.Panel>
             </Transition>

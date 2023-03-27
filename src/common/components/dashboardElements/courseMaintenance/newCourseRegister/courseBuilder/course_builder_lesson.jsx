@@ -4,11 +4,11 @@ import { BsFillPlusCircleFill } from 'react-icons/bs'
 import { reusableStyles } from '../../../../../../styles/styles'
 import Course_lesson_item from './course_lesson_item'
 
-export default function course_builder_lesson() {
+export default function course_builder_lesson({ append, fields }) {
   //estados para el modal y para el nombre del modulo
   let [isOpen, setIsOpen] = useState(false)
   const [disableState, setDisableState] = useState(false)
-
+  const [lessonName, setLessonName] = useState('')
   const closeModal = () => {
     setIsOpen(false)
   }
@@ -19,10 +19,10 @@ export default function course_builder_lesson() {
   }
 
   //utilizamos el metodo append para agregar al arreglo un nuevo modulo que recibe un nombre y lo registra con nombre jeje
-  const createNewModule = () => {
+  const createNewLesson = () => {
     setIsOpen(false)
-    append({ moduleName: moduleName, lesson: [{ lessonName: '' }] })
-    setModuleName('')
+    append({ lesson: [{ lessonName: '' }] })
+    setLessonName('')
     setDisableState(true)
   }
   return (
@@ -61,7 +61,12 @@ export default function course_builder_lesson() {
                     <div className="mt-2">
                       <div className="grid gap-3">
                         <p>Título de la leccion</p>
-                        <input type="text" className={reusableStyles.inputFormForCourseMaintenance} />
+
+                        <input
+                          type="text"
+                          className={reusableStyles.inputFormForCourseMaintenance}
+                          onChange={(e) => setLessonName(e.target.value)}
+                        />
                       </div>
                     </div>
 
@@ -70,7 +75,7 @@ export default function course_builder_lesson() {
                         type="button"
                         disabled={disableState}
                         className={reusableStyles.button}
-                        onClick={createNewModule}
+                        onClick={createNewLesson}
                       >
                         Guardar
                       </button>
@@ -94,9 +99,9 @@ export default function course_builder_lesson() {
       <div>
         <div className="grid gap-2">
           {/*esto es una leccion , aqui tambien hacer el map*/}
-
-          <Course_lesson_item />
-          <Course_lesson_item />
+          {fields.map((item, index) => {
+            return <Course_lesson_item key={item.id} />
+          })}
         </div>
       </div>
     </div>

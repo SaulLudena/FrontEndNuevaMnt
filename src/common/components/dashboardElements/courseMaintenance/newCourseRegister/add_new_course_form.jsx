@@ -10,12 +10,14 @@ import Course_builder from './course_builder'
 import Course_resources from './course_resources'
 import Course_extra_info from './course_extra_info'
 
+import GptRecommend from './gptRecommend'
 export default function TabNav() {
   const { register, handleSubmit, control } = useForm()
 
   const { fields, append, remove } = useFieldArray({
     control,
-    name: 'modulos',
+    name: 'modules',
+    defaultValue: [{ moduleName: '', lessons: [{ lessonName: '' }] }],
   })
 
   const onSubmit = (data) => {
@@ -38,7 +40,9 @@ export default function TabNav() {
             {/*Menu expandible de  video Y PASAR LAS PROPS !!!!!*/}
             <Course_video_preview register={register} />
             {/*Menu expandible del maquetador de curso Y PASAR LAS PROPS !!!!!*/}
-            <Course_builder register={register} fields={fields} append={append} remove={remove} />
+            {/*<Course_builder register={register} fields={fields} append={append} remove={remove} />
+             */}
+            <GptRecommend register={register} fields={fields} append={append} remove={remove} />
 
             {/*Menu expandible de google meet (no hay contenido)*/}
             <Disclosure>
