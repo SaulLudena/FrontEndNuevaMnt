@@ -23,7 +23,7 @@ export default function Course_builder_module({ register, fields, append, remove
   //utilizamos el metodo append para agregar al arreglo un nuevo modulo que recibe un nombre y lo registra con nombre jeje
   const createNewModule = () => {
     setIsOpen(false)
-    append({ moduleName: moduleName, lesson: [{ lessonName: '' }] })
+    append({ moduleName, lessons: [] })
     setModuleName('')
     setDisableState(true)
   }
@@ -97,7 +97,7 @@ export default function Course_builder_module({ register, fields, append, remove
               key={item.id}
               register={register}
               item={item}
-              index={index}
+              ModuleIndex={index}
               removeModule={remove}
               moduleName={item.moduleName}
               append={append}

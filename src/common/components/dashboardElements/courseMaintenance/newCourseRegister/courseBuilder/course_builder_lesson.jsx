@@ -4,11 +4,12 @@ import { BsFillPlusCircleFill } from 'react-icons/bs'
 import { reusableStyles } from '../../../../../../styles/styles'
 import Course_lesson_item from './course_lesson_item'
 
-export default function course_builder_lesson({ append, fields }) {
+export default function course_builder_lesson({ append, ModuleIndex }) {
   //estados para el modal y para el nombre del modulo
   let [isOpen, setIsOpen] = useState(false)
   const [disableState, setDisableState] = useState(false)
   const [lessonName, setLessonName] = useState('')
+  const [modules, setModules] = useState([])
   const closeModal = () => {
     setIsOpen(false)
   }
@@ -18,10 +19,22 @@ export default function course_builder_lesson({ append, fields }) {
     setIsOpen(true)
   }
 
-  //utilizamos el metodo append para agregar al arreglo un nuevo modulo que recibe un nombre y lo registra con nombre jeje
   const createNewLesson = () => {
     setIsOpen(false)
-    append({ lesson: [{ lessonName: '' }] })
+    setIsOpen(false)
+    const newModule = {
+      ...modules[ModuleIndex],
+      lessons: [
+        ...modules[ModuleIndex].lessons,
+        {
+          title: lessonName,
+          content: '',
+          video: '',
+        },
+      ],
+    }
+    append(newModule, { nestIndex: { moduleIndex: ModuleIndex, lessonIndex: modules[ModuleIndex].lessons.length } })
+
     setLessonName('')
     setDisableState(true)
   }
@@ -99,9 +112,7 @@ export default function course_builder_lesson({ append, fields }) {
       <div>
         <div className="grid gap-2">
           {/*esto es una leccion , aqui tambien hacer el map*/}
-          {fields.map((item, index) => {
-            return <Course_lesson_item key={item.id} />
-          })}
+          <h1>No hay lecciones en tu modulo</h1>
         </div>
       </div>
     </div>

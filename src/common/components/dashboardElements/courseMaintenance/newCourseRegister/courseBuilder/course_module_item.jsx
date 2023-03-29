@@ -5,7 +5,7 @@ import { VscSymbolStructure } from 'react-icons/vsc'
 import { reusableStyles } from '../../../../../../styles/styles'
 
 import Course_builder_lesson from './course_builder_lesson'
-export default function course_module_item({ removeModule, index, moduleName, append, fields }) {
+export default function course_module_item({ removeModule, ModuleIndex, moduleName, append, fields }) {
   return (
     <div>
       <Disclosure>
@@ -24,7 +24,7 @@ export default function course_module_item({ removeModule, index, moduleName, ap
                 <div
                   className="p-3 rounded-full cursor-pointer hover:bg-gray-100"
                   onClick={() => {
-                    removeModule(index)
+                    removeModule(ModuleIndex)
                   }}
                 >
                   <BsFillTrashFill />
@@ -44,7 +44,7 @@ export default function course_module_item({ removeModule, index, moduleName, ap
             >
               <Disclosure.Panel className="px-5 text-sm ">
                 <div className="flex flex-col gap-2 mt-3 ">
-                  <Course_builder_lesson append={append} fields={fields} />
+                  <Course_builder_lesson append={append} fields={fields} ModuleIndex={ModuleIndex} />
                 </div>
               </Disclosure.Panel>
             </Transition>
