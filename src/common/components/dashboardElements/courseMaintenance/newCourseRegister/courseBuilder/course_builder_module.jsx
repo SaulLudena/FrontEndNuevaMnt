@@ -5,26 +5,32 @@ import { BsFillPlusCircleFill } from 'react-icons/bs'
 import { reusableStyles } from '../../../../../../styles/styles'
 import Course_module_item from './course_module_item'
 
-export default function Course_builder_module({ register, fields, append, remove }) {
+export default function Course_builder_module({ update, register, fields, append, remove }) {
   //estados para el modal y para el nombre del modulo
   let [isOpen, setIsOpen] = useState(false)
   const [disableState, setDisableState] = useState(false)
   const [moduleName, setModuleName] = useState('')
+  const [moduleDescription, setModuleDescription] = useState('')
 
   const closeModal = () => {
     setIsOpen(false)
+    setModuleName('')
+    setModuleDescription('')
   }
 
   const openModal = () => {
     setDisableState(false)
     setIsOpen(true)
+    setModuleName('')
+    setModuleDescription('')
   }
 
   //utilizamos el metodo append para agregar al arreglo un nuevo modulo que recibe un nombre y lo registra con nombre jeje
   const createNewModule = () => {
     setIsOpen(false)
-    append({ moduleName, lessons: [] })
+    append({ moduleName, moduleDescription, lessons: [] })
     setModuleName('')
+    setModuleDescription('')
     setDisableState(true)
   }
 
@@ -63,13 +69,25 @@ export default function Course_builder_module({ register, fields, append, remove
                     </Dialog.Title>
                     <div className="mt-2">
                       <div className="grid gap-3">
-                        <p>Título del modulo</p>
-                        <input
-                          type="text"
-                          value={moduleName}
-                          onChange={(e) => setModuleName(e.target.value)}
-                          className={reusableStyles.inputFormForCourseMaintenance}
-                        />
+                        <div className="grid gap-2">
+                          <p>Título del modulo</p>
+                          <input
+                            type="text"
+                            value={moduleName}
+                            onChange={(e) => setModuleName(e.target.value)}
+                            className={reusableStyles.inputFormForCourseMaintenance}
+                          />
+                        </div>
+                        <div>
+                          <p>Descripción del modulo</p>
+                          <textarea
+                            type="text"
+                            rows={6}
+                            value={moduleDescription}
+                            onChange={(e) => setModuleDescription(e.target.value)}
+                            className={reusableStyles.inputFormForCourseMaintenance}
+                          />
+                        </div>
                       </div>
                     </div>
 
@@ -102,6 +120,7 @@ export default function Course_builder_module({ register, fields, append, remove
               moduleName={item.moduleName}
               append={append}
               fields={fields}
+              update={update}
             />
           )
         })}

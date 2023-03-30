@@ -4,12 +4,12 @@ import { BsFillPlusCircleFill } from 'react-icons/bs'
 import { reusableStyles } from '../../../../../../styles/styles'
 import Course_lesson_item from './course_lesson_item'
 
-export default function course_builder_lesson({ append, ModuleIndex }) {
+export default function course_builder_lesson({ fields, update, register, append, ModuleIndex }) {
   //estados para el modal y para el nombre del modulo
   let [isOpen, setIsOpen] = useState(false)
   const [disableState, setDisableState] = useState(false)
   const [lessonName, setLessonName] = useState('')
-  const [modules, setModules] = useState([])
+
   const closeModal = () => {
     setIsOpen(false)
   }
@@ -21,20 +21,12 @@ export default function course_builder_lesson({ append, ModuleIndex }) {
 
   const createNewLesson = () => {
     setIsOpen(false)
-    setIsOpen(false)
-    const newModule = {
-      ...modules[ModuleIndex],
-      lessons: [
-        ...modules[ModuleIndex].lessons,
-        {
-          title: lessonName,
-          content: '',
-          video: '',
-        },
-      ],
+    const moduleToUpdate = fields[ModuleIndex]
+    const updatedModule = {
+      ...moduleToUpdate,
+      lessons: [...moduleToUpdate.lessons, { lessonName: lessonName }],
     }
-    append(newModule, { nestIndex: { moduleIndex: ModuleIndex, lessonIndex: modules[ModuleIndex].lessons.length } })
-
+    update(ModuleIndex, updatedModule)
     setLessonName('')
     setDisableState(true)
   }
@@ -73,13 +65,43 @@ export default function course_builder_lesson({ append, ModuleIndex }) {
                     </Dialog.Title>
                     <div className="mt-2">
                       <div className="grid gap-3">
-                        <p>Título de la leccion</p>
-
-                        <input
-                          type="text"
-                          className={reusableStyles.inputFormForCourseMaintenance}
-                          onChange={(e) => setLessonName(e.target.value)}
-                        />
+                        <div className="grid gap-2">
+                          <p>Título de la leccion</p>
+                          <input
+                            type="text"
+                            className={reusableStyles.inputFormForCourseMaintenance}
+                            onChange={(e) => setLessonName(e.target.value)}
+                          />
+                        </div>
+                        <div className="grid gap-2">
+                          <p>Descripción de la leccion</p>
+                          <textarea type="text" rows={6} className={reusableStyles.inputFormForCourseMaintenance} />
+                        </div>
+                        <div className="grid gap-2">
+                          <p>Imagen destacada</p>
+                          <input type="file" className={reusableStyles.inputFormForCourseMaintenance} />
+                        </div>
+                        <div className="grid gap-2">
+                          <p>Enlace del video (vimeo)</p>
+                          <input type="text" className={reusableStyles.inputFormForCourseMaintenance} />
+                        </div>
+                        <div className="grid gap-2">
+                          <p>Tiempo de duración del video</p>
+                          <div className="grid grid-cols-3 gap-3">
+                            <div>
+                              <input type="text" className={reusableStyles.inputFormForCourseMaintenance} />
+                              <p>Horas</p>
+                            </div>
+                            <div>
+                              <input type="text" className={reusableStyles.inputFormForCourseMaintenance} />
+                              <p>Minutos</p>
+                            </div>
+                            <div>
+                              <input type="text" className={reusableStyles.inputFormForCourseMaintenance} />
+                              <p>Segundos</p>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
 
@@ -101,18 +123,20 @@ export default function course_builder_lesson({ append, ModuleIndex }) {
         </Transition>
       </>
       <div className="flex justify-between ">
-        <button
+        <div
           className="flex items-center gap-3 px-4 py-2 bg-yellow-400 rounded-lg outline-none cursor-pointer"
           onClick={openModal}
         >
           <BsFillPlusCircleFill />
           Agregar leccion
-        </button>
+        </div>
       </div>
       <div>
         <div className="grid gap-2">
           {/*esto es una leccion , aqui tambien hacer el map*/}
-          <h1>No hay lecciones en tu modulo</h1>
+          {fields[ModuleIndex].lessons.map((item, index) => {
+            return <Course_lesson_item key={index + 1} item={item} />
+          })}
         </div>
       </div>
     </div>
