@@ -7,7 +7,7 @@ export default function Course_lesson_item({ item }) {
     <div className="flex justify-between p-3 rounded-lg bg-gray-50 hover:bg-gray-100">
       <div className="flex items-center gap-3">
         <MdPlayLesson />
-        <p className="">{item.lessonName}</p>
+        <p className="">{item.leccion_titulo}</p>
       </div>
       <div className="flex gap-1 ">
         <div className="p-3 rounded-full cursor-pointer hover:bg-gray-300">

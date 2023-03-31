@@ -2,9 +2,9 @@ import { Disclosure, Transition } from '@headlessui/react'
 import { reusableStyles } from '../../../../../styles/styles'
 import { BsChevronUp, BsFillPencilFill } from 'react-icons/bs'
 
-export default function Course_basic_info({ register }) {
+export default function Course_basic_info({ register, errors }) {
   return (
-    <Disclosure>
+    <Disclosure defaultOpen={true}>
       {({ open }) => (
         <>
           <Disclosure.Button className={reusableStyles.disclosureItem}>
@@ -29,8 +29,13 @@ export default function Course_basic_info({ register }) {
                   <input
                     type="text"
                     className={reusableStyles.inputFormForCourseMaintenance}
-                    {...register('titulo_curso')}
+                    {...register('titulo_curso', { required: true })}
                   />
+                  {errors?.titulo_curso?.type === 'required' && (
+                    <div className="">
+                      <span className={reusableStyles.formAlerts}>Campo requerido</span>
+                    </div>
+                  )}
                 </div>
 
                 <div className="grid gap-3">
@@ -38,8 +43,13 @@ export default function Course_basic_info({ register }) {
                   <input
                     type="text"
                     className={reusableStyles.inputFormForCourseMaintenance}
-                    {...register('slug_curso')}
+                    {...register('slug_curso', { required: true })}
                   />
+                  {errors?.slug_curso?.type === 'required' && (
+                    <div className="">
+                      <span className={reusableStyles.formAlerts}>Campo requerido</span>
+                    </div>
+                  )}
                 </div>
                 <div className="grid gap-3">
                   <p className="font-medium">Sobre el curso</p>
@@ -47,17 +57,30 @@ export default function Course_basic_info({ register }) {
                     type="text"
                     className={reusableStyles.inputFormForCourseMaintenance}
                     rows={6}
-                    {...register('descripcion_curso')}
+                    {...register('descripcion_curso', { required: true })}
                   />
+                  {errors?.descripcion_curso?.type === 'required' && (
+                    <div className="">
+                      <span className={reusableStyles.formAlerts}>Campo requerido</span>
+                    </div>
+                  )}
                 </div>
 
                 <div className="grid gap-3">
                   <p className="font-medium">Selecciona una categoria</p>
-                  <select className={reusableStyles.inputFormForCourseMaintenance} {...register('categoria_curso')}>
+                  <select
+                    className={reusableStyles.inputFormForCourseMaintenance}
+                    {...register('categoria_curso', { required: true })}
+                  >
                     <option>Negocios</option>
                     <option>Tecnologia</option>
                     <option>Emprendimiento</option>
                   </select>
+                  {errors?.categoria_curso?.type === 'required' && (
+                    <div className="">
+                      <span className={reusableStyles.formAlerts}>Campo requerido</span>
+                    </div>
+                  )}
                 </div>
                 <div className="grid gap-3">
                   <p className="font-medium">Precio del curso</p>
@@ -75,12 +98,17 @@ export default function Course_basic_info({ register }) {
                 <div className="grid gap-3">
                   <p className="font-medium">Thumbnail del curso</p>
                   <div className="grid grid-cols-2 gap-10">
-                    <div className="col-span-1">
+                    <div className="grid col-span-1 gap-3">
                       <input
                         type="file"
                         className={reusableStyles.inputFormForCourseMaintenance}
-                        {...register('thumbnail_curso')}
+                        {...register('thumbnail_curso', { required: true })}
                       />
+                      {errors?.thumbnail_curso?.type === 'required' && (
+                        <div className="">
+                          <span className={reusableStyles.formAlerts}>Campo requerido</span>
+                        </div>
+                      )}
                     </div>
                     <div className="col-span-1">
                       <p className="font-medium ">Pro tip:</p>

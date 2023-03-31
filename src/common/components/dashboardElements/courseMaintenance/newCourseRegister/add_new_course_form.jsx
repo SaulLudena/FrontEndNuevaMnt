@@ -11,7 +11,13 @@ import Course_resources from './course_resources'
 import Course_extra_info from './course_extra_info'
 
 export default function TabNav() {
-  const { register, handleSubmit, control } = useForm()
+  const {
+    register,
+    handleSubmit,
+    control,
+    reset,
+    formState: { errors },
+  } = useForm()
 
   const { fields, append, remove, update } = useFieldArray({
     control,
@@ -21,6 +27,7 @@ export default function TabNav() {
 
   const onSubmit = (data) => {
     console.log(data)
+    reset
   }
   return (
     <div className="">
@@ -35,7 +42,7 @@ export default function TabNav() {
           </div>
           <div className="grid gap-3">
             {/*Menu expandible de informacion principal del curso Y PASAR LAS PROPS !!!!!*/}
-            <Course_basic_info register={register} />
+            <Course_basic_info register={register} errors={errors} />
             {/*Menu expandible de  video Y PASAR LAS PROPS !!!!!*/}
             <Course_video_preview register={register} />
             {/*Menu expandible del maquetador de curso Y PASAR LAS PROPS !!!!!*/}

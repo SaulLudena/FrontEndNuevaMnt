@@ -4,7 +4,7 @@ import { reusableStyles } from '../../../../../styles/styles'
 import { BsChevronUp, BsFillCameraVideoFill } from 'react-icons/bs'
 export default function Course_video_preview({ register }) {
   return (
-    <Disclosure>
+    <Disclosure defaultOpen={true}>
       {({ open }) => (
         <>
           <Disclosure.Button className={reusableStyles.disclosureItem}>
@@ -22,8 +22,8 @@ export default function Course_video_preview({ register }) {
             leaveFrom="transform scale-100 opacity-100"
             leaveTo="transform scale-95 opacity-0"
           >
-            <Disclosure.Panel className=" text-sm px-10">
-              <div className=" bg-white p-5 flex flex-col gap-5">
+            <Disclosure.Panel className="px-10 text-sm ">
+              <div className="flex flex-col gap-5 p-5 bg-white ">
                 <div className="grid gap-3">
                   <p className="font-medium">Video de introduccion al curso (Vimeo)</p>
                   <input

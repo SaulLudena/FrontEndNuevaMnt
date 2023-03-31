@@ -8,7 +8,15 @@ export default function course_builder_lesson({ fields, update, register, append
   //estados para el modal y para el nombre del modulo
   let [isOpen, setIsOpen] = useState(false)
   const [disableState, setDisableState] = useState(false)
-  const [lessonName, setLessonName] = useState('')
+  const [lesson, setLesson] = useState({
+    leccion_titulo: '',
+    leccion_descripcion: '',
+    leccion_imagen: '',
+    leccion_enlace: '',
+    leccion_duracion_horas: '',
+    leccion_duracion_minutos: '',
+    leccion_duracion_segundos: '',
+  })
 
   const closeModal = () => {
     setIsOpen(false)
@@ -20,15 +28,15 @@ export default function course_builder_lesson({ fields, update, register, append
   }
 
   const createNewLesson = () => {
-    setIsOpen(false)
     const moduleToUpdate = fields[ModuleIndex]
     const updatedModule = {
       ...moduleToUpdate,
-      lessons: [...moduleToUpdate.lessons, { lessonName: lessonName }],
+      lessons: [...moduleToUpdate.lessons, lesson],
     }
     update(ModuleIndex, updatedModule)
-    setLessonName('')
+
     setDisableState(true)
+    setIsOpen(false)
   }
   return (
     <div className="grid gap-3 px-5 ">
@@ -70,34 +78,69 @@ export default function course_builder_lesson({ fields, update, register, append
                           <input
                             type="text"
                             className={reusableStyles.inputFormForCourseMaintenance}
-                            onChange={(e) => setLessonName(e.target.value)}
+                            value={lesson.leccion_titulo}
+                            onChange={(e) => setLesson({ ...lesson, leccion_titulo: e.target.value })}
+                            required
                           />
                         </div>
                         <div className="grid gap-2">
                           <p>Descripción de la leccion</p>
-                          <textarea type="text" rows={6} className={reusableStyles.inputFormForCourseMaintenance} />
+                          <textarea
+                            type="text"
+                            rows={6}
+                            className={reusableStyles.inputFormForCourseMaintenance}
+                            value={lesson.leccion_descripcion}
+                            onChange={(e) => setLesson({ ...lesson, leccion_descripcion: e.target.value })}
+                          />
                         </div>
                         <div className="grid gap-2">
                           <p>Imagen destacada</p>
-                          <input type="file" className={reusableStyles.inputFormForCourseMaintenance} />
+                          <input
+                            type="file"
+                            className={reusableStyles.inputFormForCourseMaintenance}
+                            onChange={(e) => setLesson({ ...lesson, leccion_imagen: e.target.value })}
+                          />
                         </div>
                         <div className="grid gap-2">
                           <p>Enlace del video (vimeo)</p>
-                          <input type="text" className={reusableStyles.inputFormForCourseMaintenance} />
+                          <input
+                            type="text"
+                            className={reusableStyles.inputFormForCourseMaintenance}
+                            value={lesson.leccion_enlace}
+                            onChange={(e) => setLesson({ ...lesson, leccion_enlace: e.target.value })}
+                          />
                         </div>
                         <div className="grid gap-2">
                           <p>Tiempo de duración del video</p>
                           <div className="grid grid-cols-3 gap-3">
                             <div>
-                              <input type="text" className={reusableStyles.inputFormForCourseMaintenance} />
+                              <input
+                                type="number"
+                                min={0}
+                                className={reusableStyles.inputFormForCourseMaintenance}
+                                value={lesson.leccion_duracion_horas}
+                                onChange={(e) => setLesson({ ...lesson, leccion_duracion_horas: e.target.value })}
+                              />
                               <p>Horas</p>
                             </div>
                             <div>
-                              <input type="text" className={reusableStyles.inputFormForCourseMaintenance} />
+                              <input
+                                type="number"
+                                min={0}
+                                className={reusableStyles.inputFormForCourseMaintenance}
+                                value={lesson.leccion_duracion_minutos}
+                                onChange={(e) => setLesson({ ...lesson, leccion_duracion_minutos: e.target.value })}
+                              />
                               <p>Minutos</p>
                             </div>
                             <div>
-                              <input type="text" className={reusableStyles.inputFormForCourseMaintenance} />
+                              <input
+                                type="number"
+                                min={0}
+                                className={reusableStyles.inputFormForCourseMaintenance}
+                                value={lesson.leccion_duracion_segundos}
+                                onChange={(e) => setLesson({ ...lesson, leccion_duracion_segundos: e.target.value })}
+                              />
                               <p>Segundos</p>
                             </div>
                           </div>

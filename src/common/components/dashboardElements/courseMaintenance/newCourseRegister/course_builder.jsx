@@ -5,7 +5,7 @@ import { BsChevronUp } from 'react-icons/bs'
 import Course_builder_module from './courseBuilder/course_builder_module'
 export default function Course_builder({ update, register, fields, append, remove }) {
   return (
-    <Disclosure>
+    <Disclosure defaultOpen={true}>
       {({ open }) => (
         <>
           <Disclosure.Button className={reusableStyles.disclosureItem}>

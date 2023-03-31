@@ -86,7 +86,7 @@ export default function course_module_item({
           </Dialog>
         </Transition>
       </>
-      <Disclosure>
+      <Disclosure defaultOpen={true}>
         {({ open }) => (
           <>
             <div className={reusableStyles.courseModuleStyleCard}>

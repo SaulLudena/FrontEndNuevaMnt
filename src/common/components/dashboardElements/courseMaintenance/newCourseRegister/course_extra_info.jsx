@@ -6,7 +6,7 @@ import { reusableStyles } from '../../../../../styles/styles'
 
 export default function Course_extra_info() {
   return (
-    <Disclosure>
+    <Disclosure defaultOpen={true}>
       {({ open }) => (
         <>
           <Disclosure.Button className={reusableStyles.disclosureItem}>
@@ -24,8 +24,8 @@ export default function Course_extra_info() {
             leaveFrom="transform scale-100 opacity-100"
             leaveTo="transform scale-95 opacity-0"
           >
-            <Disclosure.Panel className=" text-sm px-10">
-              <div className=" bg-white p-5 flex flex-col gap-5">
+            <Disclosure.Panel className="px-10 text-sm ">
+              <div className="flex flex-col gap-5 p-5 bg-white ">
                 <div className="grid gap-3">
                   <p className="font-medium">¿Qué aprenderé?</p>
                   <input type="text" className={reusableStyles.inputFormForCourseMaintenance} />
@@ -37,11 +37,11 @@ export default function Course_extra_info() {
                 <div className="grid gap-3">
                   <p className="font-medium">Duración total del curso</p>
                   <div className="grid grid-cols-2 gap-5">
-                    <div className="col-span-1 grid gap-1">
+                    <div className="grid col-span-1 gap-1">
                       <input type="number" className={reusableStyles.inputFormForCourseMaintenance} />
                       <p className="text-gray-600">Horas</p>
                     </div>
-                    <div className="col-span-1 grid gap-1">
+                    <div className="grid col-span-1 gap-1">
                       <input type="number" className={reusableStyles.inputFormForCourseMaintenance} />
                       <p className="text-gray-600">Minutos</p>
                     </div>
