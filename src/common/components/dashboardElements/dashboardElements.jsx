@@ -11,7 +11,7 @@ import { useEffect, useState } from 'react'
 import Cookies from 'js-cookie'
 import axios from 'axios'
 import Link from 'next/link'
-import { GrAction } from 'react-icons/gr'
+import { GrAction, GrUserAdmin } from 'react-icons/gr'
 
 export default function DashboardElements() {
   const [user, setUser] = useState({})
@@ -101,16 +101,19 @@ export default function DashboardElements() {
                 </div>
               </div>
             </div>
-            <div className="w-full bg-white  lg:col-span-2 2xl:col-span-2 rounded-xl">
-              <div className="flex h-full gap-3">
+            {/*Hacer una validacion de tipo de usuario: Admin/Docente/Estudiante*/}
+            <div className="w-full transition duration-100 bg-white  lg:col-span-2 2xl:col-span-2 rounded-xl hover:shadow-lg">
+              <Link href="/dashboard/zonaDeMentores" className="flex h-full gap-3">
                 <div className="bg-[#FFF409] w-10 rounded-tl-xl rounded-bl-xl"></div>
-                <div className="grid gap-6 p-5 b">
-                  <p className="font-semibold text-gray-800">Ganancia promedio mensual</p>
-                  <span className="flex items-end gap-3">
-                    <h1 className="text-3xl font-bold text-center">s/. 2000.00</h1>
-                  </span>
+                <div className="flex items-center gap-6 p-5">
+                  <div>
+                    <div className="p-4 rounded-full ">
+                      <GrUserAdmin size={100} className="text-emerald-800" />
+                    </div>
+                  </div>
+                  <p className="font-semibold text-gray-800">Operaciones administrativas</p>
                 </div>
-              </div>
+              </Link>
             </div>
           </div>
         ) : (

@@ -9,7 +9,8 @@ import Course_video_preview from './course_video_preview'
 import Course_builder from './course_builder'
 import Course_resources from './course_resources'
 import Course_extra_info from './course_extra_info'
-
+import axios from 'axios'
+import Cookies from 'js-cookie'
 export default function TabNav() {
   const {
     register,
@@ -25,9 +26,15 @@ export default function TabNav() {
     // nombre del campo que será un array
   })
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
+    const nuevamntToken = Cookies.get('nuevamenteToken')
     console.log(data)
+    const CourseObject = {
+      data,
+      nuevamntToken,
+    }
     reset
+    const response = await axios.post('http://localhost:3003/course/addNewCourse', CourseObject)
   }
   return (
     <div className="">

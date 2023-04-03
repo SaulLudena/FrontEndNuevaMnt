@@ -22,7 +22,7 @@ export default function Course_basic_info({ register, errors }) {
             leaveFrom="transform scale-100 opacity-100"
             leaveTo="transform scale-95 opacity-0"
           >
-            <Disclosure.Panel className="px-10 text-sm ">
+            <Disclosure.Panel className="px-10 text-sm -translate-y-3">
               <div className="flex flex-col gap-5 p-5 bg-white ">
                 <div className="grid gap-3">
                   <p className="font-medium">Titulo del curso</p>
