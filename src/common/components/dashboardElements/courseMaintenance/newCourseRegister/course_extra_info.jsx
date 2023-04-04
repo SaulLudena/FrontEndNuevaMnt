@@ -4,7 +4,7 @@ import { AiOutlineInfoCircle } from 'react-icons/ai'
 import { BsChevronUp } from 'react-icons/bs'
 import { reusableStyles } from '../../../../../styles/styles'
 
-export default function Course_extra_info() {
+export default function Course_extra_info({ register }) {
   return (
     <Disclosure defaultOpen={true}>
       {({ open }) => (
@@ -28,36 +28,64 @@ export default function Course_extra_info() {
               <div className="flex flex-col gap-5 p-5 bg-white ">
                 <div className="grid gap-3">
                   <p className="font-medium">¿Qué aprenderé?</p>
-                  <input type="text" className={reusableStyles.inputFormForCourseMaintenance} />
+                  <input
+                    type="text"
+                    className={reusableStyles.inputFormForCourseMaintenance}
+                    {...register('que_aprendere_curso')}
+                  />
                 </div>
                 <div className="grid gap-3">
                   <p className="font-medium">Público objetivo</p>
-                  <input type="text" className={reusableStyles.inputFormForCourseMaintenance} />
+                  <input
+                    type="text"
+                    className={reusableStyles.inputFormForCourseMaintenance}
+                    {...register('publico_objetivo_curso')}
+                  />
                 </div>
                 <div className="grid gap-3">
                   <p className="font-medium">Duración total del curso</p>
                   <div className="grid grid-cols-2 gap-5">
                     <div className="grid col-span-1 gap-1">
-                      <input type="number" className={reusableStyles.inputFormForCourseMaintenance} />
+                      <input
+                        type="number"
+                        className={reusableStyles.inputFormForCourseMaintenance}
+                        {...register('duracion_horas_curso')}
+                      />
                       <p className="text-gray-600">Horas</p>
                     </div>
                     <div className="grid col-span-1 gap-1">
-                      <input type="number" className={reusableStyles.inputFormForCourseMaintenance} />
+                      <input
+                        type="number"
+                        className={reusableStyles.inputFormForCourseMaintenance}
+                        {...register('duracion_minutos_curso')}
+                      />
                       <p className="text-gray-600">Minutos</p>
                     </div>
                   </div>
                 </div>
                 <div className="grid gap-3">
                   <p className="font-medium">Materiales Incluidos</p>
-                  <input type="text" className={reusableStyles.inputFormForCourseMaintenance} />
+                  <input
+                    type="text"
+                    className={reusableStyles.inputFormForCourseMaintenance}
+                    {...register('materiales_incluidos_curso')}
+                  />
                 </div>
                 <div className="grid gap-3">
                   <p className="font-medium">Requisitos/instrucciones</p>
-                  <input type="text" className={reusableStyles.inputFormForCourseMaintenance} />
+                  <input
+                    type="text"
+                    className={reusableStyles.inputFormForCourseMaintenance}
+                    {...register('duracion_minutos_curso')}
+                  />
                 </div>
                 <div className="grid gap-3">
                   <p className="font-medium">Etiqueta del curso</p>
-                  <input type="text" className={reusableStyles.inputFormForCourseMaintenance} />
+                  <input
+                    type="text"
+                    className={reusableStyles.inputFormForCourseMaintenance}
+                    {...register('etiquetas_curso')}
+                  />
                 </div>
               </div>
             </Disclosure.Panel>

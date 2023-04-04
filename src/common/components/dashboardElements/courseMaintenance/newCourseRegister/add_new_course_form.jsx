@@ -35,6 +35,7 @@ export default function TabNav() {
     }
     reset
     const response = await axios.post('http://localhost:3003/course/addNewCourse', CourseObject)
+    console.log(data)
   }
   return (
     <div className="">

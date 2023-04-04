@@ -1,14 +1,28 @@
 import { Disclosure, Transition } from '@headlessui/react'
 import { reusableStyles } from '../../../../../styles/styles'
 import { BsChevronUp, BsFillPencilFill } from 'react-icons/bs'
+import { useState } from 'react'
 
 export default function Course_basic_info({ register, errors }) {
+  const [PriceType, setPriceType] = useState(false)
+  const [courseAmount, setCourseAmout] = useState({
+    normalCourseAmount: 0,
+    discountCourseAmount: 0,
+  })
+  const setCourseToFree = () => {
+    setPriceType(false)
+    console.log('Has tornado el curso a de pago')
+  }
+  const setCourseToSomePrice = () => {
+    setPriceType(true)
+    console.log('Has tornado el curso a gratis')
+  }
   return (
     <Disclosure defaultOpen={true}>
       {({ open }) => (
         <>
           <Disclosure.Button className={reusableStyles.disclosureItem}>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 ">
               <BsFillPencilFill size={15} />
               <span>Informacion del curso</span>
             </div>
@@ -86,14 +100,71 @@ export default function Course_basic_info({ register, errors }) {
                   <p className="font-medium">Precio del curso</p>
                   <div className="grid grid-cols-2 gap-5">
                     <label htmlFor="field-wind" className={reusableStyles.inputFormForCourseMaintenance}>
-                      <input {...register('precio_curso')} type="radio" value={0} id="field-wind" className="mr-3" />
+                      <input
+                        {...register('precio_curso')}
+                        type="radio"
+                        value={0}
+                        id="field-wind"
+                        className="mr-3"
+                        onClick={() => {
+                          setCourseToFree()
+                        }}
+                      />
                       <p>Gratis</p>
                     </label>
                     <label htmlFor="field-sun" className={reusableStyles.inputFormForCourseMaintenance}>
-                      <input {...register('precio_curso')} type="radio" value={1} id="field-sun" className="mr-3" /> De
-                      pago
+                      <input
+                        {...register('precio_curso')}
+                        type="radio"
+                        value={1}
+                        id="field-sun"
+                        className="mr-3"
+                        onClick={() => {
+                          setCourseToSomePrice()
+                        }}
+                      />{' '}
+                      De pago
                     </label>
                   </div>
+                  {PriceType ? (
+                    <div>
+                      <div className="grid grid-cols-2 gap-5">
+                        <div className="grid gap-3 ">
+                          <p className="font-medium">Precio regular</p>
+                          <div className="flex">
+                            <p className=" p-3 rounded-l-lg border-2 border-gray-200 border-r-0">S/.</p>
+                            <input
+                              type="number"
+                              className={reusableStyles.inputFormToSetprice}
+                              placeholder="0"
+                              min={0}
+                              value={courseAmount.normalCourseAmount}
+                            />
+                          </div>
+                        </div>
+                        <div className="grid gap-3">
+                          <p className="font-medium">Precio descuento</p>
+                          <div className="flex">
+                            <p className=" p-3 rounded-l-lg border-2 border-gray-200 border-r-0">S/.</p>
+                            <input
+                              type="number"
+                              className={reusableStyles.inputFormToSetprice}
+                              placeholder="0"
+                              min={0}
+                              value={courseAmount.discountCourseAmount}
+                              onChange={(event) => {
+                                e.current.value
+                              }}
+
+                              /*me quede aqui, completar la parte del seteo de los precios del curso */
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ) : (
+                    <></>
+                  )}
                 </div>
                 <div className="grid gap-3">
                   <p className="font-medium">Thumbnail del curso</p>
