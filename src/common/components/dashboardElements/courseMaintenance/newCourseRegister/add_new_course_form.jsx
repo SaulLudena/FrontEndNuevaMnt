@@ -27,15 +27,16 @@ export default function TabNav() {
   })
 
   const onSubmit = async (data) => {
+    /*modular la variable nuevamente para solamente importarla, debo crear 
+    el archivo correspondiente */
     const nuevamntToken = Cookies.get('nuevamenteToken')
-    console.log(data)
     const CourseObject = {
       data,
       nuevamntToken,
     }
     reset
     const response = await axios.post('http://localhost:3003/course/addNewCourse', CourseObject)
-    console.log(data)
+    console.log(response)
   }
   return (
     <div className="">
@@ -50,7 +51,7 @@ export default function TabNav() {
           </div>
           <div className="grid gap-3">
             {/*Menu expandible de informacion principal del curso Y PASAR LAS PROPS !!!!!*/}
-            <Course_basic_info register={register} errors={errors} />
+            <Course_basic_info register={register} errors={errors} reset={reset} />
             {/*Menu expandible de  video Y PASAR LAS PROPS !!!!!*/}
             <Course_video_preview register={register} />
             {/*Menu expandible del maquetador de curso Y PASAR LAS PROPS !!!!!*/}

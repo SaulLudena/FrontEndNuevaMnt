@@ -13,7 +13,7 @@ export const reusableStyles = {
   /*
 
 */ inputFormToSetprice:
-    'rounded-r-lg outline-none  bg-white px-4 py-3 text-sm w-full transition-all duration-300 border-2 border-white flex  focus:border-gray-400 border-gray-200',
+    'rounded-r-lg outline-none  bg-white px-4 py-3 text-sm w-full transition-all duration-300 border-2 border-white flex  focus:border-emerald-300 border-emerald-200',
   courseModuleStyleCard:
     'flex w-full justify-between border-[#F7F7F7] border bg-white rounded-lg focus:bg-white px-5 py-3  text-left text-sm font-medium focus:outline-none  focus-visible:ring-opacity-75 shadow-md',
 }

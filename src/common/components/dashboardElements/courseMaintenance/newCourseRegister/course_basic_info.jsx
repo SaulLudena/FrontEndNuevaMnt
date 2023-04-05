@@ -3,18 +3,32 @@ import { reusableStyles } from '../../../../../styles/styles'
 import { BsChevronUp, BsFillPencilFill } from 'react-icons/bs'
 import { useState } from 'react'
 
-export default function Course_basic_info({ register, errors }) {
+export default function Course_basic_info({ register, errors, reset }) {
   const [PriceType, setPriceType] = useState(false)
   const [courseAmount, setCourseAmout] = useState({
     normalCourseAmount: 0,
     discountCourseAmount: 0,
   })
+
+  const handlePrice = (event) => {
+    const { name, value } = event.target
+    setCourseAmout((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }))
+  }
+
   const setCourseToFree = () => {
     setPriceType(false)
+    reset({
+      precio_regular: 0,
+      precio_descuento: 0,
+    })
     console.log('Has tornado el curso a de pago')
   }
   const setCourseToSomePrice = () => {
     setPriceType(true)
+
     console.log('Has tornado el curso a gratis')
   }
   return (
@@ -86,9 +100,10 @@ export default function Course_basic_info({ register, errors }) {
                     className={reusableStyles.inputFormForCourseMaintenance}
                     {...register('categoria_curso', { required: true })}
                   >
-                    <option>Negocios</option>
-                    <option>Tecnologia</option>
-                    <option>Emprendimiento</option>
+                    {/*hacer un map de las categorias de la base de datos */}
+                    <option value={1}>Negocios</option>
+                    <option value={2}>Tecnologia</option>
+                    <option value={3}>Emprendimiento</option>
                   </select>
                   {errors?.categoria_curso?.type === 'required' && (
                     <div className="">
@@ -97,14 +112,13 @@ export default function Course_basic_info({ register, errors }) {
                   )}
                 </div>
                 <div className="grid gap-3">
-                  <p className="font-medium">Precio del curso</p>
+                  <p className="font-medium">Tipo de costo del curso</p>
                   <div className="grid grid-cols-2 gap-5">
                     <label htmlFor="field-wind" className={reusableStyles.inputFormForCourseMaintenance}>
                       <input
                         {...register('precio_curso')}
                         type="radio"
                         value={0}
-                        id="field-wind"
                         className="mr-3"
                         onClick={() => {
                           setCourseToFree()
@@ -117,7 +131,6 @@ export default function Course_basic_info({ register, errors }) {
                         {...register('precio_curso')}
                         type="radio"
                         value={1}
-                        id="field-sun"
                         className="mr-3"
                         onClick={() => {
                           setCourseToSomePrice()
@@ -132,31 +145,32 @@ export default function Course_basic_info({ register, errors }) {
                         <div className="grid gap-3 ">
                           <p className="font-medium">Precio regular</p>
                           <div className="flex">
-                            <p className=" p-3 rounded-l-lg border-2 border-gray-200 border-r-0">S/.</p>
+                            <p className="bg-emerald-300 p-3 rounded-l-lg border-2 border-emerald-300 border-r-0">
+                              S/.
+                            </p>
                             <input
                               type="number"
                               className={reusableStyles.inputFormToSetprice}
                               placeholder="0"
                               min={0}
-                              value={courseAmount.normalCourseAmount}
+                              onChange={handlePrice}
+                              {...register('precio_regular', { required: true })}
                             />
                           </div>
                         </div>
                         <div className="grid gap-3">
                           <p className="font-medium">Precio descuento</p>
                           <div className="flex">
-                            <p className=" p-3 rounded-l-lg border-2 border-gray-200 border-r-0">S/.</p>
+                            <p className="bg-emerald-300 p-3 rounded-l-lg border-2 border-emerald-300 border-r-0">
+                              S/.
+                            </p>
                             <input
                               type="number"
                               className={reusableStyles.inputFormToSetprice}
                               placeholder="0"
                               min={0}
-                              value={courseAmount.discountCourseAmount}
-                              onChange={(event) => {
-                                e.current.value
-                              }}
-
-                              /*me quede aqui, completar la parte del seteo de los precios del curso */
+                              onChange={handlePrice}
+                              {...register('precio_descuento', { required: true })}
                             />
                           </div>
                         </div>
