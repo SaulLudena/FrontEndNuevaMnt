@@ -34,9 +34,8 @@ export default function TabNav() {
       data,
       nuevamntToken,
     }
-    reset
+    console.log(data)
     const response = await axios.post('http://localhost:3003/course/addNewCourse', CourseObject)
-    console.log(response)
   }
   return (
     <div className="">

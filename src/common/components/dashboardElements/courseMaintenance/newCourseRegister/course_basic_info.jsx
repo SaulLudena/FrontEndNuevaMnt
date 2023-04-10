@@ -50,7 +50,7 @@ export default function Course_basic_info({ register, errors, reset }) {
             leaveFrom="transform scale-100 opacity-100"
             leaveTo="transform scale-95 opacity-0"
           >
-            <Disclosure.Panel className="px-10 text-sm -translate-y-3">
+            <Disclosure.Panel className="px-10 text-sm ">
               <div className="flex flex-col gap-5 p-5 bg-white ">
                 <div className="grid gap-3">
                   <p className="font-medium">Titulo del curso</p>
@@ -102,8 +102,7 @@ export default function Course_basic_info({ register, errors, reset }) {
                   >
                     {/*hacer un map de las categorias de la base de datos */}
                     <option value={1}>Negocios</option>
-                    <option value={2}>Tecnologia</option>
-                    <option value={3}>Emprendimiento</option>
+                    <option value={2}>Fotografia</option>
                   </select>
                   {errors?.categoria_curso?.type === 'required' && (
                     <div className="">
@@ -118,7 +117,7 @@ export default function Course_basic_info({ register, errors, reset }) {
                       <input
                         {...register('precio_curso')}
                         type="radio"
-                        value={0}
+                        value={false}
                         className="mr-3"
                         onClick={() => {
                           setCourseToFree()
@@ -130,7 +129,7 @@ export default function Course_basic_info({ register, errors, reset }) {
                       <input
                         {...register('precio_curso')}
                         type="radio"
-                        value={1}
+                        value={true}
                         className="mr-3"
                         onClick={() => {
                           setCourseToSomePrice()

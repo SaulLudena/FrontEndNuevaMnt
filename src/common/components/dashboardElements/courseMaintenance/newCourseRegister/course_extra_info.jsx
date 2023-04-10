@@ -76,7 +76,7 @@ export default function Course_extra_info({ register }) {
                   <input
                     type="text"
                     className={reusableStyles.inputFormForCourseMaintenance}
-                    {...register('duracion_minutos_curso')}
+                    {...register('requisitos_curso')}
                   />
                 </div>
                 <div className="grid gap-3">
