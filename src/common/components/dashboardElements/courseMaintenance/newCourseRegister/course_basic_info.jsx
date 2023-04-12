@@ -117,7 +117,7 @@ export default function Course_basic_info({ register, errors, reset }) {
                       <input
                         {...register('precio_curso')}
                         type="radio"
-                        value={false}
+                        value={0}
                         className="mr-3"
                         onClick={() => {
                           setCourseToFree()
@@ -129,7 +129,7 @@ export default function Course_basic_info({ register, errors, reset }) {
                       <input
                         {...register('precio_curso')}
                         type="radio"
-                        value={true}
+                        value={1}
                         className="mr-3"
                         onClick={() => {
                           setCourseToSomePrice()

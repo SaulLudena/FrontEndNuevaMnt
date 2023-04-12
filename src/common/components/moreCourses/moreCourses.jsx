@@ -20,6 +20,7 @@ export default function moreCourses({ myInfo }) {
 
   useEffect(() => {
     const existingItem = JSON.parse(localStorage.getItem('selectedItems'))
+    console.log(myInfo)
     if (existingItem) {
       setSelectedItems(existingItem)
     }
@@ -54,7 +55,9 @@ export default function moreCourses({ myInfo }) {
                       <p className="font-medium">
                         <strong>Personas inscritas :</strong> {23}
                       </p>
-                      <p>Descripcion: {course.descripcion_curso.substr(0, 100)}</p>
+                      <p>
+                        <strong>Descripcion:</strong> {course.descripcion_curso.substr(0, 100)}
+                      </p>
                       <span className="flex gap-1">
                         <p>Dictado por:</p>
                         <p className="font-bold">{course.tb_usuario.nombre_usuario}</p>
@@ -94,7 +97,13 @@ export default function moreCourses({ myInfo }) {
                     </div>
                     <div className="flex flex-col-reverse justify-start w-60 ">
                       <div className="flex justify-end h-full">
-                        <p className="text-xl font-medium">S/. {parseInt(course.precio_curso)}</p>
+                        <div className="text-xl font-medium">
+                          {course.precio_descuento_curso <= 0 ? (
+                            <p className=" py-3 px-16 bg-emerald-400 rounded-full">Gratis</p>
+                          ) : (
+                            `S/. ${course.precio_descuento_curso}`
+                          )}
+                        </div>
                       </div>
                     </div>
                   </div>

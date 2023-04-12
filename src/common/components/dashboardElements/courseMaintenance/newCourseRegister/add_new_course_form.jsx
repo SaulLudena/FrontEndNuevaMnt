@@ -11,6 +11,7 @@ import Course_resources from './course_resources'
 import Course_extra_info from './course_extra_info'
 import axios from 'axios'
 import Cookies from 'js-cookie'
+import { useEffect } from 'react'
 export default function TabNav() {
   const {
     register,
@@ -34,9 +35,14 @@ export default function TabNav() {
       data,
       nuevamntToken,
     }
-    console.log(data)
     const response = await axios.post('http://localhost:3003/course/addNewCourse', CourseObject)
+    const { message, status } = response.data
+    if ((status === 200) & (message === 'Curso agregado correctamente')) {
+      window.location.href = '/dashboard/zonaDeMentores/'
+    }
+    console.log(response.data)
   }
+
   return (
     <div className="">
       <div className="grid grid-cols-12 gap-10">
