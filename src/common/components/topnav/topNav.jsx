@@ -164,8 +164,8 @@ export default function topNav() {
             leaveFrom="transform opacity-100 scale-100"
             leaveTo="transform opacity-0 scale-95"
           >
-            <Menu.Items className="absolute right-0 z-10 flex flex-col w-56 mt-2 origin-top-right bg-white border-gray-300 divide-y rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-              <Menu.Item className="flex items-center gap-3 p-3 text-gray-600 rounded-t-lg hover:bg-gray-50 hover:text-black">
+            <Menu.Items className="absolute right-0 z-10 flex flex-col mt-2 origin-top-right bg-white border-gray-300 rounded-md shadow-lg w-60 focus:outline-none">
+              <Menu.Item className="flex items-center gap-3 p-3 text-gray-600 border-0 rounded-t-lg hover:bg-gray-50 hover:text-black">
                 {({ active }) => (
                   <Link className={`${active && 'bg-blue-500'} `} href="/ajustes">
                     <FiUser />
@@ -173,7 +173,7 @@ export default function topNav() {
                   </Link>
                 )}
               </Menu.Item>
-              <Menu.Item className="flex items-center gap-3 p-3 text-gray-600 hover:bg-gray-50 hover:text-black">
+              <Menu.Item className="flex items-center gap-3 p-3 text-gray-600 border-0 hover:bg-gray-50 hover:text-black">
                 {({ active }) => (
                   <a className={`${active && 'bg-blue-500'} `} href="#">
                     <BiShoppingBag />

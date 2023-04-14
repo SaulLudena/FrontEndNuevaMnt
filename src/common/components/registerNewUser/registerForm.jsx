@@ -76,6 +76,7 @@ export default function registerForm() {
     SetShowSecondPassword(!showSecondPassword)
   }
   const onSubmit = async (data) => {
+    console.log(data)
     const object = {
       apellido_usuario: data.apellido_usuario,
       nombre_usuario: data.nombre_usuario,
@@ -88,6 +89,7 @@ export default function registerForm() {
     try {
       const response = await axios.post('http://localhost:3003/user/registerUser', object)
       const { message } = response.data
+
       if (
         message === 'Email no disponible, ingrese otro' ||
         message === 'Nombre de usuario no disponible, ingrese otro'
@@ -110,21 +112,21 @@ export default function registerForm() {
     <>
       <SignUpError statusError={apiError} apiMessage={apiMessage} />
       <div className="bg-[#F6F6F6]">
-        <div className=" w-3/5 m-auto flex flex-col h-full">
-          <div className=" h-32 flex items-center  ">
+        <div className="flex flex-col w-3/5 h-full m-auto ">
+          <div className="flex items-center h-32 ">
             <h1 className="text-xl text-slate-900">
               <Logo />
             </h1>
           </div>
-          <div className="w-full flex items-center h-full m-auto">
-            <form method="post" className="w-full grid items-center" onSubmit={handleSubmit(onSubmit)}>
+          <div className="flex items-center w-full h-full m-auto">
+            <form method="post" className="grid items-center w-full" onSubmit={handleSubmit(onSubmit)}>
               <div className="mb-8">
-                <h1 className="font-bold text-3xl text-slate-900">Registrate ingresando tus datos</h1>
+                <h1 className="text-3xl font-bold text-slate-900">Registrate ingresando tus datos</h1>
               </div>
               <div className="flex flex-col gap-5 mb-10">
-                <div className="grid grid-col-1 gap-2 w-full">
-                  <div className="md:flex grid 2xl:flex-row  sm:flex-col gap-5 w-full">
-                    <div className="flex flex-col w-full gap-2  ">
+                <div className="grid w-full gap-2 grid-col-1">
+                  <div className="grid w-full gap-5 md:flex 2xl:flex-row sm:flex-col">
+                    <div className="flex flex-col w-full gap-2 ">
                       <input
                         type="text"
                         id="nombre"
@@ -167,7 +169,7 @@ export default function registerForm() {
                   </div>
                 </div>
 
-                <div className="grid grid-col-1 gap-2">
+                <div className="grid gap-2 grid-col-1">
                   <input
                     type="text"
                     id="nickname_usuario"
@@ -183,7 +185,7 @@ export default function registerForm() {
                   )}
                 </div>
 
-                <div className="grid grid-col-1 gap-2">
+                <div className="grid gap-2 grid-col-1">
                   <input
                     type="email"
                     id="email_usuario"
@@ -207,7 +209,7 @@ export default function registerForm() {
                   )}
                 </div>
 
-                <div className="grid grid-col-1 gap-2">
+                <div className="grid gap-2 grid-col-1">
                   <div className="relative">
                     <input
                       type={showFirstPassword ? 'text' : 'password'}
@@ -222,7 +224,7 @@ export default function registerForm() {
                       })}
                     />
                     <div
-                      className="p-3 absolute right-0 -translate-y-11 -translate-x-2 cursor-pointer select-none rounded-full hover:bg-gray-100 "
+                      className="absolute right-0 p-3 -translate-x-2 rounded-full cursor-pointer select-none -translate-y-11 hover:bg-gray-100 "
                       onClick={toggleFirstPassword}
                     >
                       {showFirstPassword ? <AiFillEyeInvisible /> : <AiFillEye className="" />}
@@ -237,7 +239,7 @@ export default function registerForm() {
                     </div>
                   )}
                 </div>
-                <div className="grid grid-col-1 gap-2">
+                <div className="grid gap-2 grid-col-1">
                   <div className="relative">
                     <input
                       type={showSecondPassword ? 'text' : 'password'}
@@ -253,7 +255,7 @@ export default function registerForm() {
                       })}
                     />
                     <div
-                      className="p-3 absolute right-0 -translate-y-11 -translate-x-2 cursor-pointer select-none rounded-full hover:bg-gray-100 "
+                      className="absolute right-0 p-3 -translate-x-2 rounded-full cursor-pointer select-none -translate-y-11 hover:bg-gray-100 "
                       onClick={toggleSecondPassword}
                     >
                       {showSecondPassword ? <AiFillEyeInvisible /> : <AiFillEye className="" />}
@@ -266,9 +268,9 @@ export default function registerForm() {
                   )}
                 </div>
 
-                <div className="grid grid-col-1 gap-3  ">
+                <div className="grid gap-3 grid-col-1 ">
                   <span className="text-gray-800">Fecha de nacimiento</span>
-                  <div className=" flex 2xl:flex-row  flex-col  justify-between gap-5 ">
+                  <div className="flex flex-col justify-between gap-5 2xl:flex-row">
                     <div className="2xl:w-2/5 ">
                       <select className={reusableStyles.inputForm} {...register('dia_nacimiento')}>
                         {days.map((day, index) => {
@@ -323,9 +325,9 @@ export default function registerForm() {
                 Registrarme
               </button>
 
-              <span className="text-left mt-5 text-sm flex gap-1 items-center">
+              <span className="flex items-center gap-1 mt-5 text-sm text-left">
                 <p>¿Ya tienes una cuenta?</p>
-                <Link href="/" className="font-bold hover:bg-black hover:text-white px-3 py-1 rounded-full ">
+                <Link href="/" className="px-3 py-1 font-bold rounded-full hover:bg-black hover:text-white ">
                   Inicia sesion
                 </Link>
               </span>

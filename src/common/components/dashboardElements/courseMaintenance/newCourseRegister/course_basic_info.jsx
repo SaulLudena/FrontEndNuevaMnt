@@ -2,13 +2,25 @@ import { Disclosure, Transition } from '@headlessui/react'
 import { reusableStyles } from '../../../../../styles/styles'
 import { BsChevronUp, BsFillPencilFill } from 'react-icons/bs'
 import { useState } from 'react'
+import { useEffect } from 'react'
+import axios from 'axios'
 
 export default function Course_basic_info({ register, errors, reset }) {
   const [PriceType, setPriceType] = useState(false)
+  const [allCategories, setAllCategories] = useState()
   const [courseAmount, setCourseAmout] = useState({
     normalCourseAmount: 0,
     discountCourseAmount: 0,
   })
+
+  useEffect(() => {
+    const fetchingCategories = async () => {
+      const result = await axios.get('http://localhost:3003/category/getAllCategories')
+      setAllCategories(result.data.getAllCategories)
+    }
+    console.log(allCategories)
+    fetchingCategories()
+  }, [])
 
   const handlePrice = (event) => {
     const { name, value } = event.target
@@ -26,10 +38,9 @@ export default function Course_basic_info({ register, errors, reset }) {
     })
     console.log('Has tornado el curso a de pago')
   }
+
   const setCourseToSomePrice = () => {
     setPriceType(true)
-
-    console.log('Has tornado el curso a gratis')
   }
   return (
     <Disclosure defaultOpen={true}>
@@ -144,7 +155,7 @@ export default function Course_basic_info({ register, errors, reset }) {
                         <div className="grid gap-3 ">
                           <p className="font-medium">Precio regular</p>
                           <div className="flex">
-                            <p className="bg-emerald-300 p-3 rounded-l-lg border-2 border-emerald-300 border-r-0">
+                            <p className="p-3 border-2 border-r-0 rounded-l-lg bg-emerald-300 border-emerald-300">
                               S/.
                             </p>
                             <input
@@ -160,7 +171,7 @@ export default function Course_basic_info({ register, errors, reset }) {
                         <div className="grid gap-3">
                           <p className="font-medium">Precio descuento</p>
                           <div className="flex">
-                            <p className="bg-emerald-300 p-3 rounded-l-lg border-2 border-emerald-300 border-r-0">
+                            <p className="p-3 border-2 border-r-0 rounded-l-lg bg-emerald-300 border-emerald-300">
                               S/.
                             </p>
                             <input
