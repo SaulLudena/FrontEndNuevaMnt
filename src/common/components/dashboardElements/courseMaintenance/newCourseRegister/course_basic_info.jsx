@@ -7,20 +7,11 @@ import axios from 'axios'
 
 export default function Course_basic_info({ register, errors, reset }) {
   const [PriceType, setPriceType] = useState(false)
-  const [allCategories, setAllCategories] = useState()
+  const [allCategories, setAllCategories] = useState([])
   const [courseAmount, setCourseAmout] = useState({
     normalCourseAmount: 0,
     discountCourseAmount: 0,
   })
-
-  useEffect(() => {
-    const fetchingCategories = async () => {
-      const result = await axios.get('http://localhost:3003/category/getAllCategories')
-      setAllCategories(result.data.getAllCategories)
-    }
-    console.log(allCategories)
-    fetchingCategories()
-  }, [])
 
   const handlePrice = (event) => {
     const { name, value } = event.target
@@ -42,6 +33,17 @@ export default function Course_basic_info({ register, errors, reset }) {
   const setCourseToSomePrice = () => {
     setPriceType(true)
   }
+  useEffect(() => {
+    const fetchingCategories = async () => {
+      try {
+        const result = await axios.get('http://localhost:3003/category/getAllCategories')
+        setAllCategories(result.data.getAllCategories)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    fetchingCategories()
+  }, [])
   return (
     <Disclosure defaultOpen={true}>
       {({ open }) => (
@@ -112,8 +114,13 @@ export default function Course_basic_info({ register, errors, reset }) {
                     {...register('categoria_curso', { required: true })}
                   >
                     {/*hacer un map de las categorias de la base de datos */}
-                    <option value={1}>Negocios</option>
-                    <option value={2}>Fotografia</option>
+                    {allCategories.map((category, index) => {
+                      return (
+                        <option key={index} value={category.id_categoria_curso}>
+                          {category.nombre_categoria_curso}
+                        </option>
+                      )
+                    })}
                   </select>
                   {errors?.categoria_curso?.type === 'required' && (
                     <div className="">
