@@ -133,7 +133,7 @@ export default function Course_basic_info({ register, errors, reset }) {
                   <div className="grid grid-cols-2 gap-5">
                     <label htmlFor="field-wind" className={reusableStyles.inputFormForCourseMaintenance}>
                       <input
-                        {...register('precio_curso')}
+                        {...register('tipo_precio_curso')}
                         type="radio"
                         value={0}
                         className="mr-3"
@@ -145,7 +145,7 @@ export default function Course_basic_info({ register, errors, reset }) {
                     </label>
                     <label htmlFor="field-sun" className={reusableStyles.inputFormForCourseMaintenance}>
                       <input
-                        {...register('precio_curso')}
+                        {...register('tipo_precio_curso')}
                         type="radio"
                         value={1}
                         className="mr-3"
@@ -171,7 +171,7 @@ export default function Course_basic_info({ register, errors, reset }) {
                               placeholder="0"
                               min={0}
                               onChange={handlePrice}
-                              {...register('precio_regular', { required: true })}
+                              {...register('precio_regular_curso', { required: true })}
                             />
                           </div>
                         </div>
@@ -187,7 +187,7 @@ export default function Course_basic_info({ register, errors, reset }) {
                               placeholder="0"
                               min={0}
                               onChange={handlePrice}
-                              {...register('precio_descuento', { required: true })}
+                              {...register('precio_descuento_curso', { required: true })}
                             />
                           </div>
                         </div>

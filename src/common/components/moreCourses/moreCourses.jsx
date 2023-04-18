@@ -2,16 +2,10 @@ import React, { useEffect, useState } from 'react'
 import TopNav from '../topnav/topNav'
 import { AiFillStar, AiFillCheckCircle, AiOutlineShoppingCart } from 'react-icons/ai'
 import Link from 'next/link'
-export default function moreCourses({ myInfo }) {
+export default function moreCourses({ coursesToBuy }) {
   const [selectedItems, setSelectedItems] = useState([])
-  const [courses, setCourse] = useState([])
 
-  useEffect(() => {
-    setCourse(myInfo)
-  })
-
-  const handleAddToCart = (item, index) => {
-    console.log(item, index)
+  const handleAddToCart = (item) => {
     const newSelectedItems = [...selectedItems]
     newSelectedItems.unshift({ ...item, disabled: true })
     setSelectedItems(newSelectedItems)
@@ -20,7 +14,6 @@ export default function moreCourses({ myInfo }) {
 
   useEffect(() => {
     const existingItem = JSON.parse(localStorage.getItem('selectedItems'))
-    console.log(myInfo)
     if (existingItem) {
       setSelectedItems(existingItem)
     }
@@ -35,32 +28,32 @@ export default function moreCourses({ myInfo }) {
             <h1>Adquiere los mejores cursos</h1>
           </div>
           <div className="grid gap-10 2xl:grid-cols-1">
-            {courses.map((course, index) => {
-              const disabled = selectedItems.find((item) => item.id_curso === course.id_curso)?.disabled
+            {coursesToBuy.map((courseToBuy) => {
+              const disabled = selectedItems.find((item) => item.id_curso === courseToBuy.id_curso)?.disabled
               return (
                 <div
-                  key={course.id_curso}
+                  key={courseToBuy.id_curso}
                   className="p-5 rounded-xl  bg-gradient-to-r from-[#FFF409] via-white to-white opacity-90"
                 >
                   <div className="flex gap-14">
                     <div className="flex justify-between">
                       <img
-                        src={course.url_imagen_principal_curso}
+                        src={courseToBuy.url_imagen_principal_curso}
                         alt="Course image"
                         className="  rounded-lg object-cover w-[25rem] h-[15rem]"
                       />
                     </div>
                     <div className="flex flex-col justify-around w-full">
-                      <h1 className="text-2xl font-bold ">{course.nombre_curso}</h1>
+                      <h1 className="text-2xl font-bold ">{courseToBuy.nombre_curso}</h1>
                       <p className="font-medium">
                         <strong>Personas inscritas :</strong> {23}
                       </p>
                       <p>
-                        <strong>Descripcion:</strong> {course.descripcion_curso.substr(0, 100)}
+                        <strong>Descripcion:</strong> {courseToBuy.descripcion_curso.substr(0, 100)}
                       </p>
                       <span className="flex gap-1">
                         <p>Dictado por:</p>
-                        <p className="font-bold">{course.tb_usuario.nombre_usuario}</p>
+                        <p className="font-bold">{courseToBuy.tb_usuario.nombre_usuario}</p>
                       </span>
                       <div className="flex gap-1">
                         <AiFillStar className="text-[#FFF409]" />
@@ -73,7 +66,7 @@ export default function moreCourses({ myInfo }) {
                         <button className={`bg-black px-5 py-2 rounded-full text-white`}>Comprar</button>
                         <button
                           onClick={() => {
-                            handleAddToCart(course, index)
+                            handleAddToCart(courseToBuy)
                           }}
                           className={`${disabled ? 'bg-white ' : 'bg-white'} rounded-full shadow-lg`}
                           disabled={disabled}
@@ -98,10 +91,10 @@ export default function moreCourses({ myInfo }) {
                     <div className="flex flex-col-reverse justify-start w-60 ">
                       <div className="flex justify-end h-full">
                         <div className="text-xl font-medium">
-                          {course.precio_descuento_curso <= 0 ? (
+                          {courseToBuy.precio_descuento_curso <= 0 ? (
                             <p className=" py-3 px-16 bg-emerald-400 rounded-full">Gratis</p>
                           ) : (
-                            `S/. ${course.precio_descuento_curso}`
+                            `S/. ${courseToBuy.precio_descuento_curso}`
                           )}
                         </div>
                       </div>

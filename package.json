@@ -29,7 +29,8 @@
     "react-sessionstorage": "^1.0.5",
     "recharts": "^2.4.3",
     "video-react": "^0.16.0",
-    "yup": "^0.32.11"
+    "yup": "^0.32.11",
+    "zustand": "^4.3.7"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.13",
