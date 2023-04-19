@@ -4,6 +4,9 @@ export async function middleware(request) {
   if (jwt === undefined) {
     return NextResponse.redirect(new URL('/', request.url))
   }
+
+  /*si el codigo de usuario es diferente de 1 o 3 entonces devuelvelo a la ruta /Dashboard usando NextResponse*/
+
   try {
     await fetch('http://localhost:3003/login/protected', {
       headers: {

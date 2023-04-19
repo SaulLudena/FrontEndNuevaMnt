@@ -30,7 +30,7 @@ export default function Course_video_preview({ register }) {
                     type="text"
                     className={reusableStyles.inputFormForCourseMaintenance}
                     placeholder="Pega una URL de video de vimeo"
-                    {...register('url_preview_curso')}
+                    {...register('video_introductorio_curso')}
                   />
                 </div>
               </div>
