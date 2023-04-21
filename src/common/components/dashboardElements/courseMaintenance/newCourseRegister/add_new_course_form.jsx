@@ -38,7 +38,7 @@ export default function TabNav() {
     const response = await axios.post('http://localhost:3003/course/addNewCourse', CourseObject)
     const { message, status } = response.data
     if ((status === 200) & (message === 'Curso agregado correctamente')) {
-      window.location.href = '/dashboard/zonaDeMentores/'
+      // window.location.href = '/dashboard/zonaDeMentores/'
     }
     console.log(response.data)
   }
