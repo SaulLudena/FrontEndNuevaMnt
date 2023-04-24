@@ -204,6 +204,7 @@ export default function Course_basic_info({ register, errors, reset }) {
                       <input
                         type="file"
                         className={reusableStyles.inputFormForCourseMaintenance}
+                        accept="image/png, image/gif, image/jpeg"
                         {...register('thumbnail_curso', { required: true })}
                       />
                       {errors?.thumbnail_curso?.type === 'required' && (

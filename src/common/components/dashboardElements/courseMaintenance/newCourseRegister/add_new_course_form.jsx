@@ -11,8 +11,9 @@ import Course_resources from './course_resources'
 import Course_extra_info from './course_extra_info'
 import axios from 'axios'
 import Cookies from 'js-cookie'
-import { useEffect } from 'react'
+import { useState } from 'react'
 export default function TabNav() {
+  const [disableButton, setDisableButton] = useState(false)
   const {
     register,
     handleSubmit,
@@ -38,9 +39,9 @@ export default function TabNav() {
     const response = await axios.post('http://localhost:3003/course/addNewCourse', CourseObject)
     const { message, status } = response.data
     if ((status === 200) & (message === 'Curso agregado correctamente')) {
-      // window.location.href = '/dashboard/zonaDeMentores/'
+      setDisableButton(true)
+      window.location.href = '/dashboard/zonaDeMentores/'
     }
-    console.log(response.data)
   }
 
   return (
@@ -49,7 +50,10 @@ export default function TabNav() {
         <form className="flex flex-col col-span-8 gap-5" onSubmit={handleSubmit(onSubmit)}>
           <div>
             <div className="h-auto ">
-              <button className="px-10 py-4 flex items-center gap-3 justify-center rounded-lg bg-[#FFF409]">
+              <button
+                className="px-10 py-4 flex items-center gap-3 justify-center rounded-lg bg-[#FFF409]"
+                disabled={disableButton}
+              >
                 <AiFillCheckCircle /> Publicar curso
               </button>
             </div>
