@@ -1,6 +1,3 @@
-import { Disclosure } from '@headlessui/react'
-import { reusableStyles } from '../../../../../styles/styles'
-import { BsChevronUp } from 'react-icons/bs'
 import { AiFillCheckCircle } from 'react-icons/ai'
 import { useFieldArray, useForm } from 'react-hook-form'
 
@@ -25,10 +22,10 @@ export default function TabNav() {
   const { fields, append, remove, update } = useFieldArray({
     control,
     name: 'modulos_curso',
-    // nombre del campo que será un array
   })
 
   const onSubmit = async (data) => {
+    console.log(data.thumbnail_curso[0])
     /*modular la variable nuevamente para solamente importarla, debo crear 
     el archivo correspondiente */
     const nuevamntToken = Cookies.get('nuevamenteToken')
@@ -39,7 +36,7 @@ export default function TabNav() {
     const response = await axios.post('http://localhost:3003/course/addNewCourse', CourseObject)
     const { message, status } = response.data
     if ((status === 200) & (message === 'Curso agregado correctamente')) {
-      setDisableButton(true)
+      setDisableButton(false)
       window.location.href = '/dashboard/zonaDeMentores/'
     }
   }
@@ -67,7 +64,7 @@ export default function TabNav() {
             <Course_builder register={register} fields={fields} append={append} remove={remove} update={update} />
 
             {/*Menu expandible de google meet (no hay contenido)*/}
-            <Disclosure>
+            {/*            <Disclosure>
               {({ open }) => (
                 <>
                   <Disclosure.Button className={reusableStyles.disclosureItem}>
@@ -78,9 +75,9 @@ export default function TabNav() {
                   <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500"></Disclosure.Panel>
                 </>
               )}
-            </Disclosure>
+            </Disclosure> */}
             {/*Menu expandible de zoom meeting (no hay contenido)*/}
-            <Disclosure>
+            {/*      <Disclosure>
               {({ open }) => (
                 <>
                   <Disclosure.Button className={reusableStyles.disclosureItem}>
@@ -93,7 +90,7 @@ export default function TabNav() {
                   </Disclosure.Panel>
                 </>
               )}
-            </Disclosure>
+            </Disclosure> */}
             {/*Menu expandible de recursos del curso Y PASAR LAS PROPS !!!!!*/}
             <Course_resources register={register} />
             {/*Menu expandible de datos adicionales Y PASAR LAS PROPS !!!!!*/}
