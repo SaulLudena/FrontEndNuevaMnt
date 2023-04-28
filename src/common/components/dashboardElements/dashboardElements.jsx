@@ -15,7 +15,6 @@ import { GrAction, GrUserAdmin } from 'react-icons/gr'
 
 export default function DashboardElements() {
   const [user, setUser] = useState({})
-  const nuevamenTetoken = Cookies.get('nuevamntToken')
   useEffect(() => {
     const getUserData = async () => {
       try {
@@ -23,8 +22,9 @@ export default function DashboardElements() {
           nuevamentetoken: Cookies.get('nuevamenteToken'),
         }
         const response = await axios.post('http://localhost:3003/user/validateUserType', data)
-        const myInfo = response.data.userInfo
+        const myInfo = response.data.userInfoDashboard
         setUser(myInfo)
+        console.log(user)
       } catch (error) {
         console.log(error)
       }
@@ -61,8 +61,8 @@ export default function DashboardElements() {
           <FastAccessCourse />
         </div>
         {user.id_tipo_usuario === 1 && user.rol_usuario === 'Administrador' ? (
-          <div className="grid gap-10 lg:grid-cols-4 2xl:grid-cols-4  lg:grid-rows-2">
-            <div className="w-full bg-white  lg:col-span-2 2xl:col-span-2 rounded-xl">
+          <div className="grid gap-10 lg:grid-cols-4 2xl:grid-cols-4 lg:grid-rows-2">
+            <div className="w-full bg-white lg:col-span-2 2xl:col-span-2 rounded-xl">
               <div className="flex gap-3">
                 <div className="bg-[#FFF409] w-10 rounded-tl-xl rounded-bl-xl"></div>
                 <div className="grid gap-6 p-5">
@@ -77,7 +77,7 @@ export default function DashboardElements() {
                 </div>
               </div>
             </div>
-            <div className="w-full transition duration-100 bg-white  lg:col-span-2 2xl:col-span-2 rounded-xl hover:shadow-lg">
+            <div className="w-full transition duration-100 bg-white lg:col-span-2 2xl:col-span-2 rounded-xl hover:shadow-lg">
               <Link href="/dashboard/zonaDeMentores" className="flex h-full gap-3">
                 <div className="bg-[#FFF409] w-10 rounded-tl-xl rounded-bl-xl"></div>
                 <div className="flex items-center gap-6 p-5">
@@ -91,7 +91,7 @@ export default function DashboardElements() {
               </Link>
             </div>
 
-            <div className="w-full bg-white  lg:col-span-2 2xl:col-span-2 rounded-xl">
+            <div className="w-full bg-white lg:col-span-2 2xl:col-span-2 rounded-xl">
               <div className="flex h-full gap-3">
                 <div className="bg-[#FFF409] w-10 rounded-tl-xl rounded-bl-xl"></div>
                 <div className="grid gap-6 p-5 b">
@@ -103,7 +103,7 @@ export default function DashboardElements() {
               </div>
             </div>
 
-            <div className="w-full transition duration-100 bg-white  lg:col-span-2 2xl:col-span-2 rounded-xl hover:shadow-lg">
+            <div className="w-full transition duration-100 bg-white lg:col-span-2 2xl:col-span-2 rounded-xl hover:shadow-lg">
               <Link href="/dashboard/zonaDeMentores" className="flex h-full gap-3">
                 <div className="bg-[#FFF409] w-10 rounded-tl-xl rounded-bl-xl"></div>
                 <div className="flex items-center gap-6 p-5">
@@ -118,8 +118,8 @@ export default function DashboardElements() {
             </div>
           </div>
         ) : user.id_tipo_usuario === 2 && user.rol_usuario === 'Instructor' ? (
-          <div className="grid gap-10 lg:grid-cols-4 2xl:grid-cols-4  lg:grid-rows-2">
-            <div className="w-full bg-white  lg:col-span-2 2xl:col-span-2 rounded-xl">
+          <div className="grid gap-10 lg:grid-cols-4 2xl:grid-cols-4 lg:grid-rows-2">
+            <div className="w-full bg-white lg:col-span-2 2xl:col-span-2 rounded-xl">
               <div className="flex gap-3">
                 <div className="bg-[#FFF409] w-10 rounded-tl-xl rounded-bl-xl"></div>
                 <div className="grid gap-6 p-5">
@@ -134,7 +134,7 @@ export default function DashboardElements() {
                 </div>
               </div>
             </div>
-            <div className="w-full transition duration-100 bg-white  lg:col-span-2 2xl:col-span-2 rounded-xl hover:shadow-lg">
+            <div className="w-full transition duration-100 bg-white lg:col-span-2 2xl:col-span-2 rounded-xl hover:shadow-lg">
               <Link href="/dashboard/zonaDeMentores" className="flex h-full gap-3">
                 <div className="bg-[#FFF409] w-10 rounded-tl-xl rounded-bl-xl"></div>
                 <div className="flex items-center gap-6 p-5">
@@ -148,7 +148,7 @@ export default function DashboardElements() {
               </Link>
             </div>
 
-            <div className="w-full bg-white  lg:col-span-2 2xl:col-span-2 rounded-xl">
+            <div className="w-full bg-white lg:col-span-2 2xl:col-span-2 rounded-xl">
               <div className="flex h-full gap-3">
                 <div className="bg-[#FFF409] w-10 rounded-tl-xl rounded-bl-xl"></div>
                 <div className="grid gap-6 p-5 b">
@@ -160,7 +160,7 @@ export default function DashboardElements() {
               </div>
             </div>
 
-            <div className="w-full bg-white  lg:col-span-2 2xl:col-span-2 rounded-xl">
+            <div className="w-full bg-white lg:col-span-2 2xl:col-span-2 rounded-xl">
               <div className="flex h-full gap-3">
                 <div className="bg-[#FFF409] w-10 rounded-tl-xl rounded-bl-xl"></div>
                 <div className="grid gap-6 p-5 b">

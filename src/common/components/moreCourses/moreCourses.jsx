@@ -29,30 +29,28 @@ export default function moreCourses({ coursesToBuy }) {
           </div>
           <div className="grid gap-10 2xl:grid-cols-1">
             {coursesToBuy.map((courseToBuy) => {
+              console.log(courseToBuy)
               const text = courseToBuy.nombre_curso.split(' ')
               const firstText = text[0]
-              const restText = text.slice(1)
+              const restText = text.slice(1).join(' ')
               const disabled = selectedItems.find((item) => item.id_curso === courseToBuy.id_curso)?.disabled
               return (
-                <div
-                  key={courseToBuy.id_curso}
-                  className="p-5 rounded-xl  bg-gradient-to-r from-[#FFF409] via-white to-white opacity-90"
-                >
+                <div key={courseToBuy.id_curso} className="p-5 rounded-xl   bg-[#ffda093d] opacity-90">
                   <div className="flex gap-14">
                     <div className="flex justify-between">
                       {courseToBuy.url_imagen_principal_curso.length <= 0 ? (
-                        <div className="bg-white rounded-lg w-60 h-60">
-                          <div className="relative flex items-center justify-center w-full h-full">
+                        <div className="bg-white rounded-md w-96 h-60">
+                          <div className="relative flex items-center justify-center w-full h-full text-center">
                             <div className="flex w-full h-full">
                               <div className="w-40 h-40 rounded-br-full bg-slate-100"></div>
                               <div className="flex flex-col">
                                 <div className="bottom-0 w-20 h-20 rounded-full bg-slate-100"></div>
-
+                                <div className="bottom-0 w-20 h-20 rounded-full bg-slate-100"></div>
                                 <div className="bottom-0 w-20 h-20 rounded-full bg-slate-100"></div>
                               </div>
                             </div>
 
-                            <div className="absolute flex gap-1 text-2xl font-bold break-normal border-2 border-black select-none">
+                            <div className="absolute grid gap-1 text-4xl font-bold break-normal select-none">
                               <h1 className="text-yellow-400">{firstText}</h1>
                               <h1>{restText}</h1>
                             </div>
@@ -115,9 +113,17 @@ export default function moreCourses({ coursesToBuy }) {
                       <div className="flex justify-end h-full">
                         <div className="text-xl font-medium">
                           {courseToBuy.precio_descuento_curso <= 0 ? (
-                            <p className="px-16 py-3 rounded-full bg-emerald-400">Gratis</p>
+                            <p className="px-16 py-3 text-yellow-400 bg-white border-2 border-yellow-400 shadow-lg">
+                              Gratis
+                            </p>
                           ) : (
-                            `S/. ${courseToBuy.precio_descuento_curso}`
+                            <div className="flex flex-col gap-2 text-right">
+                              <span className="w-32 text-2xl font-bold">S/. ${courseToBuy.precio_descuento_curso}</span>
+
+                              <span className="font-light line-through text-zinc-600">
+                                S/. ${courseToBuy.precio_regular_curso}
+                              </span>
+                            </div>
                           )}
                         </div>
                       </div>
