@@ -10,8 +10,15 @@ export const reusableStyles = {
     'flex w-full justify-between border-[#F7F7F7] border bg-white rounded-lg focus:bg-white p-5  text-left text-sm font-medium focus:outline-none  focus-visible:ring-opacity-75',
   inputFormForCourseMaintenance:
     'outline-none  bg-white px-4 py-3 text-sm rounded-lg w-full transition-all duration-300 border-2 border-white flex  focus:border-gray-400 border-gray-200',
+  inputFormForCourseMaintenanceDisabled:
+    'outline-none  bg-gray-100 px-4 py-3 text-sm rounded-lg w-full transition-all duration-300 border-2 border-gray-100 flex text-gray-700 focus:border-gray-400 border-gray-200',
   inputFormToSetprice:
     'rounded-r-lg outline-none  bg-white px-4 py-3 text-sm w-full transition-all duration-300 border-2 border-white flex  focus:border-emerald-300 border-emerald-200',
+  inputPriceToBuy:
+    'rounded-lg outline-none  bg-white px-4 py-3 text-sm w-full transition-all duration-300 border-2 border-white flex  focus:border-emerald-300 bg-emerald-100 border-emerald-200',
+  inputPriceFree:
+    'rounded-lg outline-none  bg-white px-4 py-3 text-sm w-full transition-all duration-300 border-2 border-white flex  focus:border-emerald-300 bg-yellow-50 border-yellow-400',
+
   courseModuleStyleCard:
     'flex w-full justify-between border-[#F7F7F7] border bg-white rounded-lg focus:bg-white px-5 py-3  text-left text-sm font-medium focus:outline-none  focus-visible:ring-opacity-75 shadow-md',
   inputDisabled: 'outline-none  bg-white px-4 py-3 text-sm text-gray-600 rounded-lg w-full  bg-gray-50',

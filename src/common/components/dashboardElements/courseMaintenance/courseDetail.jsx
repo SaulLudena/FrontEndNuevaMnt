@@ -1,5 +1,5 @@
 import TopNav from '../../topnav/topNav'
-import ViewCourse from './viewCourse/viewCourse'
+import ViewCourse from './viewCourse/view_course'
 
 export default function courseDetail() {
   return (
