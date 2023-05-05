@@ -1,11 +1,13 @@
 import { Disclosure, Transition } from '@headlessui/react'
 import { reusableStyles } from '../../../../../styles/styles'
-import { BsChevronUp, BsFillPencilFill } from 'react-icons/bs'
+import { BsChevronUp, BsFillPencilFill, BsImageAlt } from 'react-icons/bs'
+
 import { useState } from 'react'
 import { useEffect } from 'react'
 import axios from 'axios'
 
 export default function Course_basic_info({ register, errors, reset }) {
+  const [previewImage, setPreviewImage] = useState('')
   const [PriceType, setPriceType] = useState(false)
   const [allCategories, setAllCategories] = useState([])
   const [courseAmount, setCourseAmout] = useState({
@@ -33,6 +35,7 @@ export default function Course_basic_info({ register, errors, reset }) {
   const setCourseToSomePrice = () => {
     setPriceType(true)
   }
+
   useEffect(() => {
     const fetchingCategories = async () => {
       try {
@@ -78,7 +81,6 @@ export default function Course_basic_info({ register, errors, reset }) {
                     </div>
                   )}
                 </div>
-
                 <div className="grid gap-3">
                   <p className="font-medium">Slug del curso</p>
                   <input
@@ -200,13 +202,20 @@ export default function Course_basic_info({ register, errors, reset }) {
                 <div className="grid gap-3">
                   <p className="font-medium">Thumbnail del curso</p>
                   <div className="grid grid-cols-2 gap-10">
-                    <div className="grid col-span-1 gap-3">
-                      <input
-                        type="file"
-                        className={reusableStyles.inputFormForCourseMaintenance}
-                        accept="image/png, image/gif, image/jpeg"
-                        {...register('thumbnail_curso', { required: true })}
-                      />
+                    <div className="grid col-span-1 gap-3 ">
+                      <div className="relative grid gap-3 border-2 border-gray-200 rounded-lg ">
+                        <div className="flex items-center p-5 text-yellow-900 bg-yellow-100 border-2 border-yellow-400 rounded-lg ">
+                          <BsImageAlt size={20} />
+                          <p className="ml-3">Seleccionar imagen</p>
+                        </div>
+                        <input
+                          type="file"
+                          className="absolute w-full h-full border-2 border-red-600 opacity-100 cursor-pointer"
+                          accept="image/png, image/gif, image/jpeg"
+                          {...register('thumbnail_curso', { required: true })}
+                        />
+                      </div>
+
                       {errors?.thumbnail_curso?.type === 'required' && (
                         <div className="">
                           <span className={reusableStyles.formAlerts}>Campo requerido</span>

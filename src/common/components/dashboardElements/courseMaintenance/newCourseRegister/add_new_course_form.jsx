@@ -25,7 +25,6 @@ export default function TabNav() {
   })
 
   const onSubmit = async (data) => {
-    console.log(data.thumbnail_curso[0])
     /*modular la variable nuevamente para solamente importarla, debo crear 
     el archivo correspondiente */
     const nuevamntToken = Cookies.get('nuevamenteToken')
@@ -34,10 +33,12 @@ export default function TabNav() {
       nuevamntToken,
     }
     const response = await axios.post('http://localhost:3003/course/addNewCourse', CourseObject)
+
     const { message, status } = response.data
+
     if ((status === 200) & (message === 'Curso agregado correctamente')) {
       setDisableButton(false)
-      window.location.href = '/dashboard/zonaDeMentores/'
+      //window.location.href = '/dashboard/zonaDeMentores/'
     }
   }
 

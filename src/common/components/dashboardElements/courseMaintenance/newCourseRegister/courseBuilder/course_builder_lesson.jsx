@@ -1,6 +1,6 @@
 import { Dialog, Transition } from '@headlessui/react'
 import { Fragment, useState } from 'react'
-import { BsFillPlusCircleFill } from 'react-icons/bs'
+import { BsFillPlusCircleFill, BsImageAlt } from 'react-icons/bs'
 import { reusableStyles } from '../../../../../../styles/styles'
 import Course_lesson_item from './course_lesson_item'
 
@@ -95,11 +95,18 @@ export default function course_builder_lesson({ fields, update, register, append
                         </div>
                         <div className="grid gap-2">
                           <p>Imagen destacada</p>
-                          <input
-                            type="file"
-                            className={reusableStyles.inputFormForCourseMaintenance}
-                            onChange={(e) => setLesson({ ...lesson, leccion_imagen: e.target.value })}
-                          />
+                          <div className="relative grid gap-3 border-2 border-gray-200 rounded-lg ">
+                            <div className="flex items-center p-5 text-yellow-900 bg-yellow-100 border-2 border-yellow-400 rounded-lg ">
+                              <BsImageAlt size={20} />
+                              <p className="ml-3">Seleccionar imagen</p>
+                            </div>
+                            <input
+                              type="file"
+                              className="absolute w-full h-full border-2 border-red-600 opacity-0 cursor-pointer"
+                              accept="image/png, image/gif, image/jpeg"
+                              onChange={(e) => setLesson({ ...lesson, leccion_imagen: e.target.value })}
+                            />
+                          </div>
                         </div>
                         <div className="grid gap-2">
                           <p>Enlace del video (vimeo)</p>

@@ -1,6 +1,7 @@
 import { Disclosure, Transition } from '@headlessui/react'
 import React from 'react'
 import { BsChevronUp } from 'react-icons/bs'
+import { AiFillFileAdd } from 'react-icons/ai'
 import { GrAttachment } from 'react-icons/gr'
 import { reusableStyles } from '../../../../../styles/styles'
 
@@ -26,7 +27,18 @@ export default function Course_resources() {
           >
             <Disclosure.Panel className="px-10 text-sm ">
               <div className="flex flex-col gap-5 p-5 bg-white ">
-                <input type="file" />
+                <div className="relative grid gap-3 border-2 border-gray-200 rounded-lg ">
+                  <div className="flex items-center p-5 text-yellow-900 bg-yellow-100 border-2 border-yellow-400 rounded-lg ">
+                    <AiFillFileAdd size={20} />
+                    <p className="ml-3">Seleccione recursos del curso</p>
+                  </div>
+                  <input
+                    type="file"
+                    className="absolute w-full h-full border-2 border-red-600 opacity-0 cursor-pointer"
+                    accept="image/png, image/gif, image/jpeg"
+                    onChange={(e) => setLesson({ ...lesson, leccion_imagen: e.target.value })}
+                  />
+                </div>
               </div>
             </Disclosure.Panel>
           </Transition>

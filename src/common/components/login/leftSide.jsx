@@ -49,19 +49,19 @@ export default function LeftSide() {
   return (
     <>
       <LoginError statusError={apiError} apiMessage={apiMessage} />
-      <div className="bg-[#F6F6F6] ">
-        <div className=" w-3/5 m-auto flex flex-col h-full">
-          <div className=" h-32 flex items-center  ">
+      <div className="bg-[#F6F6F6]">
+        <div className="flex flex-col w-3/5 h-full m-auto ">
+          <div className="flex items-center h-32 ">
             <Logo />
           </div>
-          <div className="w-full flex items-center h-full m-auto">
-            <form method="post" className="w-full grid items-center -translate-y-14" onSubmit={handleSubmit(onSubmit)}>
+          <div className="flex items-center w-full h-full m-auto">
+            <form method="post" className="grid items-center w-full -translate-y-14" onSubmit={handleSubmit(onSubmit)}>
               <div className="mb-8">
-                <p className="font-bold text-3xl text-slate-900 mb-3">Hola, bienvenido de nuevo !</p>
+                <p className="mb-3 text-3xl font-bold text-slate-900">Hola, bienvenido de nuevo !</p>
                 <p className="text-sm text-zinc-500">Para acceder, primero debes logearte con tu email y contraseña</p>
               </div>
               <div className="flex flex-col gap-5 mb-10">
-                <div className="grid grid-col-1 gap-2">
+                <div className="grid gap-2 grid-col-1">
                   <input
                     type="text"
                     placeholder="Ingrese su email"
@@ -74,7 +74,7 @@ export default function LeftSide() {
                     </div>
                   )}
                 </div>
-                <div className="grid grid-col-1 gap-2">
+                <div className="grid gap-2 grid-col-1">
                   <div className="flex justify-between">
                     <span></span>
                     <Link href="/recoverPassword" className="bg-[#FFF409] text-xs px-3 py-1 rounded-full">
@@ -90,7 +90,7 @@ export default function LeftSide() {
                     />
 
                     <div
-                      className="p-3 absolute right-0 -translate-y-11 -translate-x-2 cursor-pointer select-none rounded-full hover:bg-gray-100 "
+                      className="absolute right-0 p-3 -translate-x-2 rounded-full cursor-pointer select-none -translate-y-11 hover:bg-gray-100 "
                       onClick={togglePassword}
                     >
                       {showPassword ? <AiFillEyeInvisible /> : <AiFillEye className="" />}
@@ -107,9 +107,9 @@ export default function LeftSide() {
                 Iniciar ahora ?
               </button>
 
-              <span className="text-left mt-5 text-sm flex gap-1 items-center">
+              <span className="flex items-center gap-1 mt-5 text-sm text-left">
                 <p>¿No tienes una cuenta?</p>
-                <Link href="/registrar" className="font-bold hover:bg-black hover:text-white px-3 py-1 rounded-full ">
+                <Link href="/registrar" className="px-3 py-1 font-bold rounded-full hover:bg-black hover:text-white ">
                   Registrate
                 </Link>
               </span>
