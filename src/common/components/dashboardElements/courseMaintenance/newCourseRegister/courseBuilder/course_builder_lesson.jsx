@@ -4,9 +4,10 @@ import { BsFillPlusCircleFill, BsImageAlt } from 'react-icons/bs'
 import { reusableStyles } from '../../../../../../styles/styles'
 import Course_lesson_item from './course_lesson_item'
 
-export default function course_builder_lesson({ fields, update, register, append, ModuleIndex }) {
+export default function course_builder_lesson({ fields, update, ModuleIndex }) {
   //estados para el modal y para el nombre del modulo
   let [isOpen, setIsOpen] = useState(false)
+  const [lessonImagePreview, setLessonImagePreview] = useState('')
   const [disableState, setDisableState] = useState(false)
   const [lesson, setLesson] = useState({
     leccion_titulo: '',
@@ -37,6 +38,11 @@ export default function course_builder_lesson({ fields, update, register, append
 
     setDisableState(true)
     setIsOpen(false)
+  }
+  const handleLessonImagePreview = (e) => {
+    if (e.target.files && e.target.files.length > 0) {
+      setLessonImagePreview(e.taget.files[0])
+    }
   }
   return (
     <div className="grid gap-3 px-5 ">

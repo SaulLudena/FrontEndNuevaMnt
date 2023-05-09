@@ -33,9 +33,8 @@ export default function TabNav() {
       nuevamntToken,
     }
     const response = await axios.post('http://localhost:3003/course/addNewCourse', CourseObject)
-
     const { message, status } = response.data
-
+    console.log(data)
     if ((status === 200) & (message === 'Curso agregado correctamente')) {
       setDisableButton(false)
       //window.location.href = '/dashboard/zonaDeMentores/'
@@ -99,16 +98,12 @@ export default function TabNav() {
           </div>
         </form>
         <div className="col-span-4">
-          <p className="text-2xl font-medium"> Consejos para la subida de cursos</p>
+          <p className="text-2xl font-medium">Consejos para la subida de cursos</p>
           <div>
             <ul className="grid gap-4 p-5 text-gray-700 list-disc">
-              <li>Set the Course Price option or make it free.</li>
-              <li>Standard size for the course thumbnail is 700x430.</li>
-              <li>Video section controls the course overview video.</li>
-              <li>Course Builder is where you create & organize a course.</li>
-              <li>Add Topics in the Course Builder section to create lessons, quizzes, and assignments.</li>
-              <li>Prerequisites refers to the fundamental courses to complete before taking this particular course.</li>
-              <li>Information from the Additional Data section shows up on the course single page.s</li>
+              <li>Establece el precio del curso o vuelvelo gratis</li>
+              <li>Las dimensiones de la imagen del curso deben ser 700x300</li>
+              <li>El maquetador de cursos es donde organizas un curso</li>
             </ul>
           </div>
         </div>

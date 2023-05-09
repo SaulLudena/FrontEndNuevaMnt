@@ -29,11 +29,16 @@ export default function Course_basic_info({ register, errors, reset }) {
       precio_regular: 0,
       precio_descuento: 0,
     })
-    console.log('Has tornado el curso a de pago')
   }
 
   const setCourseToSomePrice = () => {
     setPriceType(true)
+  }
+
+  const handleImagePreview = (e) => {
+    if (e.target.files && e.target.files.length > 0) {
+      setPreviewImage(e.target.files[0])
+    }
   }
 
   useEffect(() => {
@@ -203,19 +208,28 @@ export default function Course_basic_info({ register, errors, reset }) {
                   <p className="font-medium">Thumbnail del curso</p>
                   <div className="grid grid-cols-2 gap-10">
                     <div className="grid col-span-1 gap-3 ">
-                      <div className="relative grid gap-3 border-2 border-gray-200 rounded-lg ">
+                      <div className="relative grid gap-3 rounded-lg ">
                         <div className="flex items-center p-5 text-yellow-900 bg-yellow-100 border-2 border-yellow-400 rounded-lg ">
                           <BsImageAlt size={20} />
                           <p className="ml-3">Seleccionar imagen</p>
                         </div>
                         <input
                           type="file"
-                          className="absolute w-full h-full border-2 border-red-600 opacity-100 cursor-pointer"
+                          className="absolute w-full h-full opacity-0 cursor-pointer"
                           accept="image/png, image/gif, image/jpeg"
-                          {...register('thumbnail_curso', { required: true })}
+                          {...register('thumbnail_curso', {
+                            required: true,
+                            onChange: handleImagePreview,
+                          })}
                         />
                       </div>
-
+                      {previewImage && (
+                        <img
+                          src={URL.createObjectURL(previewImage)}
+                          alt="thumbnail course"
+                          className="w-full h-60 object-cover rounded-lg border-2 border-yellow-400"
+                        />
+                      )}
                       {errors?.thumbnail_curso?.type === 'required' && (
                         <div className="">
                           <span className={reusableStyles.formAlerts}>Campo requerido</span>

@@ -5,7 +5,7 @@ import { BsFillPlusCircleFill } from 'react-icons/bs'
 import { reusableStyles } from '../../../../../../styles/styles'
 import Course_module_item from './course_module_item'
 
-export default function Course_builder_module({ update, register, fields, append, remove }) {
+export default function Course_builder_module({ update, register, fields, append, remove, setValue }) {
   //estados para el modal y para el nombre del modulo
   let [isOpen, setIsOpen] = useState(false)
   const [disableState, setDisableState] = useState(false)
@@ -108,6 +108,15 @@ export default function Course_builder_module({ update, register, fields, append
           </Dialog>
         </Transition>
       </>
+      <div>
+        <div
+          className="flex items-center w-56 gap-3 px-5 py-3 bg-yellow-400 rounded-lg outline-none cursor-pointer"
+          onClick={openModal}
+        >
+          <BsFillPlusCircleFill />
+          Agregar nuevo modulo
+        </div>
+      </div>
       <div className="grid gap-3">
         {fields.map((item, index) => {
           return (
@@ -124,15 +133,6 @@ export default function Course_builder_module({ update, register, fields, append
             />
           )
         })}
-      </div>
-      <div>
-        <div
-          className="flex items-center w-56 gap-3 px-5 py-3 bg-yellow-400 rounded-lg outline-none cursor-pointer"
-          onClick={openModal}
-        >
-          <BsFillPlusCircleFill />
-          Agregar nuevo modulo
-        </div>
       </div>
     </div>
   )

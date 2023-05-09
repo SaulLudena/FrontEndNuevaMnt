@@ -3,8 +3,9 @@ import React, { Fragment, useState } from 'react'
 import { BsChevronUp, BsFillTrashFill, BsPencilFill } from 'react-icons/bs'
 import { VscSymbolStructure } from 'react-icons/vsc'
 import { reusableStyles } from '../../../../../../styles/styles'
-
 import Course_builder_lesson from './course_builder_lesson'
+import { useForm } from 'react-hook-form'
+
 export default function course_module_item({
   update,
   register,
@@ -13,12 +14,23 @@ export default function course_module_item({
   moduleName,
   append,
   fields,
+  item,
 }) {
+  const { setValue } = useForm()
   let [isOpen, setIsOpen] = useState(false)
+  let [isOpenEdit, setIsOpenEdit] = useState(false)
   const confirmDelete = () => {
     setIsOpen(false)
     removeModule(ModuleIndex)
   }
+  const confirmEdit = () => {
+    setIsOpenEdit(false)
+    /*actualiza el nombre del modulo y su descripcion usando update */
+    setValue('modulos_curso.0.moduleName', 'actualizado')
+    setValue('descripcion_curso', 'actualizado')
+    setValue('slug_curso', 'actualizado')
+  }
+
   const closeModal = () => {
     setIsOpen(false)
   }
@@ -26,10 +38,17 @@ export default function course_module_item({
   const openModal = () => {
     setIsOpen(true)
   }
+
+  const closeModalEdit = () => {
+    setIsOpenEdit(false)
+  }
+  const openModalEdit = () => {
+    setIsOpenEdit(true)
+  }
   return (
     <div>
       <>
-        {/*componentizar esto */}
+        {/*componentizar esto, modal para eliminar */}
         <Transition appear show={isOpen} as={Fragment}>
           <Dialog as="div" className="relative z-10" onClose={closeModal}>
             <Transition.Child
@@ -85,6 +104,84 @@ export default function course_module_item({
             </div>
           </Dialog>
         </Transition>
+        {/*componentizar esto, modal para eliminar */}
+        <Transition appear show={isOpenEdit} as={Fragment}>
+          <Dialog as="div" className="relative z-10" onClose={closeModalEdit}>
+            <Transition.Child
+              as={Fragment}
+              enter="ease-out duration-300"
+              enterFrom="opacity-0"
+              enterTo="opacity-100"
+              leave="ease-in duration-200"
+              leaveFrom="opacity-100"
+              leaveTo="opacity-0"
+            >
+              <div className="fixed inset-0 bg-black bg-opacity-25" />
+            </Transition.Child>
+
+            <div className="fixed inset-0 overflow-y-auto">
+              <div className="flex items-center justify-center min-h-full p-4 text-center">
+                <Transition.Child
+                  as={Fragment}
+                  enter="ease-out duration-300"
+                  enterFrom="opacity-0 scale-95"
+                  enterTo="opacity-100 scale-100"
+                  leave="ease-in duration-200"
+                  leaveFrom="opacity-100 scale-100"
+                  leaveTo="opacity-0 scale-95"
+                >
+                  <Dialog.Panel className="w-full max-w-md p-6 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
+                    <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900">
+                      Editando el modulo
+                    </Dialog.Title>
+                    <div className="mt-2">
+                      <div className="grid gap-3">
+                        <div className="grid gap-2">
+                          <p>Título del modulo</p>
+                          <input
+                            type="text"
+                            className={reusableStyles.inputFormForCourseMaintenance}
+                            defaultValue={item.moduleName}
+                          />
+                        </div>
+                        <div>
+                          <p>Descripción del modulo</p>
+                          <textarea
+                            type="text"
+                            rows={6}
+                            className={reusableStyles.inputFormForCourseMaintenance}
+                            defaultValue={item.moduleDescription}
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="mt-4 flex-row-reverse flex justify-between">
+                      <button
+                        type="button"
+                        className={reusableStyles.button}
+                        onClick={() => {
+                          confirmEdit()
+                        }}
+                      >
+                        Editar
+                      </button>
+                      <button
+                        type="button"
+                        className={reusableStyles.button}
+                        onClick={() => {
+                          closeModalEdit()
+                        }}
+                      >
+                        Cancelar
+                      </button>
+                    </div>
+                  </Dialog.Panel>
+                </Transition.Child>
+              </div>
+            </div>
+          </Dialog>
+        </Transition>
       </>
       <Disclosure defaultOpen={true}>
         {({ open }) => (
@@ -96,7 +193,12 @@ export default function course_module_item({
                 <p>{moduleName}</p>
               </div>
               <div className="flex items-center gap-1 ">
-                <div className="p-3 rounded-full cursor-pointer hover:bg-gray-100">
+                <div
+                  className="p-3 rounded-full cursor-pointer hover:bg-gray-100"
+                  onClick={() => {
+                    openModalEdit()
+                  }}
+                >
                   <BsPencilFill />
                 </div>
                 <div
@@ -121,7 +223,7 @@ export default function course_module_item({
               leaveTo="transform scale-95 opacity-0"
             >
               <Disclosure.Panel className="px-5 text-sm ">
-                <div className="flex flex-col gap-2 mt-3 ">
+                <div className="flex flex-col gap-2 mt-3 shadow-md py-5 rounded-md">
                   <Course_builder_lesson
                     append={append}
                     fields={fields}
