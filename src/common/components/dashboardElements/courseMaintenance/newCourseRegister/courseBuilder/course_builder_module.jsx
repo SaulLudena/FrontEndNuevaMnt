@@ -4,8 +4,10 @@ import { useState } from 'react'
 import { BsFillPlusCircleFill } from 'react-icons/bs'
 import { reusableStyles } from '../../../../../../styles/styles'
 import Course_module_item from './course_module_item'
+import { useForm } from 'react-hook-form'
 
 export default function Course_builder_module({ update, register, fields, append, remove, setValue }) {
+  const { handleSubmit } = useForm()
   //estados para el modal y para el nombre del modulo
   let [isOpen, setIsOpen] = useState(false)
   const [disableState, setDisableState] = useState(false)
@@ -25,7 +27,7 @@ export default function Course_builder_module({ update, register, fields, append
     setModuleDescription('')
   }
 
-  //utilizamos el metodo append para agregar al arreglo un nuevo modulo que recibe un nombre y lo registra con nombre jeje
+  /*metodo que agrega un nuevo modulo al arreglo de modulos */
   const createNewModule = () => {
     setIsOpen(false)
     append({ moduleName, moduleDescription, lessons: [] })
@@ -33,7 +35,6 @@ export default function Course_builder_module({ update, register, fields, append
     setModuleDescription('')
     setDisableState(true)
   }
-
   return (
     <div className="flex flex-col gap-5 p-5 bg-white ">
       <>
@@ -67,6 +68,7 @@ export default function Course_builder_module({ update, register, fields, append
                     <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900">
                       Registro de modulo
                     </Dialog.Title>
+
                     <div className="mt-2">
                       <div className="grid gap-3">
                         <div className="grid gap-2">
@@ -77,8 +79,11 @@ export default function Course_builder_module({ update, register, fields, append
                             onChange={(e) => setModuleName(e.target.value)}
                             className={reusableStyles.inputFormForCourseMaintenance}
                           />
+                          <div className="flex">
+                            <p className="bg-red-100 text-xs px-2 py-1 rounded-full text-red-700">*Campo necesario</p>
+                          </div>
                         </div>
-                        <div>
+                        <div className="grid gap-2">
                           <p>Descripción del modulo</p>
                           <textarea
                             type="text"
@@ -87,13 +92,24 @@ export default function Course_builder_module({ update, register, fields, append
                             onChange={(e) => setModuleDescription(e.target.value)}
                             className={reusableStyles.inputFormForCourseMaintenance}
                           />
+                          <div className="flex">
+                            <p className="bg-red-100 text-xs px-2 py-1 rounded-full text-red-700">*Campo necesario</p>
+                          </div>
                         </div>
                       </div>
                     </div>
 
-                    <div className="mt-4">
+                    <div className="mt-4 flex justify-between">
                       <button
-                        type="button"
+                        type="submit"
+                        disabled={disableState}
+                        className={reusableStyles.button}
+                        onClick={closeModal}
+                      >
+                        Cancelar
+                      </button>
+                      <button
+                        type="submit"
                         disabled={disableState}
                         className={reusableStyles.button}
                         onClick={createNewModule}

@@ -4,7 +4,6 @@ import { BsChevronUp, BsFillTrashFill, BsPencilFill } from 'react-icons/bs'
 import { VscSymbolStructure } from 'react-icons/vsc'
 import { reusableStyles } from '../../../../../../styles/styles'
 import Course_builder_lesson from './course_builder_lesson'
-import { useForm } from 'react-hook-form'
 
 export default function course_module_item({
   update,
@@ -16,7 +15,6 @@ export default function course_module_item({
   fields,
   item,
 }) {
-  const { setValue } = useForm()
   let [isOpen, setIsOpen] = useState(false)
   let [isOpenEdit, setIsOpenEdit] = useState(false)
   const confirmDelete = () => {
@@ -25,10 +23,9 @@ export default function course_module_item({
   }
   const confirmEdit = () => {
     setIsOpenEdit(false)
+
+    console.log('actualizado')
     /*actualiza el nombre del modulo y su descripcion usando update */
-    setValue('modulos_curso.0.moduleName', 'actualizado')
-    setValue('descripcion_curso', 'actualizado')
-    setValue('slug_curso', 'actualizado')
   }
 
   const closeModal = () => {
