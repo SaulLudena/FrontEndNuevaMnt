@@ -3,7 +3,7 @@ import { reusableStyles } from '../../../../../styles/styles'
 import { VscSymbolStructure } from 'react-icons/vsc'
 import { BsChevronUp } from 'react-icons/bs'
 import Course_builder_module from './courseBuilder/course_builder_module'
-export default function Course_builder({ update, register, fields, append, remove }) {
+export default function Course_builder({ update, register, fields, append, remove, setValue }) {
   return (
     <Disclosure defaultOpen={true}>
       {({ open }) => (
@@ -30,6 +30,7 @@ export default function Course_builder({ update, register, fields, append, remov
                 append={append}
                 remove={remove}
                 update={update}
+                setValue={setValue}
               />
             </Disclosure.Panel>
           </Transition>

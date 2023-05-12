@@ -227,7 +227,7 @@ export default function Course_basic_info({ register, errors, reset }) {
                         <img
                           src={URL.createObjectURL(previewImage)}
                           alt="thumbnail course"
-                          className="w-full h-60 object-cover rounded-lg border-2 border-yellow-400"
+                          className="object-cover w-full border-2 border-yellow-400 rounded-lg h-60"
                         />
                       )}
                       {errors?.thumbnail_curso?.type === 'required' && (

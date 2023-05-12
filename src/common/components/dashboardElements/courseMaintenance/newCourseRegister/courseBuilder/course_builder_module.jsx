@@ -4,10 +4,8 @@ import { useState } from 'react'
 import { BsFillPlusCircleFill } from 'react-icons/bs'
 import { reusableStyles } from '../../../../../../styles/styles'
 import Course_module_item from './course_module_item'
-import { useForm } from 'react-hook-form'
 
 export default function Course_builder_module({ update, register, fields, append, remove, setValue }) {
-  const { handleSubmit } = useForm()
   //estados para el modal y para el nombre del modulo
   let [isOpen, setIsOpen] = useState(false)
   const [disableState, setDisableState] = useState(false)
@@ -80,7 +78,7 @@ export default function Course_builder_module({ update, register, fields, append
                             className={reusableStyles.inputFormForCourseMaintenance}
                           />
                           <div className="flex">
-                            <p className="bg-red-100 text-xs px-2 py-1 rounded-full text-red-700">*Campo necesario</p>
+                            <p className="px-2 py-1 text-xs text-red-700 bg-red-100 rounded-full">*Campo necesario</p>
                           </div>
                         </div>
                         <div className="grid gap-2">
@@ -93,13 +91,13 @@ export default function Course_builder_module({ update, register, fields, append
                             className={reusableStyles.inputFormForCourseMaintenance}
                           />
                           <div className="flex">
-                            <p className="bg-red-100 text-xs px-2 py-1 rounded-full text-red-700">*Campo necesario</p>
+                            <p className="px-2 py-1 text-xs text-red-700 bg-red-100 rounded-full">*Campo necesario</p>
                           </div>
                         </div>
                       </div>
                     </div>
 
-                    <div className="mt-4 flex justify-between">
+                    <div className="flex justify-between mt-4">
                       <button
                         type="submit"
                         disabled={disableState}
@@ -146,6 +144,7 @@ export default function Course_builder_module({ update, register, fields, append
               append={append}
               fields={fields}
               update={update}
+              setValue={setValue}
             />
           )
         })}

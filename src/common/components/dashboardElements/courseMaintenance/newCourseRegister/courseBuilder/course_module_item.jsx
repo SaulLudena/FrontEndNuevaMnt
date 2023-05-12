@@ -14,17 +14,20 @@ export default function course_module_item({
   append,
   fields,
   item,
+  setValue,
 }) {
   let [isOpen, setIsOpen] = useState(false)
   let [isOpenEdit, setIsOpenEdit] = useState(false)
+  const [newModuleName, setNewModuleName] = useState('')
+  const [newModuleDescription, setNewModuleDescription] = useState('')
   const confirmDelete = () => {
     setIsOpen(false)
     removeModule(ModuleIndex)
   }
   const confirmEdit = () => {
     setIsOpenEdit(false)
-
-    console.log('actualizado')
+    setValue(`modulos_curso.${ModuleIndex}.moduleName`, newModuleName)
+    setValue(`modulos_curso.${ModuleIndex}.moduleDescription`, newModuleDescription)
     /*actualiza el nombre del modulo y su descripcion usando update */
   }
 
@@ -139,6 +142,9 @@ export default function course_module_item({
                             type="text"
                             className={reusableStyles.inputFormForCourseMaintenance}
                             defaultValue={item.moduleName}
+                            onChange={(e) => {
+                              setNewModuleName(e.target.value)
+                            }}
                           />
                         </div>
                         <div>
@@ -148,12 +154,15 @@ export default function course_module_item({
                             rows={6}
                             className={reusableStyles.inputFormForCourseMaintenance}
                             defaultValue={item.moduleDescription}
+                            onChange={(e) => {
+                              setNewModuleDescription(e.target.value)
+                            }}
                           />
                         </div>
                       </div>
                     </div>
 
-                    <div className="mt-4 flex-row-reverse flex justify-between">
+                    <div className="flex flex-row-reverse justify-between mt-4">
                       <button
                         type="button"
                         className={reusableStyles.button}
@@ -220,7 +229,7 @@ export default function course_module_item({
               leaveTo="transform scale-95 opacity-0"
             >
               <Disclosure.Panel className="px-5 text-sm ">
-                <div className="flex flex-col gap-2 mt-3 shadow-md py-5 rounded-md">
+                <div className="flex flex-col gap-2 py-5 mt-3 rounded-md shadow-md">
                   <Course_builder_lesson
                     append={append}
                     fields={fields}

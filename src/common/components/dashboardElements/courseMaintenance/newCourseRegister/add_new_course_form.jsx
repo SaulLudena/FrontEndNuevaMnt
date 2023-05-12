@@ -16,8 +16,13 @@ export default function TabNav() {
     handleSubmit,
     control,
     reset,
+    setValue,
     formState: { errors },
-  } = useForm()
+  } = useForm({
+    defaultValues: {
+      hobbies: [],
+    },
+  })
 
   const { fields, append, remove, update } = useFieldArray({
     control,
@@ -27,6 +32,8 @@ export default function TabNav() {
   const onSubmit = async (data) => {
     /*modular la variable nuevamente para solamente importarla, debo crear 
     el archivo correspondiente */
+    console.log(data)
+    /*
     const nuevamntToken = Cookies.get('nuevamenteToken')
     const CourseObject = {
       data,
@@ -34,11 +41,11 @@ export default function TabNav() {
     }
     const response = await axios.post('http://localhost:3003/course/addNewCourse', CourseObject)
     const { message, status } = response.data
-    console.log(data)
     if ((status === 200) & (message === 'Curso agregado correctamente')) {
       setDisableButton(false)
-      //window.location.href = '/dashboard/zonaDeMentores/'
+      window.location.href = '/dashboard/zonaDeMentores/'
     }
+*/
   }
 
   return (
@@ -61,7 +68,14 @@ export default function TabNav() {
             {/*Menu expandible de  video Y PASAR LAS PROPS !!!!!*/}
             <Course_video_preview register={register} />
             {/*Menu expandible del maquetador de curso Y PASAR LAS PROPS !!!!!*/}
-            <Course_builder register={register} fields={fields} append={append} remove={remove} update={update} />
+            <Course_builder
+              register={register}
+              fields={fields}
+              append={append}
+              remove={remove}
+              update={update}
+              setValue={setValue}
+            />
 
             {/*Menu expandible de google meet (no hay contenido)*/}
             {/*            <Disclosure>
