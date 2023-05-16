@@ -28,6 +28,7 @@ export default function Course_builder_module({ update, register, fields, append
   /*metodo que agrega un nuevo modulo al arreglo de modulos */
   const createNewModule = () => {
     setIsOpen(false)
+    register('modulos_curso')
     append({ moduleName, moduleDescription, lessons: [] })
     setModuleName('')
     setModuleDescription('')
@@ -77,9 +78,6 @@ export default function Course_builder_module({ update, register, fields, append
                             onChange={(e) => setModuleName(e.target.value)}
                             className={reusableStyles.inputFormForCourseMaintenance}
                           />
-                          <div className="flex">
-                            <p className="px-2 py-1 text-xs text-red-700 bg-red-100 rounded-full">*Campo necesario</p>
-                          </div>
                         </div>
                         <div className="grid gap-2">
                           <p>Descripción del modulo</p>
@@ -90,9 +88,6 @@ export default function Course_builder_module({ update, register, fields, append
                             onChange={(e) => setModuleDescription(e.target.value)}
                             className={reusableStyles.inputFormForCourseMaintenance}
                           />
-                          <div className="flex">
-                            <p className="px-2 py-1 text-xs text-red-700 bg-red-100 rounded-full">*Campo necesario</p>
-                          </div>
                         </div>
                       </div>
                     </div>

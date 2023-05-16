@@ -4,7 +4,7 @@ import { BsChevronUp, BsFillPencilFill, BsImageAlt } from 'react-icons/bs'
 
 import { useState } from 'react'
 import { useEffect } from 'react'
-import axios from 'axios'
+import axios, { all } from 'axios'
 
 export default function Course_basic_info({ register, errors, reset }) {
   const [previewImage, setPreviewImage] = useState('')
@@ -75,10 +75,11 @@ export default function Course_basic_info({ register, errors, reset }) {
               <div className="flex flex-col gap-5 p-5 bg-white ">
                 <div className="grid gap-3">
                   <p className="font-medium">Titulo del curso</p>
+
                   <input
                     type="text"
                     className={reusableStyles.inputFormForCourseMaintenance}
-                    {...register('titulo_curso', { required: true })}
+                    {...register('titulo_curso', { required: false })}
                   />
                   {errors?.titulo_curso?.type === 'required' && (
                     <div className="">
@@ -91,7 +92,7 @@ export default function Course_basic_info({ register, errors, reset }) {
                   <input
                     type="text"
                     className={reusableStyles.inputFormForCourseMaintenance}
-                    {...register('slug_curso', { required: true })}
+                    {...register('slug_curso', { required: false })}
                   />
                   {errors?.slug_curso?.type === 'required' && (
                     <div className="">
@@ -105,7 +106,7 @@ export default function Course_basic_info({ register, errors, reset }) {
                     type="text"
                     className={reusableStyles.inputFormForCourseMaintenance}
                     rows={6}
-                    {...register('descripcion_curso', { required: true })}
+                    {...register('descripcion_curso', { required: false })}
                   />
                   {errors?.descripcion_curso?.type === 'required' && (
                     <div className="">
@@ -118,17 +119,18 @@ export default function Course_basic_info({ register, errors, reset }) {
                   <p className="font-medium">Selecciona una categoria</p>
                   <select
                     className={reusableStyles.inputFormForCourseMaintenance}
-                    {...register('categoria_curso', { required: true })}
+                    {...register('categoria_curso', { required: false })}
                   >
-                    {/*hacer un map de las categorias de la base de datos */}
-                    {allCategories.map((category, index) => {
-                      return (
-                        <option key={index} value={category.id_categoria_curso}>
-                          {category.nombre_categoria_curso}
-                        </option>
-                      )
-                    })}
+                    {allCategories &&
+                      allCategories.map((category, index) => {
+                        return (
+                          <option key={index} value={category.id_categoria_curso}>
+                            {category.nombre_categoria_curso}
+                          </option>
+                        )
+                      })}
                   </select>
+
                   {errors?.categoria_curso?.type === 'required' && (
                     <div className="">
                       <span className={reusableStyles.formAlerts}>Campo requerido</span>
@@ -178,7 +180,7 @@ export default function Course_basic_info({ register, errors, reset }) {
                               placeholder="0"
                               min={0}
                               onChange={handlePrice}
-                              {...register('precio_regular_curso', { required: true })}
+                              {...register('precio_regular_curso', { required: false })}
                             />
                           </div>
                         </div>
@@ -194,7 +196,7 @@ export default function Course_basic_info({ register, errors, reset }) {
                               placeholder="0"
                               min={0}
                               onChange={handlePrice}
-                              {...register('precio_descuento_curso', { required: true })}
+                              {...register('precio_descuento_curso', { required: false })}
                             />
                           </div>
                         </div>
@@ -218,7 +220,7 @@ export default function Course_basic_info({ register, errors, reset }) {
                           className="absolute w-full h-full opacity-0 cursor-pointer"
                           accept="image/png, image/gif, image/jpeg"
                           {...register('thumbnail_curso', {
-                            required: true,
+                            required: false,
                             onChange: handleImagePreview,
                           })}
                         />

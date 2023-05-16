@@ -1,16 +1,17 @@
 import { Dialog, Disclosure, Transition } from '@headlessui/react'
-import React, { Fragment, useState } from 'react'
+
 import { BsChevronUp, BsFillTrashFill, BsPencilFill } from 'react-icons/bs'
 import { VscSymbolStructure } from 'react-icons/vsc'
 import { reusableStyles } from '../../../../../../styles/styles'
 import Course_builder_lesson from './course_builder_lesson'
+import { useEffect, useState, Fragment } from 'react'
 
 export default function course_module_item({
   update,
   register,
   removeModule,
   ModuleIndex,
-  moduleName,
+
   append,
   fields,
   item,
@@ -18,17 +19,23 @@ export default function course_module_item({
 }) {
   let [isOpen, setIsOpen] = useState(false)
   let [isOpenEdit, setIsOpenEdit] = useState(false)
-  const [newModuleName, setNewModuleName] = useState('')
-  const [newModuleDescription, setNewModuleDescription] = useState('')
+  const [newModuleName, setNewModuleName] = useState(item.moduleName)
+  const [newModuleDescription, setNewModuleDescription] = useState(item.moduleDescription)
+
+  useEffect(() => {
+    setNewModuleName(item.moduleName)
+    setNewModuleDescription(item.moduleDescription)
+  }, [item.moduleName, item.moduleDescription])
+
   const confirmDelete = () => {
     setIsOpen(false)
     removeModule(ModuleIndex)
   }
+
   const confirmEdit = () => {
     setIsOpenEdit(false)
     setValue(`modulos_curso.${ModuleIndex}.moduleName`, newModuleName)
     setValue(`modulos_curso.${ModuleIndex}.moduleDescription`, newModuleDescription)
-    /*actualiza el nombre del modulo y su descripcion usando update */
   }
 
   const closeModal = () => {
@@ -104,7 +111,7 @@ export default function course_module_item({
             </div>
           </Dialog>
         </Transition>
-        {/*componentizar esto, modal para eliminar */}
+        {/*componentizar esto, modal para editar */}
         <Transition appear show={isOpenEdit} as={Fragment}>
           <Dialog as="div" className="relative z-10" onClose={closeModalEdit}>
             <Transition.Child
@@ -141,7 +148,7 @@ export default function course_module_item({
                           <input
                             type="text"
                             className={reusableStyles.inputFormForCourseMaintenance}
-                            defaultValue={item.moduleName}
+                            defaultValue={newModuleName}
                             onChange={(e) => {
                               setNewModuleName(e.target.value)
                             }}
@@ -153,7 +160,7 @@ export default function course_module_item({
                             type="text"
                             rows={6}
                             className={reusableStyles.inputFormForCourseMaintenance}
-                            defaultValue={item.moduleDescription}
+                            defaultValue={newModuleDescription}
                             onChange={(e) => {
                               setNewModuleDescription(e.target.value)
                             }}
@@ -162,7 +169,7 @@ export default function course_module_item({
                       </div>
                     </div>
 
-                    <div className="flex flex-row-reverse justify-between mt-4">
+                    <div className="flex flex-row justify-between mt-4">
                       <button
                         type="button"
                         className={reusableStyles.button}
@@ -171,15 +178,6 @@ export default function course_module_item({
                         }}
                       >
                         Editar
-                      </button>
-                      <button
-                        type="button"
-                        className={reusableStyles.button}
-                        onClick={() => {
-                          closeModalEdit()
-                        }}
-                      >
-                        Cancelar
                       </button>
                     </div>
                   </Dialog.Panel>
@@ -195,8 +193,7 @@ export default function course_module_item({
             <div className={reusableStyles.courseModuleStyleCard}>
               <div className="flex items-center gap-3">
                 <VscSymbolStructure />
-                <span></span>
-                <p>{moduleName}</p>
+                <p>{newModuleName}</p>
               </div>
               <div className="flex items-center gap-1 ">
                 <div

@@ -1,6 +1,5 @@
 import { AiFillCheckCircle } from 'react-icons/ai'
 import { useFieldArray, useForm } from 'react-hook-form'
-
 import Course_basic_info from './course_basic_info'
 import Course_video_preview from './course_video_preview'
 import Course_builder from './course_builder'
@@ -18,11 +17,7 @@ export default function TabNav() {
     reset,
     setValue,
     formState: { errors },
-  } = useForm({
-    defaultValues: {
-      hobbies: [],
-    },
-  })
+  } = useForm()
 
   const { fields, append, remove, update } = useFieldArray({
     control,
@@ -33,8 +28,7 @@ export default function TabNav() {
     /*modular la variable nuevamente para solamente importarla, debo crear 
     el archivo correspondiente */
     console.log(data)
-    /*
-    const nuevamntToken = Cookies.get('nuevamenteToken')
+    /*onst nuevamntToken = Cookies.get('nuevamenteToken')
     const CourseObject = {
       data,
       nuevamntToken,
@@ -44,8 +38,7 @@ export default function TabNav() {
     if ((status === 200) & (message === 'Curso agregado correctamente')) {
       setDisableButton(false)
       window.location.href = '/dashboard/zonaDeMentores/'
-    }
-*/
+    }*/
   }
 
   return (

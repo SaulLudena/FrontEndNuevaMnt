@@ -6,7 +6,13 @@ export default function CourseInstructorItem({ registeredCourse }) {
     <div className="p-5 bg-white rounded-xl">
       <div className="grid items-center gap-10 ">
         <div className="translate-y-3">
-          <h1 className="font-bold text-center">{registeredCourse.nombre_curso}</h1>
+          <h1 className="font-bold text-center">
+            {registeredCourse.nombre_curso.length <= 0 ? (
+              <span className="select-none text-gray-400">Sin titulo</span>
+            ) : (
+              registeredCourse.nombre_curso
+            )}
+          </h1>
         </div>
         <div className="flex justify-center">
           <div className="flex gap-5">
