@@ -26,10 +26,11 @@ export default function sidenav() {
     // Guardar el estado del sidenav en localStorage
     localStorage.setItem('sidenavState', newState ? 'open' : 'closed')
   }
-
+  /*revisar esto mas rato */
+  const customStyle = 'border-2 border-black fixed z-0 bg-white sm:w-full h-96 bottom-0'
   return (
-    <div className={`flex h-screen  ${isOpen ? 'w-72 p-5' : ' w-40 p-3'} duration-500 `}>
-      <div className={`flex flex-col justify-between h-full    ${isOpen ? 'w-72' : ' w-40'} duration-500 `}>
+    <div className={`flex h-screen duration-500 ${isOpen ? 'w-72 p-5' : ' w-40 p-3'} `}>
+      <div className={`flex flex-col justify-between h-full duration-500 ${isOpen ? 'w-72' : ' w-40'} `}>
         {/*Logo */}
         <div className="flex items-center justify-center h-32 ">
           <Link href="/dashboard/">

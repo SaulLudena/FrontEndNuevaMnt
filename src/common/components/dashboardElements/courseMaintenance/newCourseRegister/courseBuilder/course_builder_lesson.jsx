@@ -4,7 +4,7 @@ import { BsFillPlusCircleFill, BsImageAlt } from 'react-icons/bs'
 import { reusableStyles } from '../../../../../../styles/styles'
 import Course_lesson_item from './course_lesson_item'
 
-export default function course_builder_lesson({ fields, update, ModuleIndex }) {
+export default function course_builder_lesson({ fields, update, ModuleIndex, register, append }) {
   //estados para el modal y para el nombre del modulo
   let [isOpen, setIsOpen] = useState(false)
   const [lessonImagePreview, setLessonImagePreview] = useState('')
@@ -35,13 +35,12 @@ export default function course_builder_lesson({ fields, update, ModuleIndex }) {
       lessons: [...moduleToUpdate.lessons, lesson],
     }
     update(ModuleIndex, updatedModule)
-
     setDisableState(true)
     setIsOpen(false)
   }
   const handleLessonImagePreview = (e) => {
     if (e.target.files && e.target.files.length > 0) {
-      setLessonImagePreview(e.taget.files[0])
+      setLessonImagePreview(e.target.files[0])
     }
   }
   return (
@@ -84,7 +83,6 @@ export default function course_builder_lesson({ fields, update, ModuleIndex }) {
                           <input
                             type="text"
                             className={reusableStyles.inputFormForCourseMaintenance}
-                            value={lesson.leccion_titulo}
                             onChange={(e) => setLesson({ ...lesson, leccion_titulo: e.target.value })}
                             required
                           />
@@ -191,7 +189,7 @@ export default function course_builder_lesson({ fields, update, ModuleIndex }) {
         <div className="grid gap-2">
           {/*esto es una leccion , aqui tambien hacer el map*/}
           {fields[ModuleIndex].lessons.map((item, index) => {
-            return <Course_lesson_item key={index + 1} item={item} />
+            return <Course_lesson_item key={index + 1} item={item} index={index} />
           })}
         </div>
       </div>

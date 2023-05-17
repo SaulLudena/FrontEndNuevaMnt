@@ -11,7 +11,6 @@ export default function course_module_item({
   register,
   removeModule,
   ModuleIndex,
-
   append,
   fields,
   item,
@@ -234,6 +233,8 @@ export default function course_module_item({
                     register={register}
                     update={update}
                   />
+
+                  {/*colocar aqui el resto de codigo */}
                 </div>
               </Disclosure.Panel>
             </Transition>

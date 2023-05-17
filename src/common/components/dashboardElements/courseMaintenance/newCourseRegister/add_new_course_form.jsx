@@ -28,7 +28,8 @@ export default function TabNav() {
     /*modular la variable nuevamente para solamente importarla, debo crear 
     el archivo correspondiente */
     console.log(data)
-    /*onst nuevamntToken = Cookies.get('nuevamenteToken')
+    //console.log(data.thumbnail_curso[0])
+    /* const nuevamntToken = Cookies.get('nuevamenteToken')
     const CourseObject = {
       data,
       nuevamntToken,

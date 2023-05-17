@@ -4,7 +4,7 @@ import { BsChevronUp, BsFillPencilFill, BsFillTrashFill, BsPencilFill, BsTrash }
 import { VscSymbolStructure } from 'react-icons/vsc'
 import { MdPlayLesson } from 'react-icons/md'
 import { reusableStyles } from '../../../../../styles/styles'
-
+import { AiFillEye } from 'react-icons/ai'
 export default function View_course_course_modules_lessons({ getCourseById }) {
   return (
     <Disclosure defaultOpen={true}>
@@ -44,10 +44,7 @@ export default function View_course_course_modules_lessons({ getCourseById }) {
                                   </div>
                                   <div className="flex items-center gap-1 ">
                                     <div className="p-3 rounded-full cursor-pointer hover:bg-gray-100">
-                                      <BsPencilFill />
-                                    </div>
-                                    <div className="p-3 rounded-full cursor-pointer hover:bg-gray-100">
-                                      <BsFillTrashFill />
+                                      <AiFillEye />
                                     </div>
                                     <Disclosure.Button className="p-3 rounded-full hover:bg-gray-100">
                                       <BsChevronUp
@@ -56,33 +53,36 @@ export default function View_course_course_modules_lessons({ getCourseById }) {
                                     </Disclosure.Button>
                                   </div>
                                 </div>
-                                <Transition
-                                  enter="transition duration-400 ease-in-out"
-                                  enterFrom="transform scale-95 opacity-0"
-                                  enterTo="transform scale-100 opacity-100"
-                                  leave="transition duration-40 ease-in-out"
-                                  leaveFrom="transform scale-100 opacity-100"
-                                  leaveTo="transform scale-95 opacity-0"
-                                >
-                                  <Disclosure.Panel className="px-5 text-sm ">
-                                    <div className="flex flex-col gap-2 mt-3 ">
-                                      <div className="flex justify-between p-3 rounded-lg bg-gray-50 hover:bg-gray-100">
-                                        <div className="flex items-center gap-3">
-                                          <MdPlayLesson />
-                                          <p className="">{}</p>
-                                        </div>
-                                        <div className="flex gap-1 ">
-                                          <div className="p-3 rounded-full cursor-pointer hover:bg-gray-300">
-                                            <BsFillPencilFill />
+
+                                {/*Recorrido de lecciones*/}
+                                {modulo.tb_leccion.map((leccion, index) => {
+                                  return (
+                                    <Transition
+                                      enter="transition duration-400 ease-in-out"
+                                      enterFrom="transform scale-95 opacity-0"
+                                      enterTo="transform scale-100 opacity-100"
+                                      leave="transition duration-40 ease-in-out"
+                                      leaveFrom="transform scale-100 opacity-100"
+                                      leaveTo="transform scale-95 opacity-0"
+                                    >
+                                      <Disclosure.Panel className="px-5 text-sm ">
+                                        <div className="flex flex-col gap-2 mt-3 ">
+                                          <div className="flex justify-between p-3 rounded-lg bg-gray-50 hover:bg-gray-100">
+                                            <div className="flex items-center gap-3">
+                                              <MdPlayLesson />
+                                              <p className="">{leccion.nombre_leccion}</p>
+                                            </div>
+                                            <div className="flex gap-1 ">
+                                              <div className="p-3 rounded-full cursor-pointer hover:bg-gray-300">
+                                                <AiFillEye />
+                                              </div>
+                                            </div>
                                           </div>
-                                          <div className="p-3 rounded-full cursor-pointer hover:bg-gray-300">
-                                            <BsTrash />
-                                          </div>
                                         </div>
-                                      </div>
-                                    </div>
-                                  </Disclosure.Panel>
-                                </Transition>
+                                      </Disclosure.Panel>
+                                    </Transition>
+                                  )
+                                })}
                               </>
                             )}
                           </Disclosure>
