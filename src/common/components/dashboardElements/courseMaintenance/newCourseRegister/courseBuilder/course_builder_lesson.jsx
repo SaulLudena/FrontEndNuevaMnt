@@ -4,7 +4,7 @@ import { BsFillPlusCircleFill, BsImageAlt } from 'react-icons/bs'
 import { reusableStyles } from '../../../../../../styles/styles'
 import Course_lesson_item from './course_lesson_item'
 
-export default function course_builder_lesson({ fields, update, ModuleIndex, register, append }) {
+export default function course_builder_lesson({ fields, update, ModuleIndex, register, append, setValue }) {
   //estados para el modal y para el nombre del modulo
   let [isOpen, setIsOpen] = useState(false)
   const [lessonImagePreview, setLessonImagePreview] = useState('')
@@ -29,7 +29,9 @@ export default function course_builder_lesson({ fields, update, ModuleIndex, reg
   }
 
   const createNewLesson = () => {
+    //recuperamos todos el objeto del modulo que se va a actualizar
     const moduleToUpdate = fields[ModuleIndex]
+    //creamos el objeto leccion
     const updatedModule = {
       ...moduleToUpdate,
       lessons: [...moduleToUpdate.lessons, lesson],
@@ -38,6 +40,7 @@ export default function course_builder_lesson({ fields, update, ModuleIndex, reg
     setDisableState(true)
     setIsOpen(false)
   }
+
   const handleLessonImagePreview = (e) => {
     if (e.target.files && e.target.files.length > 0) {
       setLessonImagePreview(e.target.files[0])
@@ -46,7 +49,7 @@ export default function course_builder_lesson({ fields, update, ModuleIndex, reg
   return (
     <div className="grid gap-3 px-5 ">
       <>
-        {/*componentizar esto */}
+        {/*componentizar esto, registro de leccion */}
         <Transition appear show={isOpen} as={Fragment}>
           <Dialog as="div" className="relative z-10" onClose={closeModal}>
             <Transition.Child
@@ -83,7 +86,9 @@ export default function course_builder_lesson({ fields, update, ModuleIndex, reg
                           <input
                             type="text"
                             className={reusableStyles.inputFormForCourseMaintenance}
-                            onChange={(e) => setLesson({ ...lesson, leccion_titulo: e.target.value })}
+                            onChange={(e) => {
+                              setLesson({ ...lesson, leccion_titulo: e.target.value })
+                            }}
                             required
                           />
                         </div>
@@ -99,7 +104,7 @@ export default function course_builder_lesson({ fields, update, ModuleIndex, reg
                         </div>
                         <div className="grid gap-2">
                           <p>Imagen destacada</p>
-                          <div className="relative grid gap-3 border-2 border-gray-200 rounded-lg ">
+                          <div className="relative grid gap-3 rounded-lg cursor-pointer">
                             <div className="flex items-center p-5 text-yellow-900 bg-yellow-100 border-2 border-yellow-400 rounded-lg ">
                               <BsImageAlt size={20} />
                               <p className="ml-3">Seleccionar imagen</p>
@@ -108,9 +113,18 @@ export default function course_builder_lesson({ fields, update, ModuleIndex, reg
                               type="file"
                               className="absolute w-full h-full border-2 border-red-600 opacity-0 cursor-pointer"
                               accept="image/png, image/gif, image/jpeg"
-                              onChange={(e) => setLesson({ ...lesson, leccion_imagen: e.target.value })}
+                              onChange={(e) => {
+                                handleLessonImagePreview(e), setLesson({ ...lesson, leccion_imagen: e.target.value })
+                              }}
                             />
                           </div>
+                          {lessonImagePreview && (
+                            <img
+                              src={URL.createObjectURL(lessonImagePreview)}
+                              alt="thumbnail course"
+                              className="object-cover w-full border-2 border-yellow-400 rounded-lg h-36"
+                            />
+                          )}
                         </div>
                         <div className="grid gap-2">
                           <p>Enlace del video (vimeo)</p>
@@ -188,8 +202,16 @@ export default function course_builder_lesson({ fields, update, ModuleIndex, reg
       <div>
         <div className="grid gap-2">
           {/*esto es una leccion , aqui tambien hacer el map*/}
-          {fields[ModuleIndex].lessons.map((item, index) => {
-            return <Course_lesson_item key={index + 1} item={item} index={index} />
+          {fields[ModuleIndex].lessons.map((lessonItem, index) => {
+            return (
+              <Course_lesson_item
+                key={index + 1}
+                lessonItem={lessonItem}
+                lessonIndex={index}
+                ModuleIndex={ModuleIndex}
+                setValue={setValue}
+              />
+            )
           })}
         </div>
       </div>

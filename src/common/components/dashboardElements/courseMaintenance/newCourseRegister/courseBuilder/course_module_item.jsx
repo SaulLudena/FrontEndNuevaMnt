@@ -232,6 +232,7 @@ export default function course_module_item({
                     ModuleIndex={ModuleIndex}
                     register={register}
                     update={update}
+                    setValue={setValue}
                   />
 
                   {/*colocar aqui el resto de codigo */}
