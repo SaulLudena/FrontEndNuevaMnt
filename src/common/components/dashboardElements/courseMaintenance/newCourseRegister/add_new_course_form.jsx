@@ -49,7 +49,7 @@ export default function TabNav() {
           <div>
             <div className="h-auto ">
               <button
-                className="px-10 py-4 flex items-center gap-3 justify-center rounded-lg bg-[#FFF409]"
+                className="px-10 py-4 flex items-center gap-3 justify-center rounded-lg bg-[#4BFF9E]"
                 disabled={disableButton}
               >
                 <AiFillCheckCircle /> Publicar curso

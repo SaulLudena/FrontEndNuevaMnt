@@ -225,7 +225,7 @@ export default function course_module_item({
               leaveTo="transform scale-95 opacity-0"
             >
               <Disclosure.Panel className="px-5 text-sm ">
-                <div className="flex flex-col gap-2 py-5 mt-3 rounded-md shadow-md">
+                <div className="flex flex-col gap-2 py-5 mt-3 rounded-lg ">
                   <Course_builder_lesson
                     append={append}
                     fields={fields}
@@ -234,8 +234,6 @@ export default function course_module_item({
                     update={update}
                     setValue={setValue}
                   />
-
-                  {/*colocar aqui el resto de codigo */}
                 </div>
               </Disclosure.Panel>
             </Transition>

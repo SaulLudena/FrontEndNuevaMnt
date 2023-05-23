@@ -127,7 +127,7 @@ export default function Course_builder_module({ update, register, fields, append
       </>
       <div>
         <div
-          className="flex items-center w-56 gap-3 px-5 py-3 bg-yellow-400 rounded-lg outline-none cursor-pointer"
+          className="flex items-center w-56 gap-3 px-5 py-3 bg-[#4BFF9E] rounded-lg outline-none cursor-pointer"
           onClick={openModal}
         >
           <BsFillPlusCircleFill />

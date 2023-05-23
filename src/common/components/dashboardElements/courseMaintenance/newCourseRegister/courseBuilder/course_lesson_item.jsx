@@ -8,51 +8,41 @@ export default function Course_lesson_item({ lessonItem, lessonIndex, setValue, 
   let [isOpen, setIsOpen] = useState(false)
   let [isOpenEdit, setIsOpenEdit] = useState(false)
   const [disableState, setDisableState] = useState(false)
-  const [newLesson, setNewLesson] = useState({
-    new_leccion_titulo: lessonItem.leccion_titulo,
-    new_leccion_descripcion: lessonItem.leccion_descripcion,
-    new_leccion_imagen: lessonItem.leccion_imagen,
-    new_leccion_enlace: lessonItem.leccion_enlace,
-    new_leccion_duracion_horas: lessonItem.leccion_duracion_horas,
-    new_leccion_duracion_minutos: lessonItem.leccion_duracion_minutos,
-    new_leccion_duracion_segundos: lessonItem.leccion_duracion_segundos,
-  })
+  const [newLessonImagepreview, setNewLessonImagePreview] = useState(lessonItem.leccion_imagen)
 
-  useEffect(() => {
-    setNewLesson(lessonItem.lecccion_titulo),
-      setNewLesson(lessonItem.leccion_descripcion),
-      setNewLesson(lessonItem.leccion_imagen),
-      setNewLesson(lessonItem.leccion_enlace),
-      setNewLesson(lessonItem.leccion_duracion_horas),
-      setNewLesson(lessonItem.leccion_duracion_minutos),
-      setNewLesson(lessonItem.leccion_duracion_segundos)
-  }, [newLesson])
+  /*por temas de funcionalidad, decidi manejar los estados de manera independiente y evitar perdida de datos en el proceso de edicion*/
+  const [newLeccionTitulo, setNewLeccionTitulo] = useState(lessonItem.leccion_titulo)
+  const [newLeccionDescripcion, setNewLeccionDescripcion] = useState(lessonItem.leccion_descripcion)
+  const [newLeccionImagen, setNewLeccionImagen] = useState(lessonItem.leccion_imagen)
+  const [newLeccionEnlace, setNewLeccionEnlace] = useState(lessonItem.leccion_enlace)
+  const [newLeccionDuracionHoras, setNewLeccionDuracionHoras] = useState(lessonItem.leccion_duracion_horas)
+  const [newLeccionDuracionMinutos, setNewLeccionDuracionMinutos] = useState(lessonItem.leccion_duracion_minutos)
+  const [newLeccionDuracionSegundos, setNewLeccionDuracionSegundos] = useState(lessonItem.leccion_duracion_segundos)
 
-  const confirmDelete = () => {
-    setIsOpen(false)
+  const handleNewLessonImagePreview = (e) => {
+    if (e.target.files && e.target.files.length > 0) {
+      setNewLessonImagePreview(e.target.files[0])
+    }
   }
-
+  const openModalEdit = () => {
+    setDisableState(false)
+    setIsOpenEdit(true)
+  }
+  const closeModalEdit = () => {
+    setIsOpenEdit(false)
+  }
   const confirmEdit = () => {
-    setValue(`modulos_curso.${ModuleIndex}.lessons.${lessonIndex}.leccion_titulo`, newLesson.new_leccion_titulo)
-    setValue(
-      `modulos_curso.${ModuleIndex}.lessons.${lessonIndex}.leccion_descripcion`,
-      newLesson.new_leccion_descripcion,
-    )
-    setValue(`modulos_curso.${ModuleIndex}.lessons.${lessonIndex}.leccion_imagen`, newLesson.new_leccion_imagen)
-    setValue(`modulos_curso.${ModuleIndex}.lessons.${lessonIndex}.leccion_enlace`, newLesson.new_leccion_enlace)
-    setValue(
-      `modulos_curso.${ModuleIndex}.lessons.${lessonIndex}.leccion_duracion_horas`,
-      newLesson.new_leccion_duracion_horas,
-    )
-    setValue(
-      `modulos_curso.${ModuleIndex}.lessons.${lessonIndex}.leccion_duracion_minutos`,
-      newLesson.new_leccion_duracion_minutos,
-    )
+    setIsOpenEdit(false)
+    setValue(`modulos_curso.${ModuleIndex}.lessons.${lessonIndex}.leccion_titulo`, newLeccionTitulo)
+    setValue(`modulos_curso.${ModuleIndex}.lessons.${lessonIndex}.leccion_descripcion`, newLeccionDescripcion)
+    setValue(`modulos_curso.${ModuleIndex}.lessons.${lessonIndex}.leccion_imagen`, newLeccionImagen)
+    setValue(`modulos_curso.${ModuleIndex}.lessons.${lessonIndex}.leccion_enlace`, newLeccionEnlace)
+    setValue(`modulos_curso.${ModuleIndex}.lessons.${lessonIndex}.leccion_duracion_horas`, newLeccionDuracionHoras)
+    setValue(`modulos_curso.${ModuleIndex}.lessons.${lessonIndex}.leccion_duracion_minutos`, newLeccionDuracionHoras)
     setValue(
       `modulos_curso.${ModuleIndex}.lessons.${lessonIndex}.leccion_duracion_segundos`,
-      newLesson.new_leccion_duracion_segundos,
+      newLeccionDuracionSegundos,
     )
-    setIsOpenEdit(false)
   }
 
   const closeModalDelete = () => {
@@ -62,14 +52,10 @@ export default function Course_lesson_item({ lessonItem, lessonIndex, setValue, 
   const openModalDelete = () => {
     setIsOpen(true)
   }
+  const confirmDelete = () => {
+    setIsOpen(false)
+  }
 
-  const closeModalEdit = () => {
-    setIsOpenEdit(false)
-  }
-  const openModalEdit = () => {
-    setDisableState(false)
-    setIsOpenEdit(true)
-  }
   return (
     <div>
       <>
@@ -157,7 +143,7 @@ export default function Course_lesson_item({ lessonItem, lessonIndex, setValue, 
                 >
                   <Dialog.Panel className="w-full max-w-md p-6 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
                     <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900">
-                      Editando el modulo
+                      Editando la leccion
                     </Dialog.Title>
                     <div className="mt-2">
                       <div className="grid gap-3">
@@ -165,9 +151,9 @@ export default function Course_lesson_item({ lessonItem, lessonIndex, setValue, 
                           <p>Título de la leccion</p>
                           <input
                             type="text"
-                            defaultValue={lessonItem.leccion_titulo}
+                            defaultValue={newLeccionTitulo}
                             className={reusableStyles.inputFormForCourseMaintenance}
-                            onChange={(e) => setNewLesson({ new_leccion_titulo: e.target.value })}
+                            onChange={(e) => setNewLeccionTitulo(e.target.value)}
                           />
                         </div>
                         <div className="grid gap-2">
@@ -175,14 +161,14 @@ export default function Course_lesson_item({ lessonItem, lessonIndex, setValue, 
                           <textarea
                             type="text"
                             rows={6}
-                            defaultValue={lessonItem.leccion_descripcion}
+                            defaultValue={newLeccionDescripcion}
                             className={reusableStyles.inputFormForCourseMaintenance}
-                            onChange={(e) => setNewLesson({ new_leccion_descripcion: e.target.value })}
+                            onChange={(e) => setNewLeccionDescripcion(e.target.value)}
                           />
                         </div>
                         <div className="grid gap-2">
                           <p>Imagen destacada</p>
-                          <div className="relative grid gap-3 border-2 border-gray-200 rounded-lg ">
+                          <div className="relative grid gap-3 rounded-lg ">
                             <div className="flex items-center p-5 text-yellow-900 bg-yellow-100 border-2 border-yellow-400 rounded-lg ">
                               <BsImageAlt size={20} />
                               <p className="ml-3">Seleccionar imagen</p>
@@ -191,17 +177,34 @@ export default function Course_lesson_item({ lessonItem, lessonIndex, setValue, 
                               type="file"
                               className="absolute w-full h-full border-2 border-red-600 opacity-0 cursor-pointer"
                               accept="image/png, image/gif, image/jpeg"
-                              onChange={(e) => setNewLesson({ new_leccion_imagen: e.target.value })}
+                              onChange={(e) => {
+                                handleNewLessonImagePreview(e)
+                                setNewLeccionImagen(e.target.files[0])
+                              }}
                             />
                           </div>
+                          {
+                            /*validar que haya una imagen seleccionada */
+                            newLessonImagepreview.length !== 0 ? (
+                              <img
+                                /*en el source mediante el objeto URL construimos un enlace con la informacion del input file */
+                                /*reemplazar newLeccion por la previsualizacion de imagenes */
+                                src={URL.createObjectURL(newLessonImagepreview)}
+                                alt="thumbnail course"
+                                className="object-cover w-full border-2 border-yellow-400 rounded-lg h-36"
+                              />
+                            ) : (
+                              <></>
+                            )
+                          }
                         </div>
                         <div className="grid gap-2">
                           <p>Enlace del video (vimeo)</p>
                           <input
                             type="text"
                             className={reusableStyles.inputFormForCourseMaintenance}
-                            defaultValue={lessonItem.leccion_enlace}
-                            onChange={(e) => setNewLesson({ new_leccion_enlace: e.target.value })}
+                            defaultValue={newLeccionEnlace}
+                            onChange={(e) => setNewLeccionEnlace(e.target.value)}
                           />
                         </div>
                         <div className="grid gap-2">
@@ -212,8 +215,8 @@ export default function Course_lesson_item({ lessonItem, lessonIndex, setValue, 
                                 type="number"
                                 min={0}
                                 className={reusableStyles.inputFormForCourseMaintenance}
-                                defaultValue={lessonItem.leccion_duracion_horas}
-                                onChange={(e) => setNewLesson({ new_leccion_duracion_horas: e.target.value })}
+                                defaultValue={newLeccionDuracionHoras}
+                                onChange={(e) => setNewLeccionDuracionHoras(e.target.value)}
                               />
                               <p>Horas</p>
                             </div>
@@ -222,8 +225,8 @@ export default function Course_lesson_item({ lessonItem, lessonIndex, setValue, 
                                 type="number"
                                 min={0}
                                 className={reusableStyles.inputFormForCourseMaintenance}
-                                defaultValue={lessonItem.leccion_duracion_minutos}
-                                onChange={(e) => setNewLesson({ new_leccion_duracion_minutos: e.target.value })}
+                                defaultValue={newLeccionDuracionMinutos}
+                                onChange={(e) => setNewLeccionDuracionMinutos(e.target.value)}
                               />
                               <p>Minutos</p>
                             </div>
@@ -232,9 +235,10 @@ export default function Course_lesson_item({ lessonItem, lessonIndex, setValue, 
                                 type="number"
                                 min={0}
                                 className={reusableStyles.inputFormForCourseMaintenance}
-                                defaultValue={lessonItem.leccion_duracion_segundos}
-                                onChange={(e) => setNewLesson({ new_leccion_duracion_segundos: e.target.value })}
+                                defaultValue={newLeccionDuracionSegundos}
+                                onChange={(e) => setNewLeccionDuracionSegundos(e.target.value)}
                               />
+
                               <p>Segundos</p>
                             </div>
                           </div>
@@ -247,9 +251,11 @@ export default function Course_lesson_item({ lessonItem, lessonIndex, setValue, 
                         type="button"
                         disabled={disableState}
                         className={reusableStyles.button}
-                        onClick={confirmEdit}
+                        onClick={() => {
+                          confirmEdit()
+                        }}
                       >
-                        Guardar
+                        Editar
                       </button>
                     </div>
                   </Dialog.Panel>
@@ -259,7 +265,7 @@ export default function Course_lesson_item({ lessonItem, lessonIndex, setValue, 
           </Dialog>
         </Transition>
       </>
-      <div className="flex justify-between p-3 rounded-lg bg-gray-50 hover:bg-gray-100">
+      <div className="flex justify-between p-3 rounded-lg bg-gray-100 hover:bg-gray-200">
         <div className="flex items-center gap-3">
           <MdPlayLesson />
           <p className="">{lessonItem.leccion_titulo}</p>

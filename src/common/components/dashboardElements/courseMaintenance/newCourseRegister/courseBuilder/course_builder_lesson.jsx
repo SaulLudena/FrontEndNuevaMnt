@@ -12,7 +12,7 @@ export default function course_builder_lesson({ fields, update, ModuleIndex, reg
   const [lesson, setLesson] = useState({
     leccion_titulo: '',
     leccion_descripcion: '',
-    leccion_imagen: '',
+    leccion_imagen: [],
     leccion_enlace: '',
     leccion_duracion_horas: '',
     leccion_duracion_minutos: '',
@@ -114,12 +114,13 @@ export default function course_builder_lesson({ fields, update, ModuleIndex, reg
                               className="absolute w-full h-full border-2 border-red-600 opacity-0 cursor-pointer"
                               accept="image/png, image/gif, image/jpeg"
                               onChange={(e) => {
-                                handleLessonImagePreview(e), setLesson({ ...lesson, leccion_imagen: e.target.value })
+                                handleLessonImagePreview(e), setLesson({ ...lesson, leccion_imagen: e.target.files[0] })
                               }}
                             />
                           </div>
                           {lessonImagePreview && (
                             <img
+                              /*en el source mediante el objeto URL construimos un enlace con la informacion del input file */
                               src={URL.createObjectURL(lessonImagePreview)}
                               alt="thumbnail course"
                               className="object-cover w-full border-2 border-yellow-400 rounded-lg h-36"
@@ -192,7 +193,7 @@ export default function course_builder_lesson({ fields, update, ModuleIndex, reg
       </>
       <div className="flex justify-between ">
         <div
-          className="flex items-center gap-3 px-4 py-2 bg-yellow-400 rounded-lg outline-none cursor-pointer"
+          className="flex items-center gap-3 px-4 py-2 bg-[#4BFF9E] rounded-lg outline-none cursor-pointer"
           onClick={openModal}
         >
           <BsFillPlusCircleFill />
