@@ -12,12 +12,6 @@ export default function Course_builder_module({ update, register, fields, append
   const [moduleName, setModuleName] = useState('')
   const [moduleDescription, setModuleDescription] = useState('')
 
-  const [module, setModule] = useState({
-    moduleName: '',
-    moduleDescription: '',
-    lessons: [],
-  })
-
   const closeModal = () => {
     setIsOpen(false)
     setModuleName('')
@@ -38,8 +32,7 @@ export default function Course_builder_module({ update, register, fields, append
     register('modulos_curso')
     //definicion de la estructura del objeto que se va a agregar
     append({ moduleName, moduleDescription, lessons: [] })
-    setModuleName('')
-    setModuleDescription('')
+
     setDisableState(true)
   }
   return (

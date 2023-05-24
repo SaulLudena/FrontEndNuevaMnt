@@ -21,10 +21,13 @@ export default function course_module_item({
   const [newModuleName, setNewModuleName] = useState(item.moduleName)
   const [newModuleDescription, setNewModuleDescription] = useState(item.moduleDescription)
 
-  useEffect(() => {
-    setNewModuleName(item.moduleName)
-    setNewModuleDescription(item.moduleDescription)
-  }, [item.moduleName, item.moduleDescription])
+  const handleModuleNameChange = (e) => {
+    setNewModuleName(e.target.value)
+  }
+
+  const handleModuleDescriptionChange = (e) => {
+    setNewModuleDescription(e.target.value)
+  }
 
   const confirmDelete = () => {
     setIsOpen(false)
@@ -33,8 +36,10 @@ export default function course_module_item({
 
   const confirmEdit = () => {
     setIsOpenEdit(false)
-    setValue(`modulos_curso.${ModuleIndex}.moduleName`, newModuleName)
-    setValue(`modulos_curso.${ModuleIndex}.moduleDescription`, newModuleDescription)
+    update(ModuleIndex, {
+      moduleName: newModuleName,
+      moduleDescription: newModuleDescription,
+    })
   }
 
   const closeModal = () => {
@@ -148,9 +153,7 @@ export default function course_module_item({
                             type="text"
                             className={reusableStyles.inputFormForCourseMaintenance}
                             defaultValue={newModuleName}
-                            onChange={(e) => {
-                              setNewModuleName(e.target.value)
-                            }}
+                            onChange={handleModuleNameChange}
                           />
                         </div>
                         <div>
@@ -160,9 +163,7 @@ export default function course_module_item({
                             rows={6}
                             className={reusableStyles.inputFormForCourseMaintenance}
                             defaultValue={newModuleDescription}
-                            onChange={(e) => {
-                              setNewModuleDescription(e.target.value)
-                            }}
+                            onChange={handleModuleDescriptionChange}
                           />
                         </div>
                       </div>
