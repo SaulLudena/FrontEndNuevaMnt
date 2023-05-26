@@ -29,7 +29,7 @@ export default function TabNav() {
     el archivo correspondiente */
     console.log(data)
     //console.log(data.thumbnail_curso[0])
-    /* const nuevamntToken = Cookies.get('nuevamenteToken')
+    const nuevamntToken = Cookies.get('nuevamenteToken')
     const CourseObject = {
       data,
       nuevamntToken,
@@ -38,14 +38,18 @@ export default function TabNav() {
     const { message, status } = response.data
     if ((status === 200) & (message === 'Curso agregado correctamente')) {
       setDisableButton(false)
-      window.location.href = '/dashboard/zonaDeMentores/'
-    }*/
+      //window.location.href = '/dashboard/zonaDeMentores/'
+    }
   }
 
   return (
     <div className="">
       <div className="grid grid-cols-12 gap-10">
-        <form className="flex flex-col col-span-8 gap-5" onSubmit={handleSubmit(onSubmit)}>
+        <form
+          className="flex flex-col col-span-8 gap-5"
+          onSubmit={handleSubmit(onSubmit)}
+          encType="multipart/form-data"
+        >
           <div>
             <div className="h-auto ">
               <button

@@ -29,6 +29,11 @@ export default function course_module_item({
     setNewModuleDescription(e.target.value)
   }
 
+  useEffect(() => {
+    setNewModuleName(item.moduleName)
+    setNewModuleDescription(item.moduleDescription)
+  }, [item.moduleName, item.moduleDescription])
+
   const confirmDelete = () => {
     setIsOpen(false)
     removeModule(ModuleIndex)
@@ -36,10 +41,12 @@ export default function course_module_item({
 
   const confirmEdit = () => {
     setIsOpenEdit(false)
-    update(ModuleIndex, {
+    const updatedModule = {
+      ...item,
       moduleName: newModuleName,
       moduleDescription: newModuleDescription,
-    })
+    }
+    update(ModuleIndex, updatedModule)
   }
 
   const closeModal = () => {
@@ -226,7 +233,7 @@ export default function course_module_item({
               leaveTo="transform scale-95 opacity-0"
             >
               <Disclosure.Panel className="px-5 text-sm ">
-                <div className="flex flex-col gap-2 py-5 mt-3 rounded-lg ">
+                <div className="flex flex-col gap-2 py-5 mt-3 rounded-md shadow-md">
                   <Course_builder_lesson
                     append={append}
                     fields={fields}
@@ -235,6 +242,8 @@ export default function course_module_item({
                     update={update}
                     setValue={setValue}
                   />
+
+                  {/*colocar aqui el resto de codigo */}
                 </div>
               </Disclosure.Panel>
             </Transition>
