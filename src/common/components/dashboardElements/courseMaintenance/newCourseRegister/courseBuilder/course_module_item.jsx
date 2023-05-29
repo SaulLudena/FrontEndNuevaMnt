@@ -241,9 +241,8 @@ export default function course_module_item({
                     register={register}
                     update={update}
                     setValue={setValue}
+                    moduleItem={item}
                   />
-
-                  {/*colocar aqui el resto de codigo */}
                 </div>
               </Disclosure.Panel>
             </Transition>

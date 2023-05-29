@@ -4,7 +4,7 @@ import { BsFillPlusCircleFill, BsImageAlt } from 'react-icons/bs'
 import { reusableStyles } from '../../../../../../styles/styles'
 import Course_lesson_item from './course_lesson_item'
 
-export default function course_builder_lesson({ fields, update, ModuleIndex, register, append, setValue }) {
+export default function course_builder_lesson({ fields, update, ModuleIndex, moduleItem, setValue }) {
   //estados para el modal y para el nombre del modulo
   let [isOpen, setIsOpen] = useState(false)
   const [lessonImagePreview, setLessonImagePreview] = useState('')
@@ -209,6 +209,7 @@ export default function course_builder_lesson({ fields, update, ModuleIndex, reg
                 key={index + 1}
                 lessonItem={lessonItem}
                 lessonIndex={index}
+                moduleItem={moduleItem}
                 ModuleIndex={ModuleIndex}
                 setValue={setValue}
               />

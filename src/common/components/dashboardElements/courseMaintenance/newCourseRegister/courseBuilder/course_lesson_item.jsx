@@ -3,8 +3,9 @@ import React, { Fragment, useState, useEffect } from 'react'
 import { BsFillPencilFill, BsImageAlt, BsPencilFill, BsTrash } from 'react-icons/bs'
 import { MdPlayLesson } from 'react-icons/md'
 import { reusableStyles } from '../../../../../../styles/styles'
+import { useFieldArray } from 'react-hook-form'
 
-export default function Course_lesson_item({ lessonItem, lessonIndex, setValue, ModuleIndex }) {
+export default function Course_lesson_item({ lessonItem, lessonIndex, setValue, ModuleIndex, moduleItem }) {
   let [isOpen, setIsOpen] = useState(false)
   let [isOpenEdit, setIsOpenEdit] = useState(false)
   const [disableState, setDisableState] = useState(false)
@@ -54,6 +55,9 @@ export default function Course_lesson_item({ lessonItem, lessonIndex, setValue, 
   }
   const confirmDelete = () => {
     setIsOpen(false)
+    const updatedModuleItem = { ...moduleItem }
+    updatedModuleItem.lessons.splice(lessonIndex, 1)
+    setValue(`modulos_curso.${ModuleIndex}`, updatedModuleItem)
   }
 
   return (
@@ -103,7 +107,7 @@ export default function Course_lesson_item({ lessonItem, lessonIndex, setValue, 
                         type="button"
                         className={reusableStyles.redButton}
                         onClick={() => {
-                          /*Colocar el metodo de eliminacion de leccion*/
+                          confirmDelete()
                         }}
                       >
                         Eliminar
