@@ -1,5 +1,5 @@
 /*Importando coponentes */
-import Myprofile from '../../src/common/components/myprofile/myprofile'
+
 /*Importando head tag */
 import Head from 'next/head'
 import Layout from '../../src/common/components/layout'
@@ -11,9 +11,7 @@ export default function index() {
         <title>Mi perfil</title>
       </Head>
       <div className=" w-full h-screen flex ">
-        <Layout>
-          <Myprofile />
-        </Layout>
+        <Layout></Layout>
       </div>
     </>
   )

@@ -23,23 +23,36 @@ export default function TabNav() {
     control,
     name: 'modulos_curso',
   })
+  const {
+    fields: resourceFields,
+    append: appendResource,
+    remove: removeResource,
+    update: updateResource,
+  } = useFieldArray({
+    control,
+    name: 'recursos_curso',
+  })
 
   const onSubmit = async (data) => {
     /*modular la variable nuevamente para solamente importarla, debo crear 
     el archivo correspondiente */
     console.log(data)
     //console.log(data.thumbnail_curso[0])
-    /*const nuevamntToken = Cookies.get('nuevamenteToken')
+    const nuevamntToken = Cookies.get('nuevamenteToken')
     const CourseObject = {
       data,
       nuevamntToken,
     }
-    const response = await axios.post('http://localhost:3003/course/addNewCourse', CourseObject)
+    const response = await axios.post('http://localhost:3003/course/addNewCourse', CourseObject, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    })
     const { message, status } = response.data
     if ((status === 200) & (message === 'Curso agregado correctamente')) {
       setDisableButton(false)
-      window.location.href = '/dashboard/zonaDeMentores/'
-    }*/
+      //wwindow.location.href = '/dashboard/zonaDeMentores/'
+    }
   }
 
   return (
@@ -49,6 +62,7 @@ export default function TabNav() {
           className="flex flex-col col-span-8 gap-5"
           onSubmit={handleSubmit(onSubmit)}
           encType="multipart/form-data"
+          method="POST"
         >
           <div>
             <div className="h-auto ">
@@ -62,7 +76,7 @@ export default function TabNav() {
           </div>
           <div className="grid gap-3">
             {/*Menu expandible de informacion principal del curso Y PASAR LAS PROPS !!!!!*/}
-            <Course_basic_info register={register} errors={errors} reset={reset} />
+            <Course_basic_info register={register} errors={errors} reset={reset} setValue={setValue} />
             {/*Menu expandible de  video Y PASAR LAS PROPS !!!!!*/}
             <Course_video_preview register={register} />
             {/*Menu expandible del maquetador de curso Y PASAR LAS PROPS !!!!!*/}
@@ -104,7 +118,14 @@ export default function TabNav() {
               )}
             </Disclosure> */}
             {/*Menu expandible de recursos del curso Y PASAR LAS PROPS !!!!!*/}
-            <Course_resources register={register} />
+            <Course_resources
+              register={register}
+              resourceFields={resourceFields}
+              appendResource={appendResource}
+              removeResource={removeResource}
+              updateResource={updateResource}
+              setValue={setValue}
+            />
             {/*Menu expandible de datos adicionales Y PASAR LAS PROPS !!!!!*/}
             <Course_extra_info register={register} />
           </div>

@@ -6,7 +6,7 @@ import { useState } from 'react'
 import { useEffect } from 'react'
 import axios, { all } from 'axios'
 
-export default function Course_basic_info({ register, errors, reset }) {
+export default function Course_basic_info({ register, errors, reset, setValue }) {
   const [previewImage, setPreviewImage] = useState('')
   const [PriceType, setPriceType] = useState(false)
   const [allCategories, setAllCategories] = useState([])
@@ -219,6 +219,7 @@ export default function Course_basic_info({ register, errors, reset }) {
                           type="file"
                           className="absolute w-full h-full opacity-0 cursor-pointer"
                           accept="image/png, image/gif, image/jpeg"
+                          name="thumbnail_curso"
                           {...register('thumbnail_curso', {
                             required: false,
                             onChange: handleImagePreview,

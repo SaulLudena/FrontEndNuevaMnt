@@ -1,6 +1,5 @@
 import { Dialog, Transition } from '@headlessui/react'
-import { Fragment } from 'react'
-import { useState } from 'react'
+import { Fragment, useState } from 'react'
 import { BsFillPlusCircleFill } from 'react-icons/bs'
 import { reusableStyles } from '../../../../../../styles/styles'
 import Course_module_item from './course_module_item'
@@ -30,9 +29,8 @@ export default function Course_builder_module({ update, register, fields, append
     setIsOpen(false)
     //nombre del arreglo que se creara
     register('modulos_curso')
-    //definicion de la estructura del objeto que se va a agregar
+    //definicion de la estructura del objeto que se va a agregar, inicialmente los valores estan vacios
     append({ moduleName, moduleDescription, lessons: [] })
-
     setDisableState(true)
   }
   return (
