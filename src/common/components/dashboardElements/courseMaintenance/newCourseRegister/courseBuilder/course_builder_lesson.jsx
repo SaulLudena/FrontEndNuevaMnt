@@ -112,7 +112,7 @@ export default function course_builder_lesson({ fields, update, ModuleIndex, mod
                             <input
                               type="file"
                               className="absolute w-full h-full border-2 border-red-600 opacity-0 cursor-pointer"
-                              accept="image/png, image/gif, image/jpeg"
+                              accept=".jpg, .jpeg, .png "
                               onChange={(e) => {
                                 handleLessonImagePreview(e), setLesson({ ...lesson, leccion_imagen: e.target.files[0] })
                               }}

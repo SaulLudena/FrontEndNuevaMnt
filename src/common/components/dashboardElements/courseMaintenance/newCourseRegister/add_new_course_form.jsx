@@ -34,16 +34,39 @@ export default function TabNav() {
   })
 
   const onSubmit = async (data) => {
-    /*modular la variable nuevamente para solamente importarla, debo crear 
-    el archivo correspondiente */
     console.log(data)
-    //console.log(data.thumbnail_curso[0])
-    const nuevamntToken = Cookies.get('nuevamenteToken')
-    const CourseObject = {
-      data,
-      nuevamntToken,
+    const formData = new FormData()
+    for (const [key, value] of Object.entries(data)) {
+      if (key === 'modulos_curso') {
+        for (const modulo of value) {
+          for (const leccion of modulo.lessons) {
+            if (leccion.leccion_imagen) {
+              // Verifica si es un solo archivo o una lista de archivos
+              if (leccion.leccion_imagen instanceof FileList) {
+                for (let i = 0; i < leccion.leccion_imagen.length; i++) {
+                  formData.append('leccion_imagen', leccion.leccion_imagen[i])
+                }
+              } else if (leccion.leccion_imagen instanceof File) {
+                formData.append('leccion_imagen', leccion.leccion_imagen)
+              }
+            }
+          }
+        }
+      } else if (key === 'thumbnail_curso') {
+        formData.append('thumbnail_curso', value[0])
+      } else {
+        formData.append(key, value)
+      }
     }
-    const response = await axios.post('http://localhost:3003/course/addNewCourse', CourseObject, {
+
+    if (data.recursos_curso && data.recursos_curso.length > 0) {
+      for (const recurso of data.recursos_curso) {
+        formData.append('recursos_curso', recurso)
+      }
+    }
+
+    formData.append('nuevamenteToken', Cookies.get('nuevamenteToken'))
+    const response = await axios.post('http://localhost:3003/course/addNewCourse', formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
@@ -58,12 +81,7 @@ export default function TabNav() {
   return (
     <div className="">
       <div className="grid grid-cols-12 gap-10">
-        <form
-          className="flex flex-col col-span-8 gap-5"
-          onSubmit={handleSubmit(onSubmit)}
-          encType="multipart/form-data"
-          method="POST"
-        >
+        <form className="flex flex-col col-span-8 gap-5" onSubmit={handleSubmit(onSubmit)}>
           <div>
             <div className="h-auto ">
               <button
