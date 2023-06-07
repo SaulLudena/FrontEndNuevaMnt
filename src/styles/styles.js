@@ -6,6 +6,8 @@ export const reusableStyles = {
   formAlerts: 'text-xs text-pink-700 break-words px-2 py-1 rounded-lg bg-rose-100 ',
   button: 'text-center text-sm bg-[#FFF409] p-4 rounded-lg text-gray-700 font-bold hover:shadow-md transition',
   redButton: 'text-center text-sm bg-rose-400 p-4 rounded-lg text-gray-900 font-bold hover:shadow-md transition',
+  buttonDisabled: 'text-center text-sm bg-gray-100 p-4 rounded-lg text-gray-500 font-bold ',
+  greenButton: 'text-center text-sm bg-emerald-400 p-4 rounded-lg  font-bold hover:shadow-md transition bg-[#4BFF9E] ',
   disclosureItem:
     'flex w-full justify-between border-[#F7F7F7] border bg-white rounded-lg focus:bg-white p-5  text-left text-sm font-medium focus:outline-none  focus-visible:ring-opacity-75',
   inputFormForCourseMaintenance:

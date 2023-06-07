@@ -24,7 +24,6 @@ export default function DashboardElements() {
         const response = await axios.post('http://localhost:3003/user/validateUserType', data)
         const myInfo = response.data.userInfoDashboard
         setUser(myInfo)
-        console.log(user)
       } catch (error) {
         console.log(error)
       }

@@ -1,6 +1,9 @@
 import { Dialog, Transition } from '@headlessui/react'
 import { Fragment, useState } from 'react'
 import { BsFillPlusCircleFill, BsImageAlt } from 'react-icons/bs'
+import { AiFillLock } from 'react-icons/ai'
+import { BiWorld } from 'react-icons/bi'
+import { GrClose } from 'react-icons/gr'
 import { reusableStyles } from '../../../../../../styles/styles'
 import Course_lesson_item from './course_lesson_item'
 
@@ -76,8 +79,19 @@ export default function course_builder_lesson({ fields, update, ModuleIndex, mod
                   leaveTo="opacity-0 scale-95"
                 >
                   <Dialog.Panel className="w-full max-w-md p-6 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
-                    <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900">
+                    <Dialog.Title
+                      as="h3"
+                      className="text-lg font-medium leading-6 text-gray-900 flex justify-between items-center"
+                    >
                       Registro de leccion
+                      <div
+                        className="p-3 hover:bg-gray-200 rounded-full cursor-pointer"
+                        onClick={() => {
+                          closeModal()
+                        }}
+                      >
+                        <GrClose className="" />
+                      </div>
                     </Dialog.Title>
                     <div className="mt-2">
                       <div className="grid gap-3">
@@ -86,6 +100,7 @@ export default function course_builder_lesson({ fields, update, ModuleIndex, mod
                           <input
                             type="text"
                             className={reusableStyles.inputFormForCourseMaintenance}
+                            value={lesson.leccion_titulo}
                             onChange={(e) => {
                               setLesson({ ...lesson, leccion_titulo: e.target.value })
                             }}
@@ -101,6 +116,23 @@ export default function course_builder_lesson({ fields, update, ModuleIndex, mod
                             value={lesson.leccion_descripcion}
                             onChange={(e) => setLesson({ ...lesson, leccion_descripcion: e.target.value })}
                           />
+                        </div>
+                        <div className="grid gap-2">
+                          <p>Modo de visualizacion</p>
+                          <div className="grid grid-cols-2">
+                            <label className="col-span-1  flex flex-col text-center  border-2 border-emerald-300 rounded-tl-xl rounded-bl-xl bg-emerald-50">
+                              <span className="flex justify-center items-center gap-2 p-2 border-2 border-b-0 rounded-tl-lg bg-emerald-300 border-emerald-300">
+                                Solo para alumnos <AiFillLock />
+                              </span>
+                              <input type="radio" name="radio" defaultChecked className="w-[100%] h-[2em] my-4" />
+                            </label>
+                            <label className="col-span-1  flex flex-col text-center  border-2 border-cyan-300 rounded-tr-xl rounded-br-xl bg-cyan-50">
+                              <span className="flex justify-center items-center gap-2 p-2 border-2 border-b-0 rounded-tr-lg bg-cyan-300 border-cyan-300">
+                                Publica <BiWorld />
+                              </span>
+                              <input type="radio" name="radio" className="w-[100%] h-[2em] my-4" />
+                            </label>
+                          </div>
                         </div>
                         <div className="grid gap-2">
                           <p>Imagen destacada</p>

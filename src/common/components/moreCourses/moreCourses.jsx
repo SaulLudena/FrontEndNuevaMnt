@@ -65,7 +65,11 @@ export default function moreCourses({ coursesToBuy }) {
                       )}
                     </div>
                     <div className="flex flex-col justify-around w-full">
-                      <h1 className="text-2xl font-bold ">{courseToBuy.nombre_curso}</h1>
+                      <h1 className="text-2xl font-bold ">
+                        {courseToBuy.nombre_curso.length <= 0 || courseToBuy.nombre_curso === ''
+                          ? 'Sin titulo'
+                          : courseToBuy.nombre_curso}
+                      </h1>
                       <p className="font-medium">
                         <strong>Personas inscritas :</strong> {23}
                       </p>

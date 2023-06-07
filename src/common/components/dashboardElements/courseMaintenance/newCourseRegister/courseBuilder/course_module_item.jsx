@@ -5,6 +5,7 @@ import { VscSymbolStructure } from 'react-icons/vsc'
 import { reusableStyles } from '../../../../../../styles/styles'
 import Course_builder_lesson from './course_builder_lesson'
 import { useEffect, useState, Fragment } from 'react'
+import { GrClose } from 'react-icons/gr'
 
 export default function course_module_item({
   update,
@@ -94,7 +95,7 @@ export default function course_module_item({
                 >
                   <Dialog.Panel className="w-full max-w-md p-6 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
                     <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900">
-                      ¿Deseas eliminar este modulo?
+                      ¿Deseas eliminar el modulo '{item.moduleName}' ?
                     </Dialog.Title>
                     <div className="flex justify-between mt-10">
                       <button
@@ -149,8 +150,19 @@ export default function course_module_item({
                   leaveTo="opacity-0 scale-95"
                 >
                   <Dialog.Panel className="w-full max-w-md p-6 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
-                    <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900">
+                    <Dialog.Title
+                      as="h3"
+                      className="text-lg font-medium leading-6 text-gray-900 flex justify-between items-center"
+                    >
                       Editando el modulo
+                      <div
+                        className="p-3 hover:bg-gray-200 rounded-full cursor-pointer"
+                        onClick={() => {
+                          closeModalEdit()
+                        }}
+                      >
+                        <GrClose />
+                      </div>
                     </Dialog.Title>
                     <div className="mt-2">
                       <div className="grid gap-3">

@@ -3,6 +3,7 @@ import { Fragment, useState } from 'react'
 import { BsFillPlusCircleFill } from 'react-icons/bs'
 import { reusableStyles } from '../../../../../../styles/styles'
 import Course_module_item from './course_module_item'
+import { GrClose } from 'react-icons/gr'
 
 export default function Course_builder_module({ update, register, fields, append, remove, setValue }) {
   //estados para el modal y para el nombre del modulo
@@ -63,8 +64,19 @@ export default function Course_builder_module({ update, register, fields, append
                   leaveTo="opacity-0 scale-95"
                 >
                   <Dialog.Panel className="w-full max-w-md p-6 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
-                    <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900">
+                    <Dialog.Title
+                      as="h3"
+                      className="text-lg font-medium leading-6 text-gray-900 flex justify-between items-center"
+                    >
                       Registro de modulo
+                      <div
+                        className="p-3 hover:bg-gray-200 rounded-full cursor-pointer"
+                        onClick={() => {
+                          closeModal()
+                        }}
+                      >
+                        <GrClose />
+                      </div>
                     </Dialog.Title>
 
                     <div className="mt-2">
@@ -95,18 +107,18 @@ export default function Course_builder_module({ update, register, fields, append
                       <button
                         type="submit"
                         disabled={disableState}
-                        className={reusableStyles.button}
-                        onClick={closeModal}
+                        className={reusableStyles.greenButton}
+                        onClick={createNewModule}
                       >
-                        Cancelar
+                        Guardar
                       </button>
                       <button
                         type="submit"
                         disabled={disableState}
                         className={reusableStyles.button}
-                        onClick={createNewModule}
+                        onClick={closeModal}
                       >
-                        Guardar
+                        Cancelar
                       </button>
                     </div>
                   </Dialog.Panel>

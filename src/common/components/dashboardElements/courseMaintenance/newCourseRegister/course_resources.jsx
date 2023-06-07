@@ -14,7 +14,7 @@ export default function Course_resources({ appendResource, removeResource }) {
     for (let i = 0; i < event.target.files.length; i++) {
       newFiles.push(event.target.files[i])
     }
-    setUploadedFiles(newFiles)
+    setUploadedFiles((prevFiles) => [...prevFiles, ...newFiles])
     appendResource(newFiles)
   }
 

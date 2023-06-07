@@ -35,9 +35,11 @@ export default function TabNav() {
 
   const onSubmit = async (data) => {
     console.log(data)
+    setDisableButton(true)
     const formData = new FormData()
     for (const [key, value] of Object.entries(data)) {
       if (key === 'modulos_curso') {
+        formData.append('modulos_curso', JSON.stringify(value)) // Convertir el arreglo a una cadena JSON
         for (const modulo of value) {
           for (const leccion of modulo.lessons) {
             if (leccion.leccion_imagen) {
@@ -52,29 +54,34 @@ export default function TabNav() {
             }
           }
         }
+      } else if (key === 'modulos_curso') {
+        formData.append('modulos_curso', JSON.stringify(value)) // Convertir el arreglo a una cadena JSON
       } else if (key === 'thumbnail_curso') {
         formData.append('thumbnail_curso', value[0])
       } else {
         formData.append(key, value)
       }
     }
-
     if (data.recursos_curso && data.recursos_curso.length > 0) {
-      for (const recurso of data.recursos_curso) {
-        formData.append('recursos_curso', recurso)
+      for (let i = 0; i < data.recursos_curso.length; i++) {
+        formData.append('recursos_curso', data.recursos_curso[i])
       }
     }
-
     formData.append('nuevamenteToken', Cookies.get('nuevamenteToken'))
-    const response = await axios.post('http://localhost:3003/course/addNewCourse', formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    })
-    const { message, status } = response.data
-    if ((status === 200) & (message === 'Curso agregado correctamente')) {
-      setDisableButton(false)
-      //wwindow.location.href = '/dashboard/zonaDeMentores/'
+
+    try {
+      const response = await axios.post('http://localhost:3003/course/addNewCourse', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      })
+      const { message, status } = response.data
+      if ((status === 200) & (message === 'Curso agregado correctamente')) {
+        window.location.href = '/dashboard/zonaDeMentores/'
+      }
+      console.log(message)
+    } catch (error) {
+      console.log(error)
     }
   }
 
@@ -85,7 +92,11 @@ export default function TabNav() {
           <div>
             <div className="h-auto ">
               <button
-                className="px-10 py-4 flex items-center gap-3 justify-center rounded-lg bg-[#4BFF9E]"
+                className={
+                  !disableButton
+                    ? `px-10 py-4 flex items-center gap-3 justify-center rounded-lg bg-[#4BFF9E] shadow-sm`
+                    : `px-10 py-4 flex items-center gap-3 justify-center rounded-lg bg-[#c3fdde]`
+                }
                 disabled={disableButton}
               >
                 <AiFillCheckCircle /> Publicar curso
