@@ -64,6 +64,7 @@ export default function View_course_course_modules_lessons({ getCourseById }) {
                                       leave="transition duration-40 ease-in-out"
                                       leaveFrom="transform scale-100 opacity-100"
                                       leaveTo="transform scale-95 opacity-0"
+                                      key={leccion.id_leccion}
                                     >
                                       <Disclosure.Panel className="px-5 text-sm ">
                                         <div className="flex flex-col gap-2 mt-3 ">

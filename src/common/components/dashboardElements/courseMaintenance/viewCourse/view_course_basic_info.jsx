@@ -56,7 +56,7 @@ export default function View_course_basic_info({ getCourseById }) {
                 </div>
 
                 <div className="grid gap-3">
-                  <p className="font-medium">Selecciona una categoria</p>
+                  <p className="font-medium">Categoria del curso</p>
 
                   <input
                     type="text"
@@ -69,10 +69,14 @@ export default function View_course_basic_info({ getCourseById }) {
                 </div>
                 <div className="grid gap-3">
                   <p className="font-medium">Tipo de costo del curso</p>
-                  <div className=" gap-5">
+                  <div className="gap-5 ">
                     {getCourseById.tipo_precio_curso === '0' ? (
                       <div htmlFor="field-wind" className={reusableStyles.inputPriceFree}>
                         <p>Gratis</p>
+                      </div>
+                    ) : getCourseById.tipo_precio_curso === 'null' ? (
+                      <div htmlFor="field-wind" className={reusableStyles.inputFormForCourseMaintenanceDisabled}>
+                        <p>Sin establecer</p>
                       </div>
                     ) : (
                       <div className="flex flex-col gap-3">

@@ -28,13 +28,13 @@ export default function AllCourses() {
         <h1 className="text-3xl font-bold">Bienvenido a tu zona de mentores</h1>
       </div>
       <div className="flex items-center gap-10">
-        <Link href="/dashboard" className=" bg-white rounded-xl hover:shadow-lg transition duration-200">
+        <Link href="/dashboard" className="transition duration-200 bg-white  rounded-xl hover:shadow-lg">
           <div className="flex items-center ">
-            <div className="h-full flex ">
-              <div className="rounded-l-xl p-1 bg-emerald-300  h-24"></div>
+            <div className="flex h-full ">
+              <div className="h-24 p-1 rounded-l-xl bg-emerald-300"></div>
             </div>
 
-            <div className="py-5 px-10 ">
+            <div className="px-5 py-5 ">
               <GrReturn size={50} />
             </div>
           </div>
@@ -44,7 +44,7 @@ export default function AllCourses() {
         </div>
       </div>
       {/*
-      <div className="flex justify-between items-center">
+      <div className="flex items-center justify-between">
         <h1 className="text-xl ">Tus cursos creados</h1>
         <div>
           <input type="text" className={reusableStyles.inputFormForCourseMaintenance} placeholder="Busca tus cursos" />
