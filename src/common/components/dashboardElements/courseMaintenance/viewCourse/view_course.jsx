@@ -3,11 +3,15 @@ import Cookies from 'js-cookie'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 
-import { reusableStyles } from '../../../../../styles/styles'
-import { BiSolidGraduation } from 'react-icons/bi'
-import { MdUpdate } from 'react-icons/md'
+import CourseDetailTitleViewCourse from './courseDetailTitleViewCourse'
+import CourseGoalViewCourse from './courseGoalViewCourse'
+import CourseProgressDetailViewCourse from './courseProgresViewCourse'
+import CourseReviewViewCourse from './courseReviewsViewCourse'
+import CourseStartViewCourse from './courseStartViewCourse'
+import CourseVideoModulesViewCourse from './courseVideoModulesViewCourse'
+import QuestionsAndAnswersViewCourse from './questionsAndAnswersViewCourse'
 
-export default function ViewCourse() {
+export default function view_course() {
   const router = useRouter()
   const { idCurso } = router.query
   const [getCourseById, setGetCourseById] = useState({})
@@ -31,69 +35,19 @@ export default function ViewCourse() {
     }
   }, [idCurso])
 
-  /*recuperar el id, llamar el detalle del curso y  */
   return (
-    <div className="">
-      <div className="grid grid-cols-12 gap-10">
-        <div className="flex flex-col col-span-12 gap-5">
-          <div className="grid gap-2">
-            <div className="grid gap-2">
-              <p className="text-3xl font-bold">Marketing para networkers</p>
-              <p>Categoria: Marketing</p>
-            </div>
-            <div className="grid grid-cols-12 gap-10 ">
-              <div className="col-span-8 ">
-                <div>
-                  <img
-                    src="http://localhost:3003/images/course_images/1686330726436-Frame 69.png"
-                    alt="image not working"
-                    className="w-full rounded-xl"
-                  />
-                </div>
-                <div>
-                  <ul>
-                    <li>Informacion del curso</li>
-                    <li>Reseñas</li>
-                    <li>Recursos</li>
-                  </ul>
-                </div>
-              </div>
-              <div className="grid col-span-4 gap-10 grid-wos-6">
-                <div className="grid gap-5 p-10 bg-white ">
-                  <p className="text-xl font-bold ">Progreso del curso</p>
-                  <div>0/0 lecciones</div>
-                  <button className={reusableStyles.button}>Completar curso</button>
-                </div>
-                <div className="grid gap-5 p-10 bg-white">
-                  <span>
-                    <p>0 total de inscritos</p>
-                  </span>
-                  <span>
-                    <p>Actualizado 9, de junio de 2023</p>
-                  </span>
-                </div>
-                <div className="grid gap-5 p-10 bg-white">
-                  <p>Un curso de</p>
-                  <div className="flex items-center gap-2">
-                    <img
-                      src="http://localhost:3003/images/course_images/1686330726436-Frame 69.png"
-                      alt=""
-                      className="rounded-full w-14 h-14"
-                    />
-                    <p>Saul cornejo</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          {/*<View_course_basic_info getCourseById={getCourseById} />
-            <View_course_video_preview getCourseById={getCourseById} />
-            <View_course_course_modules_lessons getCourseById={getCourseById} />
-            <View_course_resources getCourseById={getCourseById} />
-            <Course_video_preview />
-            <Course_builder />
-            <Course_resources />
-            <Course_extra_info /> */}
+    <div className="flex flex-1 w-full">
+      <div className="bg-[#F7F7F7]  rounded-xl h-full flex flex-col gap-10 overflow-y-scroll scroller w-full ">
+        <div className="grid lg:grid-cols-2  2xl:grid-cols-4  2xl:grid-rows-auto  gap-10">
+          <CourseDetailTitleViewCourse courseDetail={getCourseById} />
+          <QuestionsAndAnswersViewCourse courseDetail={getCourseById} />
+          <CourseProgressDetailViewCourse courseDetail={getCourseById} />
+          <CourseGoalViewCourse courseDetail={getCourseById} />
+          <CourseReviewViewCourse courseDetail={getCourseById} />
+        </div>
+        <div className="grid lg:grid-cols-2  2xl:grid-cols-4  2xl:grid-rows-auto  gap-10">
+          <CourseVideoModulesViewCourse courseDetail={getCourseById} />
+          <CourseStartViewCourse courseDetail={getCourseById} />
         </div>
       </div>
     </div>
