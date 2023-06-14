@@ -11,7 +11,7 @@ const courseData = [
       {
         lessonId: 1,
         title: 'Introduccion',
-        lessonVideoUrl: 'https://player.vimeo.com/video/253989945',
+        lessonVideoUrl: 'https://vimeo.com/253989945',
         posterVideo: 'https://images.genius.com/e7bc4bc0ad72f28752e27630299d2442.700x700x1.jpg',
       },
       {

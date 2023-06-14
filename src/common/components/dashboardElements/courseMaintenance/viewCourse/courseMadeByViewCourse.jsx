@@ -1,13 +1,11 @@
+import Link from 'next/link'
 import React from 'react'
 import { AiOutlineArrowUp } from 'react-icons/ai'
-import Link from 'next/link'
-export default function CourseReviewsViewCourse() {
+
+export default function CourseMadeByViewCourse() {
   return (
-    <Link
-      href={``}
-      className="p-5 bg-white rounded-xl 2xl:col-span-1 lg:col-span-2 hover:shadow-xl transition duration-200 border-2 border-black"
-    >
-      <div className="flex flex-col justify-between h-full">
+    <Link href={``} className=" bg-white ">
+      <div className="flex flex-col justify-between h-full p-5 bg-white rounded-xl">
         <div className="flex justify-between ">
           <p className="font-bold text-xl">Reseñas del curso</p>
           <div>

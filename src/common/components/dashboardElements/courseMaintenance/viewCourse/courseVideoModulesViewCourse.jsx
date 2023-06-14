@@ -29,7 +29,13 @@ export default function courseVideoModulesViewCourse({ courseDetail }) {
                               <p>{leccion.nombre_leccion}</p>
                             </div>
                             <div>
-                              <p>01:20:021</p>
+                              <p>
+                                {leccion.duracion_hora_leccion +
+                                  ':' +
+                                  leccion.duracion_minuto_leccion +
+                                  ':' +
+                                  leccion.duracion_segundo_leccion}
+                              </p>
                             </div>
                           </div>
                         )
