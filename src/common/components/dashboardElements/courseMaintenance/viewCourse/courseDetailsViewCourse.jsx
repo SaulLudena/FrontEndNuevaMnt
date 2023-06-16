@@ -1,26 +1,30 @@
 import React from 'react'
-import { AiOutlineArrowUp } from 'react-icons/ai'
+import { AiOutlineFieldNumber } from 'react-icons/ai'
+import { BsFillCalendarDateFill } from 'react-icons/bs'
+export default function courseDetailsViewCourse({ courseDetail }) {
+  const dateObj = new Date(courseDetail.fecha_registro_curso)
+  const formattedDate = `${dateObj.getDate()}/${dateObj.getMonth() + 1}/${dateObj.getFullYear()}`
 
-export default function courseDetailsViewCourse() {
   return (
-    <div href={``} className=" bg-white rounded-xl">
-      <div className="flex flex-col justify-between h-full p-5 bg-white rounded-xl">
+    <div className="h-full bg-white rounded-xl">
+      <div className="relative flex flex-col justify-between h-full p-5 bg-white rounded-xl sm:gap-10">
         <div className="flex justify-between ">
-          <p className="font-bold text-xl">Informacion del curso</p>
-          <div>
-            <div className=" rotate-45 w-10 h-10 flex items-center justify-center rounded-full bg-yellow-400">
-              <AiOutlineArrowUp className="text-black" />
-            </div>
-          </div>
+          <p className="text-xl font-bold ">Datos del curso</p>
         </div>
-        <div className="flex flex-col">
-          <span className="flex items-end">
-            <h1 className="">icon</h1>
-            <p>0 total de inscritos</p>
+        <div className="flex flex-col gap-5 sm:gap-3">
+          <span className="flex items-end gap-2">
+            <AiOutlineFieldNumber size={30} />
+            <span className="flex gap-1">
+              <strong>0</strong>
+              <p> total de inscritos</p>
+            </span>
           </span>
-          <span className="flex items-end">
-            <h1 className="">icon</h1>
-            <p>Junio 13, 2023 Ultima actualizacion</p>
+          <span className="flex items-end gap-2">
+            <BsFillCalendarDateFill size={30} />
+            <span className="flex gap-1">
+              <p>Registrado el </p>
+              <strong>{formattedDate}</strong>
+            </span>
           </span>
         </div>
       </div>

@@ -69,7 +69,7 @@ export default function watchModulesViewCourse({ isOpen }) {
                   window.location.reload()
                 }
               }}
-              className="flex items-center gap-2  p-2"
+              className="flex items-center gap-2 p-2"
             >
               <p>Minimizar</p>
               <AiFillCloseCircle size={35} />
@@ -77,9 +77,9 @@ export default function watchModulesViewCourse({ isOpen }) {
           </div>
         </div>
         <div className=" h-[93%]">
-          <div className=" grid grid-cols-3 gap-10 grid-rows-4  h-full">
-            <div className="bg-white text-black row-span-6 p-5 rounded-lg overflow-y-auto">
-              <div className=" grid gap-3">
+          <div className="grid h-full grid-cols-3 grid-rows-4 gap-10 ">
+            <div className="row-span-6 p-5 overflow-y-auto text-black bg-white rounded-lg">
+              <div className="grid gap-3 ">
                 {courseData.map((course) => {
                   return (
                     <Disclosure as="div" key={course.module}>
@@ -99,14 +99,14 @@ export default function watchModulesViewCourse({ isOpen }) {
                                   key={less.lessonId}
                                 >
                                   <button
-                                    className=" flex w-full"
+                                    className="flex w-full "
                                     onClick={() => {
                                       setVideoSelected(less.lessonVideoUrl)
                                       console.log(`el indice seleccionado es ${index + 1}`)
                                     }}
                                   >
-                                    <div className=" flex justify-between  p-4 w-full items-center  ">
-                                      <div className="flex gap-2 items-center">
+                                    <div className="flex items-center justify-between w-full p-4 ">
+                                      <div className="flex items-center gap-2">
                                         <div className="p-2 rounded-full ">
                                           <BsFillPlayFill />
                                         </div>
@@ -118,7 +118,7 @@ export default function watchModulesViewCourse({ isOpen }) {
                                     </div>
                                   </button>
 
-                                  <div className="flex items-center  w-20 justify-center ">
+                                  <div className="flex items-center justify-center w-20 ">
                                     <input
                                       id="bordered-checkbox-1"
                                       type="checkbox"
@@ -139,32 +139,32 @@ export default function watchModulesViewCourse({ isOpen }) {
               </div>
             </div>
 
-            <div className="col-span-2 row-span-3  justify-center">
+            <div className="justify-center col-span-2 row-span-3">
               <Player width="100%" height="100%" className="rounded-md" fluid={false} src={videoSelected}>
                 <BigPlayButton position="center" />
               </Player>
             </div>
 
-            <div className="bg-white  row-span-3 col-start-2 rounded-xl">
-              <div className="p-5 h-full overflow-y-auto">
+            <div className="col-start-2 row-span-3 bg-white rounded-xl">
+              <div className="h-full p-5 overflow-y-auto">
                 <div className="">
                   <p className="px-5 py-2 bg-[#FFF409] rounded-lg text-black ">Recursos</p>
                 </div>
                 <div className="">
                   <ul className="">
-                    <li className="py-2 px-5 flex justify-between items-center cursor-pointer hover:bg-stone-100 hover:text-black text-stone-400 rounded-xl">
+                    <li className="flex items-center justify-between px-5 py-2 cursor-pointer hover:bg-stone-100 hover:text-black text-stone-400 rounded-xl">
                       <p>Lectura.pdf</p>
                       <AiOutlineCloudDownload size={25} />
                     </li>
-                    <li className="py-2 px-5 flex justify-between items-center cursor-pointer hover:bg-stone-100 hover:text-black text-stone-400 rounded-xl">
+                    <li className="flex items-center justify-between px-5 py-2 cursor-pointer hover:bg-stone-100 hover:text-black text-stone-400 rounded-xl">
                       <p>Lectura.pdf</p>
                       <AiOutlineCloudDownload size={25} />
                     </li>
-                    <li className="py-2 px-5 flex justify-between items-center cursor-pointer hover:bg-stone-100 hover:text-black text-stone-400 rounded-xl">
+                    <li className="flex items-center justify-between px-5 py-2 cursor-pointer hover:bg-stone-100 hover:text-black text-stone-400 rounded-xl">
                       <p>Lectura.pdf</p>
                       <AiOutlineCloudDownload size={25} />
                     </li>
-                    <li className="py-2 px-5 flex justify-between items-center cursor-pointer hover:bg-stone-100 hover:text-black text-stone-400 rounded-xl">
+                    <li className="flex items-center justify-between px-5 py-2 cursor-pointer hover:bg-stone-100 hover:text-black text-stone-400 rounded-xl">
                       <p>Lectura.pdf</p>
                       <AiOutlineCloudDownload size={25} />
                     </li>
@@ -172,14 +172,14 @@ export default function watchModulesViewCourse({ isOpen }) {
                 </div>
               </div>
             </div>
-            <div className="bg-white  row-span-3 col-start-3 rounded-xl">
-              <div className="p-5 h-full overflow-y-auto">
+            <div className="col-start-3 row-span-3 bg-white rounded-xl">
+              <div className="h-full p-5 overflow-y-auto">
                 <div className="">
                   <p className="px-5 py-2 bg-[#FFF409] rounded-lg text-black ">Preguntas y respuestas</p>
                 </div>
                 <div className="">
                   <ul className="pt-2">
-                    <li className="py-2 px-5 flex gap-5 items-start  text-black  ">
+                    <li className="flex items-start gap-5 px-5 py-2 text-black ">
                       <img
                         src="https://images.genius.com/e7bc4bc0ad72f28752e27630299d2442.700x700x1.jpg"
                         className="w-10 h-10 rounded-full"
@@ -187,13 +187,13 @@ export default function watchModulesViewCourse({ isOpen }) {
                       />
                       <div>
                         <span className="flex items-end gap-3">
-                          <h1 className="font-bold text-lg">Freddy Ramirez</h1>
+                          <h1 className="text-lg font-bold">Freddy Ramirez</h1>
                           <p className="text-[#a9a9a9] text-sm">22/01/2023</p>
                         </span>
                         <p className="font-light">Tengo un par de preguntas respecto al curso y son las siguientes</p>
                       </div>
                     </li>
-                    <li className="py-2 px-5 flex gap-5 items-start  text-black  ">
+                    <li className="flex items-start gap-5 px-5 py-2 text-black ">
                       <img
                         src="https://images.genius.com/e7bc4bc0ad72f28752e27630299d2442.700x700x1.jpg"
                         className="w-10 h-10 rounded-full"
@@ -201,13 +201,13 @@ export default function watchModulesViewCourse({ isOpen }) {
                       />
                       <div>
                         <span className="flex items-end gap-3">
-                          <h1 className="font-bold text-lg">Freddy Ramirez</h1>
+                          <h1 className="text-lg font-bold">Freddy Ramirez</h1>
                           <p className="text-[#a9a9a9] text-sm">22/01/2023</p>
                         </span>
                         <p className="font-light">Tengo un par de preguntas respecto al curso y son las siguientes</p>
                       </div>
                     </li>
-                    <li className="py-2 px-5 flex gap-5 items-start  text-black  ">
+                    <li className="flex items-start gap-5 px-5 py-2 text-black ">
                       <img
                         src="https://images.genius.com/e7bc4bc0ad72f28752e27630299d2442.700x700x1.jpg"
                         className="w-10 h-10 rounded-full"
@@ -215,13 +215,13 @@ export default function watchModulesViewCourse({ isOpen }) {
                       />
                       <div>
                         <span className="flex items-end gap-3">
-                          <h1 className="font-bold text-lg">Freddy Ramirez</h1>
+                          <h1 className="text-lg font-bold">Freddy Ramirez</h1>
                           <p className="text-[#a9a9a9] text-sm">22/01/2023</p>
                         </span>
                         <p className="font-light">Tengo un par de preguntas respecto al curso y son las siguientes</p>
                       </div>
                     </li>
-                    <li className="py-2 px-5 flex gap-5 items-start  text-black  ">
+                    <li className="flex items-start gap-5 px-5 py-2 text-black ">
                       <img
                         src="https://images.genius.com/e7bc4bc0ad72f28752e27630299d2442.700x700x1.jpg"
                         className="w-10 h-10 rounded-full"
@@ -229,13 +229,13 @@ export default function watchModulesViewCourse({ isOpen }) {
                       />
                       <div>
                         <span className="flex items-end gap-3">
-                          <h1 className="font-bold text-lg">Freddy Ramirez</h1>
+                          <h1 className="text-lg font-bold">Freddy Ramirez</h1>
                           <p className="text-[#a9a9a9] text-sm">22/01/2023</p>
                         </span>
                         <p className="font-light">Tengo un par de preguntas respecto al curso y son las siguientes</p>
                       </div>
                     </li>
-                    <li className="py-2 px-5 flex gap-5 items-start  text-black  ">
+                    <li className="flex items-start gap-5 px-5 py-2 text-black ">
                       <img
                         src="https://images.genius.com/e7bc4bc0ad72f28752e27630299d2442.700x700x1.jpg"
                         className="w-10 h-10 rounded-full"
@@ -243,7 +243,7 @@ export default function watchModulesViewCourse({ isOpen }) {
                       />
                       <div>
                         <span className="flex items-end gap-3">
-                          <h1 className="font-bold text-lg">Freddy Ramirez</h1>
+                          <h1 className="text-lg font-bold">Freddy Ramirez</h1>
                           <p className="text-[#a9a9a9] text-sm">22/01/2023</p>
                         </span>
                         <p className="font-light">Tengo un par de preguntas respecto al curso y son las siguientes</p>

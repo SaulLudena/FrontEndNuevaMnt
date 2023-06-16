@@ -6,13 +6,13 @@ import { useEffect, useState } from 'react'
 import CourseDetailTitleViewCourse from './courseDetailTitleViewCourse'
 import CourseIntroductoryVideoViewCourse from './courseIntroductoryVideoViewCourse'
 import CourseGoalViewCourse from './courseGoalViewCourse'
-import CourseProgressDetailViewCourse from './courseProgresViewCourse'
-import CourseReviewViewCourse from './courseReviewsViewCourse'
-import CourseStartViewCourse from './courseStartViewCourse'
-import CourseVideoModulesViewCourse from './courseVideoModulesViewCourse'
-import QuestionsAndAnswersViewCourse from './questionsAndAnswersViewCourse'
 import CourseMadeByViewCourse from './courseMadeByViewCourse'
 import CourseDetailsViewCourse from './courseDetailsViewCourse'
+import CourseResourcesViewCourse from './courseResourcesViewCourse'
+import QuestionsAndAnswersViewCourse from './questionsAndAnswersViewCourse'
+import CoursStartViewCourse from './courseStartViewCourse'
+import CourseProgressViewCourse from './courseProgresViewCourse'
+import CourseVideoModulesViewCourse from './courseVideoModulesViewCourse'
 export default function view_course() {
   const router = useRouter()
   const { idCurso } = router.query
@@ -40,59 +40,48 @@ export default function view_course() {
   return (
     <div className="flex flex-1 w-full">
       <div className="bg-[#F7F7F7]  rounded-xl h-full flex flex-col gap-10 overflow-y-scroll scroller w-full ">
-        <div className="grid lg:grid-cols-1  2xl:grid-cols-2  2xl:grid-rows-auto  gap-10 ">
-          <div className="col-span-1 gap-10 grid grid-cols-2">
+        <div className="grid gap-10 lg:grid-cols-1 2xl:grid-cols-2 2xl:grid-rows-auto ">
+          <div className="grid grid-cols-2 col-span-1 gap-10">
             <div className="col-span-2">
               <CourseDetailTitleViewCourse courseDetail={getCourseById} />
             </div>
-            <div className="col-span-1">
-              <CourseMadeByViewCourse />
+            <div className="sm:col-span-2 lg:col-span-1">
+              <CourseMadeByViewCourse courseDetail={getCourseById} />
             </div>
-            <div className="col-span-1">
-              <CourseDetailsViewCourse />
+            <div className="lg:col-span-1 sm:col-span-2">
+              <CourseDetailsViewCourse courseDetail={getCourseById} />
+            </div>
+          </div>
+          <div className="">
+            <CourseIntroductoryVideoViewCourse courseDetail={getCourseById} />
+          </div>
+        </div>
+        <div className="grid gap-10 lg:grid-cols-1 2xl:grid-cols-2 2xl:grid-rows-auto ">
+          <div className="grid grid-cols-2 col-span-1 gap-10 ">
+            <div className="col-span-2 ">
+              <CourseGoalViewCourse courseDetail={getCourseById} />
+            </div>
+            <div className="xl:col-span-1 lg:col-span-2">
+              {/*aqui empieza el componente*/}
+              <CourseResourcesViewCourse />
+            </div>
+            <div className=" xl:col-span-1 lg:col-span-2">
+              <QuestionsAndAnswersViewCourse />
+            </div>
+          </div>
+          <div className="">
+            <CoursStartViewCourse />
+          </div>
+        </div>
+        <div className="grid gap-10 lg:grid-cols-2 2xl:grid-cols-2 2xl:grid-rows-auto">
+          <div className="grid grid-cols-2 col-span-1 gap-10 bg-white">
+            <div className="col-span-2 ">
+              <CourseProgressViewCourse courseDetail={getCourseById} />
             </div>
           </div>
           <div className="border-2 border-black ">
-            <CourseIntroductoryVideoViewCourse />
+            <CourseVideoModulesViewCourse courseDetail={getCourseById} />
           </div>
-          {/*
-          <CourseDetailTitleViewCourse courseDetail={getCourseById} />
-          <CourseIntroductoryVideoViewCourse courseDetail={getCourseById} />
-          <QuestionsAndAnswersViewCourse courseDetail={getCourseById} />
-          <CourseProgressDetailViewCourse courseDetail={getCourseById} />
-          <CourseGoalViewCourse courseDetail={getCourseById} />
-          <CourseReviewViewCourse courseDetail={getCourseById} />
-      <div className="grid lg:grid-cols-2  2xl:grid-cols-4  2xl:grid-rows-auto  gap-10">
-          <CourseVideoModulesViewCourse courseDetail={getCourseById} />
-          <CourseStartViewCourse courseDetail={getCourseById} />
-        </div>
-*/}
-        </div>
-        <div className="grid lg:grid-cols-2  2xl:grid-cols-2  2xl:grid-rows-auto  gap-10 border-2 border-black">
-          <div className="col-span-1 bg-white gap-10 grid grid-cols-2">
-            <div className="border-2 border-black col-span-2">metodologia</div>
-            <div className="border-2 border-black col-span-1">recursos del curso</div>
-            <div className="border-2 border-black col-span1">preguntas y respuestas del curso</div>
-          </div>
-          <div className="border-2 border-black "> video introductorio</div>
-          {/*
-          <CourseDetailTitleViewCourse courseDetail={getCourseById} />
-          <CourseIntroductoryVideoViewCourse courseDetail={getCourseById} />
-          <QuestionsAndAnswersViewCourse courseDetail={getCourseById} />
-          <CourseProgressDetailViewCourse courseDetail={getCourseById} />
-          <CourseGoalViewCourse courseDetail={getCourseById} />
-          <CourseReviewViewCourse courseDetail={getCourseById} />
-      <div className="grid lg:grid-cols-2  2xl:grid-cols-4  2xl:grid-rows-auto  gap-10">
-          <CourseVideoModulesViewCourse courseDetail={getCourseById} />
-          <CourseStartViewCourse courseDetail={getCourseById} />
-        </div>
-*/}
-        </div>
-        <div className="grid lg:grid-cols-2  2xl:grid-cols-2  2xl:grid-rows-auto  gap-10 border-2 border-black">
-          <div className="col-span-1 bg-white gap-10 grid grid-cols-2">
-            <div className="border-2 border-black col-span-2">progreso del curso</div>
-          </div>
-          <div className="border-2 border-black "> modulos y lecciones</div>
         </div>
       </div>
     </div>

@@ -269,7 +269,7 @@ export default function Course_lesson_item({ lessonItem, lessonIndex, setValue, 
           </Dialog>
         </Transition>
       </>
-      <div className="flex justify-between p-3 rounded-lg bg-gray-100 hover:bg-gray-200">
+      <div className="flex justify-between p-3 bg-gray-100 rounded-lg hover:bg-gray-200">
         <div className="flex items-center gap-3">
           <MdPlayLesson />
           <p className="">{lessonItem.leccion_titulo}</p>

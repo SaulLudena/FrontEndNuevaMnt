@@ -3,8 +3,8 @@ import { BsChevronUp, BsFillPlayFill } from 'react-icons/bs'
 
 export default function courseVideoModulesViewCourse({ courseDetail }) {
   return (
-    <div className="bg-white p-5 2xl:col-span-2 lg:col-span-2 overflow-y-scroll scroller h-96 rounded-xl">
-      <div className=" grid gap-3">
+    <div className="p-5 overflow-y-scroll bg-white 2xl:col-span-2 lg:col-span-2 scroller h-96 rounded-xl">
+      <div className="grid gap-3 ">
         {courseDetail.tb_modulo &&
           courseDetail.tb_modulo.map((modulo, index) => {
             return (
@@ -17,12 +17,13 @@ export default function courseVideoModulesViewCourse({ courseDetail }) {
                     </Disclosure.Button>
                     <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500 ">
                       {courseDetail.tb_modulo[index].tb_leccion.map((leccion, index) => {
+                        console.log(leccion)
                         return (
                           <div
-                            className=" flex justify-between p-4 items-center cursor-pointer hover:bg-gray-100"
+                            className="flex items-center justify-between p-4 cursor-pointer hover:bg-gray-100"
                             key={leccion.id_leccion}
                           >
-                            <div className="flex gap-2 items-center">
+                            <div className="flex items-center gap-2">
                               <div className="p-2 rounded-full ">
                                 <BsFillPlayFill />
                               </div>
