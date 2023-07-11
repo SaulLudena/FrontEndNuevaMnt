@@ -5,7 +5,7 @@ import ChartTest from '../components/chartTest/chart'
 export default function bigCardPresentation() {
   return (
     <div className="flex row-span-2 lg:col-span-4 2xl:col-span-3">
-      <div className="w-full p-10 bg-white shadow-xl rounded-xl ">
+      <div className="w-full p-10 bg-white rounded-xl ">
         <div className="flex h-full gap-10 ">
           <div className="flex flex-col justify-between h-full gap-10 text-gray-800 w-96">
             <h1 className="text-3xl font-bold ">La mejor inversión es la educación</h1>

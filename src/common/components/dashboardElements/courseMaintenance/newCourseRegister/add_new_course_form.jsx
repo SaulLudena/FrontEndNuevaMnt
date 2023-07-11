@@ -19,10 +19,12 @@ export default function TabNav() {
     formState: { errors },
   } = useForm()
 
+  //useFieldArray para modulos
   const { fields, append, remove, update } = useFieldArray({
     control,
     name: 'modulos_curso',
   })
+  //useFieldArray para recursos
   const {
     fields: resourceFields,
     append: appendResource,
@@ -77,7 +79,7 @@ export default function TabNav() {
       })
       const { message, status } = response.data
       if ((status === 200) & (message === 'Curso agregado correctamente')) {
-        window.location.href = '/dashboard/zonaDeMentores/'
+        //window.location.href = '/dashboard/zonaDeMentores/'
       }
       console.log(message)
     } catch (error) {
@@ -117,36 +119,6 @@ export default function TabNav() {
               update={update}
               setValue={setValue}
             />
-
-            {/*Menu expandible de google meet (no hay contenido)*/}
-            {/*            <Disclosure>
-              {({ open }) => (
-                <>
-                  <Disclosure.Button className={reusableStyles.disclosureItem}>
-                    {' '}
-                    <span>Google Meet</span>
-                    <BsChevronUp className={`${open ? 'rotate-180 transform' : ''} h-5 w-5 `} />
-                  </Disclosure.Button>
-                  <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500"></Disclosure.Panel>
-                </>
-              )}
-            </Disclosure> */}
-            {/*Menu expandible de zoom meeting (no hay contenido)*/}
-            {/*      <Disclosure>
-              {({ open }) => (
-                <>
-                  <Disclosure.Button className={reusableStyles.disclosureItem}>
-                    <span>Zoom meeting</span>
-                    <BsChevronUp className={`${open ? 'rotate-180 transform' : ''} h-5 w-5 `} />
-                  </Disclosure.Button>
-                  <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500">
-                    If you're unhappy with your purchase for any reason, email us within 90 days and we'll refund you in
-                    full, no questions asked.
-                  </Disclosure.Panel>
-                </>
-              )}
-            </Disclosure> */}
-            {/*Menu expandible de recursos del curso Y PASAR LAS PROPS !!!!!*/}
             <Course_resources
               register={register}
               resourceFields={resourceFields}
@@ -155,7 +127,6 @@ export default function TabNav() {
               updateResource={updateResource}
               setValue={setValue}
             />
-            {/*Menu expandible de datos adicionales Y PASAR LAS PROPS !!!!!*/}
             <Course_extra_info register={register} />
           </div>
         </form>

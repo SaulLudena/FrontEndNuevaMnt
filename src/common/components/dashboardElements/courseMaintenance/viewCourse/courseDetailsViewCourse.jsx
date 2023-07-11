@@ -12,15 +12,15 @@ export default function courseDetailsViewCourse({ courseDetail }) {
           <p className="text-xl font-bold ">Datos del curso</p>
         </div>
         <div className="flex flex-col gap-5 sm:gap-3">
-          <span className="flex items-end gap-2">
-            <AiOutlineFieldNumber size={30} />
+          <span className="flex items-center gap-2">
+            <AiOutlineFieldNumber size={25} />
             <span className="flex gap-1">
               <strong>0</strong>
               <p> total de inscritos</p>
             </span>
           </span>
-          <span className="flex items-end gap-2">
-            <BsFillCalendarDateFill size={30} />
+          <span className="flex items-center gap-2">
+            <BsFillCalendarDateFill size={25} />
             <span className="flex gap-1">
               <p>Registrado el </p>
               <strong>{formattedDate}</strong>

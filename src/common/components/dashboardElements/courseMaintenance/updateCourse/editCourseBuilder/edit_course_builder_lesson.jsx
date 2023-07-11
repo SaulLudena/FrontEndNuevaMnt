@@ -4,10 +4,9 @@ import { BsFillPlusCircleFill, BsImageAlt } from 'react-icons/bs'
 import { AiFillLock } from 'react-icons/ai'
 import { BiWorld } from 'react-icons/bi'
 import { GrClose } from 'react-icons/gr'
+import Edit_course_lesson_item from './edit_course_lesson_item'
 import { reusableStyles } from '../../../../../../styles/styles'
-import Course_lesson_item from './course_lesson_item'
-
-export default function course_builder_lesson({ fields, update, ModuleIndex, moduleItem, setValue }) {
+export default function edit_course_builder_lesson({ fields, update, ModuleIndex, moduleItem, setValue }) {
   //estados para el modal y para el nombre del modulo
   let [isOpen, setIsOpen] = useState(false)
   const [lessonImagePreview, setLessonImagePreview] = useState('')
@@ -83,11 +82,11 @@ export default function course_builder_lesson({ fields, update, ModuleIndex, mod
                   <Dialog.Panel className="w-full max-w-md p-6 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
                     <Dialog.Title
                       as="h3"
-                      className="text-lg font-medium leading-6 text-gray-900 flex justify-between items-center"
+                      className="flex items-center justify-between text-lg font-medium leading-6 text-gray-900"
                     >
                       Registro de leccion
                       <div
-                        className="p-3 hover:bg-gray-200 rounded-full cursor-pointer"
+                        className="p-3 rounded-full cursor-pointer hover:bg-gray-200"
                         onClick={() => {
                           closeModal()
                         }}
@@ -122,8 +121,8 @@ export default function course_builder_lesson({ fields, update, ModuleIndex, mod
                         <div className="grid gap-2">
                           <p>Modo de visualizacion</p>
                           <div className="grid grid-cols-2">
-                            <label className="col-span-1  flex flex-col text-center  border-2 border-emerald-300 rounded-tl-xl rounded-bl-xl bg-emerald-50">
-                              <span className="flex justify-center items-center gap-2 p-2 border-2 border-b-0 rounded-tl-lg bg-emerald-300 border-emerald-300">
+                            <label className="flex flex-col col-span-1 text-center border-2 border-emerald-300 rounded-tl-xl rounded-bl-xl bg-emerald-50">
+                              <span className="flex items-center justify-center gap-2 p-2 border-2 border-b-0 rounded-tl-lg bg-emerald-300 border-emerald-300">
                                 Solo para alumnos <AiFillLock />
                               </span>
                               <input
@@ -137,8 +136,8 @@ export default function course_builder_lesson({ fields, update, ModuleIndex, mod
                                 }}
                               />
                             </label>
-                            <label className="col-span-1  flex flex-col text-center  border-2 border-cyan-300 rounded-tr-xl rounded-br-xl bg-cyan-50">
-                              <span className="flex justify-center items-center gap-2 p-2 border-2 border-b-0 rounded-tr-lg bg-cyan-300 border-cyan-300">
+                            <label className="flex flex-col col-span-1 text-center border-2 border-cyan-300 rounded-tr-xl rounded-br-xl bg-cyan-50">
+                              <span className="flex items-center justify-center gap-2 p-2 border-2 border-b-0 rounded-tr-lg bg-cyan-300 border-cyan-300">
                                 Publica <BiWorld />
                               </span>
                               <input
@@ -255,8 +254,16 @@ export default function course_builder_lesson({ fields, update, ModuleIndex, mod
         <div className="grid gap-2">
           {/*esto es una leccion , aqui tambien hacer el map*/}
           {fields[ModuleIndex].lessons.map((lessonItem, index) => {
+            /*/*         <Course_lesson_item
+                key={index + 1}
+                lessonItem={lessonItem}
+                lessonIndex={index}
+                moduleItem={moduleItem}
+                ModuleIndex={ModuleIndex}
+                setValue={setValue}
+              />*/
             return (
-              <Course_lesson_item
+              <Edit_course_lesson_item
                 key={index + 1}
                 lessonItem={lessonItem}
                 lessonIndex={index}

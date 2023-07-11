@@ -27,8 +27,12 @@ export default function view_course() {
             nuevamntToken: Cookies.get('nuevamenteToken'),
             id_curso: idCurso,
           })
-          setGetCourseById(response.data.getCourseById[0])
-          console.log(response.data.getCourseById[0])
+          if (response.data.getCourseById.length > 0) {
+            setGetCourseById(response.data.getCourseById[0])
+            console.log(response.data.getCourseById[0])
+          } else {
+            window.location.href = '/dashboard'
+          }
         }
       }
       getCourseById()
@@ -63,23 +67,23 @@ export default function view_course() {
             </div>
             <div className="xl:col-span-1 lg:col-span-2">
               {/*aqui empieza el componente*/}
-              <CourseResourcesViewCourse />
+              <CourseResourcesViewCourse courseDetail={getCourseById} />
             </div>
             <div className=" xl:col-span-1 lg:col-span-2">
-              <QuestionsAndAnswersViewCourse />
+              <QuestionsAndAnswersViewCourse courseDetail={getCourseById} />
             </div>
           </div>
           <div className="">
-            <CoursStartViewCourse />
+            <CoursStartViewCourse courseDetail={getCourseById} />
           </div>
         </div>
         <div className="grid gap-10 lg:grid-cols-2 2xl:grid-cols-2 2xl:grid-rows-auto">
-          <div className="grid grid-cols-2 col-span-1 gap-10 bg-white">
+          <div className="grid grid-cols-2 col-span-1 gap-10 ">
             <div className="col-span-2 ">
               <CourseProgressViewCourse courseDetail={getCourseById} />
             </div>
           </div>
-          <div className="border-2 border-black ">
+          <div className="col-span-1 bg-white rounded-xl">
             <CourseVideoModulesViewCourse courseDetail={getCourseById} />
           </div>
         </div>

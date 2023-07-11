@@ -1,32 +1,29 @@
 import { Dialog, Transition } from '@headlessui/react'
-import React, { Fragment, useState, useEffect } from 'react'
-import { BsFillPencilFill, BsImageAlt, BsPencilFill, BsTrash } from 'react-icons/bs'
-import { MdPlayLesson } from 'react-icons/md'
-import { reusableStyles } from '../../../../../../styles/styles'
-import { useFieldArray } from 'react-hook-form'
 import { AiFillLock } from 'react-icons/ai'
 import { BiWorld } from 'react-icons/bi'
 
-export default function Course_lesson_item({ lessonItem, lessonIndex, setValue, ModuleIndex, moduleItem }) {
+import React, { Fragment, useState, useEffect } from 'react'
+import { BsImageAlt, BsPencilFill, BsTrash } from 'react-icons/bs'
+import { MdPlayLesson } from 'react-icons/md'
+import { reusableStyles } from '../../../../../../styles/styles'
+export default function Edit_course_lesson_item({
+  lessonDetail,
+  fields,
+  ModuleIndex,
+  register,
+  update,
+  setValue,
+  item,
+}) {
   let [isOpen, setIsOpen] = useState(false)
   let [isOpenEdit, setIsOpenEdit] = useState(false)
   const [disableState, setDisableState] = useState(false)
-  const [newLessonImagepreview, setNewLessonImagePreview] = useState(lessonItem.leccion_imagen)
+  const closeModalDelete = () => {
+    setIsOpen(false)
+  }
 
-  /*por temas de funcionalidad, decidi manejar los estados de manera independiente y evitar perdida de datos en el proceso de edicion*/
-  const [newLeccionTitulo, setNewLeccionTitulo] = useState(lessonItem.leccion_titulo)
-  const [newLeccionDescripcion, setNewLeccionDescripcion] = useState(lessonItem.leccion_descripcion)
-  const [newLeccionImagen, setNewLeccionImagen] = useState(lessonItem.leccion_imagen)
-  const [newLeccionEnlace, setNewLeccionEnlace] = useState(lessonItem.leccion_enlace)
-  const [newLeccionDuracionHoras, setNewLeccionDuracionHoras] = useState(lessonItem.leccion_duracion_horas)
-  const [newLeccionDuracionMinutos, setNewLeccionDuracionMinutos] = useState(lessonItem.leccion_duracion_minutos)
-  const [newLeccionDuracionSegundos, setNewLeccionDuracionSegundos] = useState(lessonItem.leccion_duracion_segundos)
-  const [newLeccionModoVisualizacion, setNewLeccionModoVisualizacion] = useState(lessonItem.leccion_modo_visualizacion)
-
-  const handleNewLessonImagePreview = (e) => {
-    if (e.target.files && e.target.files.length > 0) {
-      setNewLessonImagePreview(e.target.files[0])
-    }
+  const openModalDelete = () => {
+    setIsOpen(true)
   }
   const openModalEdit = () => {
     setDisableState(false)
@@ -35,37 +32,9 @@ export default function Course_lesson_item({ lessonItem, lessonIndex, setValue, 
   const closeModalEdit = () => {
     setIsOpenEdit(false)
   }
-  const confirmEdit = () => {
-    setIsOpenEdit(false)
-    setValue(`modulos_curso.${ModuleIndex}.lessons.${lessonIndex}.leccion_titulo`, newLeccionTitulo)
-    setValue(`modulos_curso.${ModuleIndex}.lessons.${lessonIndex}.leccion_descripcion`, newLeccionDescripcion)
-    setValue(`modulos_curso.${ModuleIndex}.lessons.${lessonIndex}.leccion_imagen`, newLeccionImagen)
-    setValue(`modulos_curso.${ModuleIndex}.lessons.${lessonIndex}.leccion_enlace`, newLeccionEnlace)
-    setValue(`modulos_curso.${ModuleIndex}.lessons.${lessonIndex}.leccion_duracion_horas`, newLeccionDuracionHoras)
-    setValue(`modulos_curso.${ModuleIndex}.lessons.${lessonIndex}.leccion_duracion_minutos`, newLeccionDuracionHoras)
-    setValue(
-      `modulos_curso.${ModuleIndex}.lessons.${lessonIndex}.leccion_duracion_segundos`,
-      newLeccionDuracionSegundos,
-    )
-    setValue(
-      `modulos_curso.${ModuleIndex}.lessons.${lessonIndex}.leccion_modo_visualizacion`,
-      newLeccionModoVisualizacion,
-    )
-  }
-
-  const closeModalDelete = () => {
-    setIsOpen(false)
-  }
-
-  const openModalDelete = () => {
-    setIsOpen(true)
-  }
-  const confirmDelete = () => {
-    setIsOpen(false)
-    const updatedModuleItem = { ...moduleItem }
-    updatedModuleItem.lessons.splice(lessonIndex, 1)
-    setValue(`modulos_curso.${ModuleIndex}`, updatedModuleItem)
-  }
+  useEffect(() => {
+    //console.log(lessonDetail)
+  }, [])
 
   return (
     <div>
@@ -98,7 +67,7 @@ export default function Course_lesson_item({ lessonItem, lessonIndex, setValue, 
                 >
                   <Dialog.Panel className="w-full max-w-md p-6 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
                     <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900">
-                      ¿Deseas eliminar la leccion '{lessonItem.leccion_titulo}'?
+                      ¿Deseas eliminar la leccion '{lessonDetail.leccion_titulo}'?
                     </Dialog.Title>
                     <div className="flex justify-between mt-10">
                       <button
@@ -162,9 +131,9 @@ export default function Course_lesson_item({ lessonItem, lessonIndex, setValue, 
                           <p>Título de la leccion</p>
                           <input
                             type="text"
-                            defaultValue={newLeccionTitulo}
+                            //defaultValue={newLeccionTitulo}
                             className={reusableStyles.inputFormForCourseMaintenance}
-                            onChange={(e) => setNewLeccionTitulo(e.target.value)}
+                            /*      onChange={(e) => setNewLeccionTitulo(e.target.value)} */
                           />
                         </div>
                         <div className="grid gap-2">
@@ -172,22 +141,22 @@ export default function Course_lesson_item({ lessonItem, lessonIndex, setValue, 
                           <textarea
                             type="text"
                             rows={6}
-                            defaultValue={newLeccionDescripcion}
+                            //defaultValue={newLeccionDescripcion}
                             className={reusableStyles.inputFormForCourseMaintenance}
-                            onChange={(e) => setNewLeccionDescripcion(e.target.value)}
+                            //onChange={(e) => setNewLeccionDescripcion(e.target.value)}
                           />
                         </div>
                         <div className="grid gap-2">
                           <p>Modo de visualizacion</p>
                           <div className="grid grid-cols-2">
-                            <label className="col-span-1  flex flex-col text-center  border-2 border-emerald-300 rounded-tl-xl rounded-bl-xl bg-emerald-50">
-                              <span className="flex justify-center items-center gap-2 p-2 border-2 border-b-0 rounded-tl-lg bg-emerald-300 border-emerald-300">
+                            <label className="flex flex-col col-span-1 text-center border-2 border-emerald-300 rounded-tl-xl rounded-bl-xl bg-emerald-50">
+                              <span className="flex items-center justify-center gap-2 p-2 border-2 border-b-0 rounded-tl-lg bg-emerald-300 border-emerald-300">
                                 Solo para alumnos <AiFillLock />
                               </span>
                               <input
                                 type="radio"
                                 name="tipo_visualizacion"
-                                checked={newLeccionModoVisualizacion == 1}
+                                //checked={newLeccionModoVisualizacion == 1}
                                 className="w-[100%] h-[2em] my-4"
                                 value={1}
                                 onChange={(e) => {
@@ -195,8 +164,8 @@ export default function Course_lesson_item({ lessonItem, lessonIndex, setValue, 
                                 }}
                               />
                             </label>
-                            <label className="col-span-1  flex flex-col text-center  border-2 border-cyan-300 rounded-tr-xl rounded-br-xl bg-cyan-50">
-                              <span className="flex justify-center items-center gap-2 p-2 border-2 border-b-0 rounded-tr-lg bg-cyan-300 border-cyan-300">
+                            <label className="flex flex-col col-span-1 text-center border-2 border-cyan-300 rounded-tr-xl rounded-br-xl bg-cyan-50">
+                              <span className="flex items-center justify-center gap-2 p-2 border-2 border-b-0 rounded-tr-lg bg-cyan-300 border-cyan-300">
                                 Publica <BiWorld />
                               </span>
                               <input
@@ -204,7 +173,7 @@ export default function Course_lesson_item({ lessonItem, lessonIndex, setValue, 
                                 name="tipo_visualizacion"
                                 className="w-[100%] h-[2em] my-4"
                                 value={0}
-                                checked={newLeccionModoVisualizacion == 0}
+                                //checked={newLeccionModoVisualizacion == 0}
                                 onChange={(e) => {
                                   setNewLeccionModoVisualizacion(e.target.value)
                                 }}
@@ -229,12 +198,10 @@ export default function Course_lesson_item({ lessonItem, lessonIndex, setValue, 
                               }}
                             />
                           </div>
-                          {
-                            /*validar que haya una imagen seleccionada */
+                          {/*validar que haya una imagen seleccionada 
                             newLessonImagepreview.length !== 0 ? (
                               <img
-                                /*en el source mediante el objeto URL construimos un enlace con la informacion del input file */
-                                /*reemplazar newLeccion por la previsualizacion de imagenes */
+                     
                                 src={URL.createObjectURL(newLessonImagepreview)}
                                 alt="thumbnail course"
                                 className="object-cover w-full border-2 border-yellow-400 rounded-lg h-36"
@@ -242,14 +209,14 @@ export default function Course_lesson_item({ lessonItem, lessonIndex, setValue, 
                             ) : (
                               <></>
                             )
-                          }
+							*/}
                         </div>
                         <div className="grid gap-2">
                           <p>Enlace del video (vimeo)</p>
                           <input
                             type="text"
                             className={reusableStyles.inputFormForCourseMaintenance}
-                            defaultValue={newLeccionEnlace}
+                            //defaultValue={newLeccionEnlace}
                             onChange={(e) => setNewLeccionEnlace(e.target.value)}
                           />
                         </div>
@@ -261,7 +228,7 @@ export default function Course_lesson_item({ lessonItem, lessonIndex, setValue, 
                                 type="number"
                                 min={0}
                                 className={reusableStyles.inputFormForCourseMaintenance}
-                                defaultValue={newLeccionDuracionHoras}
+                                //defaultValue={newLeccionDuracionHoras}
                                 onChange={(e) => setNewLeccionDuracionHoras(e.target.value)}
                               />
                               <p>Horas</p>
@@ -271,7 +238,7 @@ export default function Course_lesson_item({ lessonItem, lessonIndex, setValue, 
                                 type="number"
                                 min={0}
                                 className={reusableStyles.inputFormForCourseMaintenance}
-                                defaultValue={newLeccionDuracionMinutos}
+                                //defaultValue={newLeccionDuracionMinutos}
                                 onChange={(e) => setNewLeccionDuracionMinutos(e.target.value)}
                               />
                               <p>Minutos</p>
@@ -281,7 +248,7 @@ export default function Course_lesson_item({ lessonItem, lessonIndex, setValue, 
                                 type="number"
                                 min={0}
                                 className={reusableStyles.inputFormForCourseMaintenance}
-                                defaultValue={newLeccionDuracionSegundos}
+                                //defaultValue={newLeccionDuracionSegundos}
                                 onChange={(e) => setNewLeccionDuracionSegundos(e.target.value)}
                               />
 
@@ -314,7 +281,7 @@ export default function Course_lesson_item({ lessonItem, lessonIndex, setValue, 
       <div className="flex justify-between p-3 bg-gray-100 rounded-lg hover:bg-gray-200">
         <div className="flex items-center gap-3">
           <MdPlayLesson />
-          <p className="">{lessonItem.leccion_titulo}</p>
+          <p className="">{lessonDetail.nombre_leccion}</p>
         </div>
         <div className="flex gap-1 ">
           <div

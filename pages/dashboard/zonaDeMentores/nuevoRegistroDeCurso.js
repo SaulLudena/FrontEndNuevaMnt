@@ -7,7 +7,7 @@ export default function nuevoRegistroDeCurso() {
       <Head>
         <title>Nuevamente</title>
       </Head>
-      <div className=" w-full h-screen flex ">
+      <div className="flex w-full h-screen ">
         <Layout>
           <CourseMaintenanceCreate />
         </Layout>

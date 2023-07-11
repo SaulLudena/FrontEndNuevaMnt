@@ -76,22 +76,22 @@ export default function CourseInstructorItem({ registeredCourse }) {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-md p-6 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl border-2">
+                <Dialog.Panel className="w-full max-w-md p-6 overflow-hidden text-left align-middle transition-all transform bg-white border-2 shadow-xl rounded-2xl">
                   <Dialog.Title
                     as="h3"
-                    className="text-lg font-medium leading-6 text-gray-900 flex justify-between items-center"
+                    className="flex items-center justify-between text-lg font-medium leading-6 text-gray-900"
                   >
                     <p>
                       ¿Deseas eliminar el curso '
                       {registeredCourse.nombre_curso.length <= 0 ? (
-                        <span className="select-none text-gray-400">Sin titulo</span>
+                        <span className="text-gray-400 select-none">Sin titulo</span>
                       ) : (
                         registeredCourse.nombre_curso
                       )}
                       '?
                     </p>
                     <div
-                      className="p-3 hover:bg-gray-200 rounded-full cursor-pointer"
+                      className="p-3 rounded-full cursor-pointer hover:bg-gray-200"
                       onClick={() => {
                         closeModalDelete()
                       }}
@@ -99,8 +99,8 @@ export default function CourseInstructorItem({ registeredCourse }) {
                       <GrClose className="" />
                     </div>
                   </Dialog.Title>
-                  <div className="flex justify-between flex-col ">
-                    <div className="my-5 grid gap-2">
+                  <div className="flex flex-col justify-between ">
+                    <div className="grid gap-2 my-5">
                       <p className="text-sm">Digite su correo electronico para confirmar</p>
                       <input
                         type="text"
@@ -143,7 +143,7 @@ export default function CourseInstructorItem({ registeredCourse }) {
           <div className="translate-y-3">
             <h1 className="font-bold text-center">
               {registeredCourse.nombre_curso.length <= 0 ? (
-                <span className="select-none text-gray-400">Sin titulo</span>
+                <span className="text-gray-400 select-none">Sin titulo</span>
               ) : (
                 registeredCourse.nombre_curso
               )}
@@ -160,7 +160,12 @@ export default function CourseInstructorItem({ registeredCourse }) {
                 <AiFillEye />
               </Link>
 
-              <Link href="#" className="p-4 bg-yellow-300 rounded-xl">
+              <Link
+                href={{
+                  pathname: `/dashboard/zonaDeMentores/actualizarCurso/${registeredCourse.id_curso}`,
+                }}
+                className="p-4 bg-yellow-300 rounded-xl"
+              >
                 <BsFillPencilFill />
               </Link>
 
