@@ -3,7 +3,7 @@ import React, { Fragment, useState, useEffect } from 'react'
 import { BsFillPencilFill, BsImageAlt, BsPencilFill, BsTrash } from 'react-icons/bs'
 import { MdPlayLesson } from 'react-icons/md'
 import { reusableStyles } from '../../../../../../styles/styles'
-import { useFieldArray } from 'react-hook-form'
+
 import { AiFillLock } from 'react-icons/ai'
 import { BiWorld } from 'react-icons/bi'
 
@@ -13,7 +13,7 @@ export default function Course_lesson_item({ lessonItem, lessonIndex, setValue, 
   const [disableState, setDisableState] = useState(false)
   const [newLessonImagepreview, setNewLessonImagePreview] = useState(lessonItem.leccion_imagen)
 
-  /*por temas de funcionalidad, decidi manejar los estados de manera independiente y evitar perdida de datos en el proceso de edicion*/
+  /*por temas de funcionalidad, decidi manejar los estados de manera independiente y evitar perdida de datos en el proceso de edicion, aunque la mejor solucion es agregarlos dentro de un use effect y apuntar al objeto lessonItem*/
   const [newLeccionTitulo, setNewLeccionTitulo] = useState(lessonItem.leccion_titulo)
   const [newLeccionDescripcion, setNewLeccionDescripcion] = useState(lessonItem.leccion_descripcion)
   const [newLeccionImagen, setNewLeccionImagen] = useState(lessonItem.leccion_imagen)
@@ -180,8 +180,8 @@ export default function Course_lesson_item({ lessonItem, lessonIndex, setValue, 
                         <div className="grid gap-2">
                           <p>Modo de visualizacion</p>
                           <div className="grid grid-cols-2">
-                            <label className="col-span-1  flex flex-col text-center  border-2 border-emerald-300 rounded-tl-xl rounded-bl-xl bg-emerald-50">
-                              <span className="flex justify-center items-center gap-2 p-2 border-2 border-b-0 rounded-tl-lg bg-emerald-300 border-emerald-300">
+                            <label className="flex flex-col col-span-1 text-center border-2 border-emerald-300 rounded-tl-xl rounded-bl-xl bg-emerald-50">
+                              <span className="flex items-center justify-center gap-2 p-2 border-2 border-b-0 rounded-tl-lg bg-emerald-300 border-emerald-300">
                                 Solo para alumnos <AiFillLock />
                               </span>
                               <input
@@ -195,8 +195,8 @@ export default function Course_lesson_item({ lessonItem, lessonIndex, setValue, 
                                 }}
                               />
                             </label>
-                            <label className="col-span-1  flex flex-col text-center  border-2 border-cyan-300 rounded-tr-xl rounded-br-xl bg-cyan-50">
-                              <span className="flex justify-center items-center gap-2 p-2 border-2 border-b-0 rounded-tr-lg bg-cyan-300 border-cyan-300">
+                            <label className="flex flex-col col-span-1 text-center border-2 border-cyan-300 rounded-tr-xl rounded-br-xl bg-cyan-50">
+                              <span className="flex items-center justify-center gap-2 p-2 border-2 border-b-0 rounded-tr-lg bg-cyan-300 border-cyan-300">
                                 Publica <BiWorld />
                               </span>
                               <input

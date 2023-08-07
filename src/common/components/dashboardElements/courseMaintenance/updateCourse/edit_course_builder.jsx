@@ -11,6 +11,7 @@ export default function Edit_course_builder({
   update,
   insert,
   setValue,
+  getValues,
   register,
   append,
   fields,
@@ -45,6 +46,7 @@ export default function Edit_course_builder({
                 setValue={setValue}
                 append={append}
                 fields={fields}
+                getValues={getValues}
               />
             </Disclosure.Panel>
           </Transition>

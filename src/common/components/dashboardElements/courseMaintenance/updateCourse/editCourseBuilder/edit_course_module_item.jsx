@@ -7,22 +7,23 @@ import { BsChevronUp, BsFillTrashFill, BsPencilFill } from 'react-icons/bs'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import Edit_course_builder_lesson from './edit_course_builder_lesson'
+import axios from 'axios'
 
 export default function Edit_course_module_item({
-  moduleDetail,
+  moduleItem,
   update,
   register,
   removeModule,
   ModuleIndex,
   append,
   fields,
-  item,
+  courseDetails,
   setValue,
 }) {
   let [isOpen, setIsOpen] = useState(false)
   let [isOpenEdit, setIsOpenEdit] = useState(false)
-  const [newModuleName, setNewModuleName] = useState(moduleDetail.nombre_modulo)
-  const [newModuleDescription, setNewModuleDescription] = useState(moduleDetail.resumen_modulo)
+  const [newModuleName, setNewModuleName] = useState(moduleItem.moduleName)
+  const [newModuleDescription, setNewModuleDescription] = useState(moduleItem.resumen_modulo)
 
   const handleModuleNameChange = (e) => {
     setNewModuleName(e.target.value)
@@ -33,9 +34,10 @@ export default function Edit_course_module_item({
   }
 
   useEffect(() => {
-    setNewModuleName(moduleDetail.nombre_modulo)
-    setNewModuleDescription(moduleDetail.resumen_modulo)
-  }, [moduleDetail.nombre_modulo, moduleDetail.resumen_modulo])
+    setNewModuleName(moduleItem.moduleName)
+    setNewModuleDescription(moduleItem.moduleDescription)
+  }, [moduleItem.moduleName, moduleItem.moduleDescription])
+
   const closeModal = () => {
     setIsOpen(false)
   }
@@ -49,6 +51,32 @@ export default function Edit_course_module_item({
   }
   const openModalEdit = () => {
     setIsOpenEdit(true)
+  }
+
+  const confirmDelete = () => {
+    setIsOpen(false)
+    removeModule(ModuleIndex)
+  }
+  const confirmEdit = async () => {
+    try {
+      setIsOpenEdit(false)
+      const updatedModule = {
+        ...moduleItem,
+        moduleName: newModuleName,
+        moduleDescription: newModuleDescription,
+      }
+      update(ModuleIndex, updatedModule)
+      const lastModule = {
+        newModuleName: newModuleName,
+        newModuleDescription: newModuleDescription,
+        module_id: courseDetails.tb_modulo[ModuleIndex].id_modulo,
+        course_id: courseDetails.id_curso,
+      }
+      console.log(lastModule)
+      await axios.put('http://localhost:3003/course/editModuleByIdCourse', { lastModule })
+    } catch (error) {
+      console.log(error)
+    }
   }
   return (
     <div>
@@ -81,14 +109,14 @@ export default function Edit_course_module_item({
                 >
                   <Dialog.Panel className="w-full max-w-md p-6 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
                     <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900">
-                      ¿Deseas eliminar el modulo '' ?
+                      ¿Deseas eliminar el modulo '{moduleItem.moduleName}' ?
                     </Dialog.Title>
                     <div className="flex justify-between mt-10">
                       <button
                         type="button"
                         className={reusableStyles.button}
                         onClick={() => {
-                          //closeModal()
+                          closeModal()
                         }}
                       >
                         Cancelar
@@ -97,7 +125,7 @@ export default function Edit_course_module_item({
                         type="button"
                         className={reusableStyles.redButton}
                         onClick={() => {
-                          //confirmDelete()
+                          confirmDelete()
                         }}
                       >
                         Eliminar
@@ -144,7 +172,7 @@ export default function Edit_course_module_item({
                       <div
                         className="p-3 rounded-full cursor-pointer hover:bg-gray-200"
                         onClick={() => {
-                          //closeModalEdit()
+                          closeModalEdit()
                         }}
                       >
                         <GrClose />
@@ -157,8 +185,8 @@ export default function Edit_course_module_item({
                           <input
                             type="text"
                             className={reusableStyles.inputFormForCourseMaintenance}
-                            //defaultValue={newModuleName}
-                            //onChange={handleModuleNameChange}
+                            defaultValue={newModuleName}
+                            onChange={handleModuleNameChange}
                           />
                         </div>
                         <div>
@@ -167,8 +195,8 @@ export default function Edit_course_module_item({
                             type="text"
                             rows={6}
                             className={reusableStyles.inputFormForCourseMaintenance}
-                            //defaultValue={newModuleDescription}
-                            //onChange={handleModuleDescriptionChange}
+                            defaultValue={newModuleDescription}
+                            onChange={handleModuleDescriptionChange}
                           />
                         </div>
                       </div>
@@ -179,7 +207,7 @@ export default function Edit_course_module_item({
                         type="button"
                         className={reusableStyles.button}
                         onClick={() => {
-                          //confirmEdit()
+                          confirmEdit()
                         }}
                       >
                         Editar
@@ -244,16 +272,16 @@ export default function Edit_course_module_item({
                   /> 
 		  */}
                   {/*                <Edit_course_lesson_item lessonDetail={moduleDetail.tb_leccion} />*/}
+                  <Edit_course_builder_lesson
+                    append={append}
+                    fields={fields}
+                    ModuleIndex={ModuleIndex}
+                    register={register}
+                    update={update}
+                    setValue={setValue}
+                    moduleItem={moduleItem}
+                  />
                 </div>
-                <Edit_course_builder_lesson
-                  append={append}
-                  fields={fields}
-                  ModuleIndex={ModuleIndex}
-                  register={register}
-                  update={update}
-                  setValue={setValue}
-                  moduleItem={item}
-                />
               </Disclosure.Panel>
             </Transition>
           </>

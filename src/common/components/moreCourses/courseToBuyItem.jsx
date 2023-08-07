@@ -62,7 +62,7 @@ export default function CourseToBuyItem(courseToBuy, disabled) {
           <div className="flex justify-end h-full">
             <div className="text-xl font-medium">
               {courseToBuy.precio_descuento_curso <= 0 ? (
-                <p className=" py-3 px-16 bg-emerald-400 rounded-full">Gratis</p>
+                <p className="px-16 py-3 rounded-full bg-emerald-400">Gratis</p>
               ) : (
                 `S/. ${courseToBuy.precio_descuento_curso}`
               )}

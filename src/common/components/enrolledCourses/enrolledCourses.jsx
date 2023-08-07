@@ -1,64 +1,44 @@
-import React from 'react'
+import React,{ useEffect ,useState} from 'react'
 import TopNav from '../topnav/topNav'
 import CardCourseItem from './cardCourseItem'
-const myCourses = [
-  {
-    courseId: 1,
-    courseName: 'Marketing para negocios',
-    courseDescription:
-      'loremIpsuum more loremIpsuum davis morte an objetooremIpsuum davis morte an objetooremIpsuum davis morte an objetooremIpsuum davis morte an objeto',
-    courseGoal: 'Mejorar tus habilidades para negociar',
-    courseMethodology: 'loremreloeorleroremre lreorme oreor lre lrleoremelreor',
-    coursePrice: 1400.0,
-    courseRate: 27,
-    courseImage: 'url/imagecourse.png',
-    courseBannerImage: 'url/imagecourse.png',
-    courseProgress: 6,
-    courseTotalLessons: 20,
-  },
-  {
-    courseId: 2,
-    courseName: 'React para principiantes',
-    courseDescription:
-      'loremIpsuum more loremIpsuum davis morte an objetooremIpsuum davis morte an objetooremIpsuum davis morte an objetooremIpsuum davis morte an objeto',
-    courseGoal: 'Mejorar tus habilidades para negociar',
-    courseMethodology: 'loremreloeorleroremre lreorme oreor lre lrleoremelreor',
-    coursePrice: 1400.0,
-    courseRate: 27,
-    courseImage: 'url/imagecourse.png',
-    courseBannerImage: 'url/imagecourse.png',
-    courseProgress: 2,
-    courseTotalLessons: 15,
-  },
-  {
-    courseId: 3,
-    courseName: 'Liderazgo en tiempos modernos',
-    courseDescription:
-      'loremIpsuum more loremIpsuum davis morte an objetooremIpsuum davis morte an objetooremIpsuum davis morte an objetooremIpsuum davis morte an objeto',
-    courseGoal: 'Mejorar tus habilidades para negociar',
-    courseMethodology: 'loremreloeorleroremre lreorme oreor lre lrleoremelreor',
-    coursePrice: 1400.0,
-    courseRate: 27,
-    courseImage: 'url/imagecourse.png',
-    courseBannerImage: 'url/imagecourse.png',
-    courseProgress: 15,
-    courseTotalLessons: 18,
-  },
-]
+import axios from 'axios'
+import Cookies from 'js-cookie'
+
 export default function EnrolledCourses() {
+  const [purchasedCourses,setPurchasedCourses] = useState([])
+
+  useEffect(() => {
+    const purchasedCoursesByUser = async () => {
+      try {
+        const result = await axios.post('http://localhost:3003/course/getCoursesPurchasedByUser',{
+          nuevamntToken: Cookies.get('nuevamenteToken'),
+        })
+		setPurchasedCourses(result.data.purchases)
+
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    purchasedCoursesByUser()
+  }, [])
+
   return (
-    <div className="flex flex-1 overflow-hidden w-full pt-5 pr-5 pb-5">
+    <div className="flex flex-1 w-full pt-5 pb-5 pr-5 overflow-hidden">
       <div className="bg-[#F7F7F7] rounded-xl h-full p-9  flex flex-col gap-14 overflow-y-scroll scroller w-full ">
         <TopNav />
-        <div className=" grid gap-10">
-          <div className="text-3xl font-bold  w-full grid gap-2">
+        <div className="grid gap-10 ">
+          <div className="grid w-full gap-2 text-3xl font-bold">
             <h1>Revisa tus cursos en el momento que desees.</h1>
             <h1> No importa donde estés !</h1>
           </div>
-          <div className=" grid 2xl:grid-cols-3 lg:grid-cols-2 grid-cols-1 gap-10">
-            {myCourses.map((courseObject) => {
-              return <CardCourseItem key={courseObject.courseId} courseObject={courseObject} />
-            })}
+          <div className="grid grid-cols-1 gap-10 2xl:grid-cols-3 lg:grid-cols-2">
+{
+	purchasedCourses.map((purchasedCourse) => {
+
+		return <CardCourseItem key={purchasedCourse.tb_pedido_curso.tb_curso.id_curso} enrolledCourse={purchasedCourse.tb_pedido_curso.tb_curso} />
+	})
+}
+
           </div>
         </div>
       </div>

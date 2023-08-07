@@ -2,7 +2,7 @@
 import Login from '../src/common/components/login/login'
 import Head from 'next/head'
 export default function IndexPage() {
-  //retornamos el componente Login y lo mostramos
+  //pagina principal donde se renderiza el componente Login y un head para el titulo de la pagina
   return (
     <>
       <Head>

@@ -42,7 +42,6 @@ export default function edit_course_builder_lesson({ fields, update, ModuleIndex
     update(ModuleIndex, updatedModule)
     setDisableState(true)
     setIsOpen(false)
-    console.log(lesson.leccion_modo_visualizacion)
   }
 
   const handleLessonImagePreview = (e) => {
@@ -253,15 +252,7 @@ export default function edit_course_builder_lesson({ fields, update, ModuleIndex
       <div>
         <div className="grid gap-2">
           {/*esto es una leccion , aqui tambien hacer el map*/}
-          {fields[ModuleIndex].lessons.map((lessonItem, index) => {
-            /*/*         <Course_lesson_item
-                key={index + 1}
-                lessonItem={lessonItem}
-                lessonIndex={index}
-                moduleItem={moduleItem}
-                ModuleIndex={ModuleIndex}
-                setValue={setValue}
-              />*/
+          {fields[ModuleIndex].lessons?.map((lessonItem, index) => {
             return (
               <Edit_course_lesson_item
                 key={index + 1}

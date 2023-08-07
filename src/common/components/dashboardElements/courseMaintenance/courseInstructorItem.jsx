@@ -100,8 +100,14 @@ export default function CourseInstructorItem({ registeredCourse }) {
                     </div>
                   </Dialog.Title>
                   <div className="flex flex-col justify-between ">
-                    <div className="grid gap-2 my-5">
-                      <p className="text-sm">Digite su correo electronico para confirmar</p>
+                    <div className="grid gap-2 my-5 text-sm">
+                      <p>Ten en cuenta lo siguiente antes de eliminar este curso :</p>
+                      <ul className="px-4 font-medium list-disc">
+                        <li>Las personas inscritas no podrán acceder nunca más al curso.</li>
+                        <li>Anticipa cualquier cambio en el curso con 7 días de antelación.</li>
+                        <li>Tu reputación podría verse afectada si eliminas el curso sin previo aviso.</li>
+                      </ul>
+                      <p>Digite su correo electronico para confirmar</p>
                       <input
                         type="text"
                         defaultValue=""

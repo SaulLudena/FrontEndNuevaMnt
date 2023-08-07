@@ -29,17 +29,17 @@ export default function moreCourses({ coursesToBuy }) {
           </div>
           <div className="grid gap-10 2xl:grid-cols-1">
             {coursesToBuy.map((courseToBuy) => {
-              console.log(courseToBuy)
               const text = courseToBuy.nombre_curso.split(' ')
               const firstText = text[0]
               const restText = text.slice(1).join(' ')
               const disabled = selectedItems.find((item) => item.id_curso === courseToBuy.id_curso)?.disabled
+
               return (
-                <div key={courseToBuy.id_curso} className="p-5 rounded-xl   bg-[#ffda093d] opacity-90">
+                <div key={courseToBuy.id_curso} className="p-5 rounded-xl   bg-[#ffda093d] opacity-90 shadow-md">
                   <div className="flex gap-14">
-                    <div className="flex justify-between">
+                    <div className="flex justify-between w-[35rem] h-[15rem]">
                       {courseToBuy.url_imagen_principal_curso.length <= 0 ? (
-                        <div className="bg-white rounded-md w-96 h-60">
+                        <div className="w-full bg-white rounded-md">
                           <div className="relative flex items-center justify-center w-full h-full text-center">
                             <div className="flex w-full h-full">
                               <div className="w-40 h-40 rounded-br-full bg-slate-100"></div>
@@ -51,7 +51,7 @@ export default function moreCourses({ coursesToBuy }) {
                             </div>
 
                             <div className="absolute grid gap-1 text-4xl font-bold break-normal select-none">
-                              <h1 className="text-yellow-400">{firstText}</h1>
+                              <h1 className="text-yellow-400">{firstText ? firstText : 'Sin titulo'}</h1>
                               <h1>{restText}</h1>
                             </div>
                           </div>
@@ -60,7 +60,7 @@ export default function moreCourses({ coursesToBuy }) {
                         <img
                           src={courseToBuy.url_imagen_principal_curso}
                           alt="Course image"
-                          className="  rounded-lg object-cover w-[25rem] h-[15rem]"
+                          className="  rounded-lg object-cover w-[35rem] h-[15rem]"
                         />
                       )}
                     </div>
@@ -88,7 +88,12 @@ export default function moreCourses({ coursesToBuy }) {
                         <AiFillStar className="text-black" />
                       </div>
                       <div className="flex gap-2">
-                        <button className={`bg-black px-5 py-2 rounded-full text-white`}>Comprar</button>
+                        <Link
+                          href={'/masCursos/' + courseToBuy.id_curso}
+                          className={`bg-black px-5 py-2 rounded-full text-white`}
+                        >
+                          Ver más
+                        </Link>
                         <button
                           onClick={() => {
                             handleAddToCart(courseToBuy)
@@ -122,7 +127,7 @@ export default function moreCourses({ coursesToBuy }) {
                             </p>
                           ) : (
                             <div className="flex flex-col gap-2 text-right">
-                              <span className="w-32 text-2xl font-bold">S/. ${courseToBuy.precio_descuento_curso}</span>
+                              <span className="w-32 text-2xl font-bold">S/. {courseToBuy.precio_descuento_curso}</span>
 
                               <span className="font-light line-through text-zinc-600">
                                 S/. ${courseToBuy.precio_regular_curso}

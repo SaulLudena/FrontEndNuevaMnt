@@ -103,7 +103,7 @@ export default function DashboardElements() {
             </div>
 
             <div className="w-full transition duration-100 bg-white lg:col-span-2 2xl:col-span-2 rounded-xl hover:shadow-lg">
-              <Link href="/dashboard/zonaDeMentores" className="flex h-full gap-3">
+              <Link href="/dashboard/operacionesAdministrativas" className="flex h-full gap-3">
                 <div className="bg-[#FFF409] w-10 rounded-tl-xl rounded-bl-xl"></div>
                 <div className="flex items-center gap-6 p-5">
                   <div>

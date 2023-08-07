@@ -79,7 +79,7 @@ export default function TabNav() {
       })
       const { message, status } = response.data
       if ((status === 200) & (message === 'Curso agregado correctamente')) {
-        //window.location.href = '/dashboard/zonaDeMentores/'
+        window.location.href = '/dashboard/zonaDeMentores/'
       }
       console.log(message)
     } catch (error) {

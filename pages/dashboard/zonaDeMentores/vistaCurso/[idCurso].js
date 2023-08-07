@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Layout from '../../../../src/common/components/layout'
 import CourseDetail from '../../../../src/common/components/dashboardElements/courseMaintenance/courseDetail'
-export default function vistaCurso() {
+export default function VistaCurso() {
   return (
     <>
       <Head>

@@ -1,11 +1,11 @@
 import React from 'react'
 
-export default function ShopItem({ item, removeProduct, index }) {
+export default function ShopItem({ item, removeProduct }) {
   return (
     <div>
       <div className="flex items-center gap-10 p-5 bg-white rounded-xl">
         <div className="">
-          <img src={item.url_imagen_principal_curso} className="w-40 h-40 rounded-lg" />
+          <img src={item.url_imagen_principal_curso} className="object-cover w-40 h-40 rounded-lg" />
         </div>
         <div className="flex items-center justify-between w-full gap-5">
           <div className="grid gap-3 ">

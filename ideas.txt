@@ -1,6 +1,0 @@
-Idea para implementar el carrito de compras
-1-Almancerar el curso a comprar en un sessionStorage ya que nos da mayor capacidad de almanacenamineto (5mb de capacidad a comparacion de las cookies)
-2-Primero validar que el curso a agregar no exista en el sessionStorage, en caso de no existir entonces se agregará de manera normal al carrito.
-3-En caso que el curso con codigo y nombre ya exista en el sessionStorage entonces solo se hará la actualización de la cantidad entrante... (este punto no aplica para este proyecto)
-4-Se podrá editar la cantidad de los objetos del carrito (no aplica para este proyecto porque no puedes comprar 9 unidades de un mismo curso, no tendría sentido)
--------------------------------------------------------------------------------------------------------------------------------------------------

@@ -5,12 +5,14 @@ import { reusableStyles } from '../../../../../../styles/styles'
 import { BsFillPlusCircleFill } from 'react-icons/bs'
 import Edit_course_module_item from './edit_course_module_item'
 import { useEffect } from 'react'
+import axios from 'axios'
 
 export default function Edit_course_builder_module({
   courseDetailForModules,
   remove,
   append,
   reset,
+  getValues,
   update,
   setValue,
   register,
@@ -20,47 +22,73 @@ export default function Edit_course_builder_module({
   const [disableState, setDisableState] = useState(false)
   const [moduleName, setModuleName] = useState('')
   const [moduleDescription, setModuleDescription] = useState('')
-
+  // Estado para almacenar la lista de módulos
+  const [modulesList, setModulesList] = useState([])
   const closeModal = () => {
     setIsOpen(false)
   }
-
-  useEffect(() => {
-    courseDetailForModules.tb_modulo?.forEach((modulo) => {
-      append({
-        moduleName: modulo.nombre_modulo,
-        moduleDescription: modulo.resumen_modulo,
-        lessons: modulo.tb_leccion,
-      })
-    })
-    courseDetailForModules.tb_modulo?.tb_leccion?.forEach((leccion) => {
-      append({
-        lessonName: leccion.nombre_leccion,
-        lessonDescription: leccion.resumen_leccion,
-        lessonVideo: leccion.video_leccion,
-        lessonResource: leccion.recurso_leccion,
-        lessonQuiz: leccion.tb_quiz,
-      })
-    })
-    console.log(fields)
-  }, [courseDetailForModules])
-
   const openModal = () => {
     setDisableState(false)
     setIsOpen(true)
   }
-  const addNewModuleToLast = () => {
-    setIsOpen(false)
-    //nombre del arreglo que se creara
-    register('modulos_curso')
-    //definicion de la estructura del objeto que se va a agregar, inicialmente los valores estan vacios
-    append({ moduleName, moduleDescription, lessons: [] })
-    setDisableState(true)
+
+  useEffect(() => {
+    // Estableciendo los valores iniciales de los campos
+    const moduleListFromDB = courseDetailForModules.tb_modulo?.map((modulo) => {
+      const moduleLessons = modulo.tb_leccion?.map((leccion) => ({
+        leccion_titulo: leccion.nombre_leccion,
+        leccion_descripcion: leccion.descripcion_leccion,
+        leccion_modo_visualizacion: leccion.tipo_visualizacion_leccion,
+        leccion_imagen: leccion.imagen_destacada_leccion,
+        leccion_enlace: leccion.url_video_leccion,
+        leccion_duracion_horas: leccion.duracion_hora_leccion,
+        leccion_duracion_minutos: leccion.duracion_minuto_leccion,
+        leccion_duracion_segundos: leccion.duracion_segundo_leccion,
+      }))
+
+      return {
+        moduleName: modulo.nombre_modulo,
+        moduleDescription: modulo.resumen_modulo,
+        lessons: moduleLessons,
+      }
+    })
+
+    // Actualizar el estado con la lista de módulos
+    setModulesList(moduleListFromDB)
+  }, [courseDetailForModules])
+
+  const addNewModuleToLast = async () => {
+    try {
+      setDisableState(false)
+      register('modulos_curso')
+      append({ moduleName, moduleDescription, lessons: [] })
+      // Crear un objeto con el último módulo registrado
+      const lastModule = {
+        moduleName,
+        moduleDescription,
+        course_id: courseDetailForModules.id_curso,
+      }
+      // Realizar la petición POST para enviar el último módulo
+      await axios.post('http://localhost:3003/course/addModuleByIdCourse', { lastModule })
+
+      // Restablecer los valores de los estados y habilitar el estado nuevamente
+      setModuleName('')
+      setModuleDescription('')
+      setDisableState(true)
+      closeModal()
+
+      // Actualizar la lista de módulos en el estado para que refleje el cambio
+      setModulesList((prevModules) => [...prevModules, lastModule])
+    } catch (error) {
+      console.error('Error al agregar el nuevo módulo:', error)
+      setDisableState(false)
+    }
   }
+
   return (
     <div className="flex flex-col gap-5 p-5 bg-white ">
       <>
-        {/*componentizar esto */}
+        {/*nodal para agregar un curso */}
         <Transition appear show={isOpen} as={Fragment}>
           <Dialog as="div" className="relative z-10" onClose={closeModal}>
             <Transition.Child
@@ -108,7 +136,7 @@ export default function Edit_course_builder_module({
                           <p>Título del modulo</p>
                           <input
                             type="text"
-                            /* onChange={(e) => setModuleName(e.target.value)} */
+                            onChange={(e) => setModuleName(e.target.value)}
                             className={reusableStyles.inputFormForCourseMaintenance}
                           />
                         </div>
@@ -117,7 +145,7 @@ export default function Edit_course_builder_module({
                           <textarea
                             type="text"
                             rows={6}
-                            /*           onChange={(e) => setModuleDescription(e.target.value)} */
+                            onChange={(e) => setModuleDescription(e.target.value)}
                             className={reusableStyles.inputFormForCourseMaintenance}
                           />
                         </div>
@@ -159,27 +187,10 @@ export default function Edit_course_builder_module({
         </div>
       </div>
       <div className="grid gap-3">
-        {/*fields.map((item, index) => {
-          return (
-            <Course_module_item
-              key={item.id}
-              register={register}
-              item={item}
-              ModuleIndex={index}
-              removeModule={remove}
-              moduleName={item.moduleName}
-              append={append}
-              fields={fields}
-              update={update}
-              setValue={setValue}
-            />
-          )
-        })*/}
         {fields.map((module, indexModule) => {
           return (
             <Edit_course_module_item
               key={indexModule}
-              moduleDetail={module}
               ModuleIndex={indexModule}
               moduleItem={module}
               removeModule={remove}
@@ -187,6 +198,7 @@ export default function Edit_course_builder_module({
               fields={fields}
               update={update}
               setValue={setValue}
+              courseDetails={courseDetailForModules}
             />
           )
         })}

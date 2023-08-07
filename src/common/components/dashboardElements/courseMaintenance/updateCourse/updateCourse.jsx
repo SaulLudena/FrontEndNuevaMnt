@@ -19,6 +19,7 @@ export default function updateCourse() {
     control,
     reset,
     setValue,
+    getValues,
     formState: { errors },
   } = useForm()
 
@@ -66,7 +67,7 @@ export default function updateCourse() {
                 }
                 disabled={disableButton}
               >
-                <AiFillEdit /> Actualizar curso
+                <AiFillEdit /> Guardar cambios
               </button>
             </div>
           </div>
@@ -83,6 +84,7 @@ export default function updateCourse() {
               setValue={setValue}
               append={append}
               fields={fields}
+              getValues={getValues}
             />
           </div>
         </form>

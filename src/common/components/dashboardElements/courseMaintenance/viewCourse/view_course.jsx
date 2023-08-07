@@ -29,7 +29,6 @@ export default function view_course() {
           })
           if (response.data.getCourseById.length > 0) {
             setGetCourseById(response.data.getCourseById[0])
-            console.log(response.data.getCourseById[0])
           } else {
             window.location.href = '/dashboard'
           }

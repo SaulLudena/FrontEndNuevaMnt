@@ -1,20 +1,19 @@
 import Head from 'next/head'
 import SideNav from '../../../src/common/components/sidenav/sidenav'
 import DetailCourse from '../../../src/common/components/detailCourse/detailCourse'
-
 import { useRouter } from 'next/router'
 
 export default function Index() {
   const router = useRouter()
-  const courseId = router.query.courseId
+  const enrolledCourse = router.query
   return (
     <>
       <Head>
         <title>Mi aprendizaje</title>
       </Head>
-      <div className=" w-full h-screen flex ">
+      <div className="flex w-full h-screen ">
         <SideNav />
-        <DetailCourse courseId={courseId} />
+        <DetailCourse enrolledCourse={enrolledCourse} />
       </div>
     </>
   )

@@ -5,7 +5,7 @@ import axios from 'axios'
 import Cookies from 'js-cookie'
 import Link from 'next/link'
 import { GrReturn } from 'react-icons/gr'
-import { reusableStyles } from '../../../../styles/styles'
+
 export default function AllCourses() {
   const [registeredCourses, setRegisteredCourses] = useState([])
   useEffect(() => {
@@ -28,7 +28,7 @@ export default function AllCourses() {
         <h1 className="text-3xl font-bold">Bienvenido a tu zona de mentores</h1>
       </div>
       <div className="flex items-center gap-10">
-        <Link href="/dashboard" className="transition duration-200 bg-white  rounded-xl hover:shadow-lg">
+        <Link href="/dashboard" className="transition duration-200 bg-white rounded-xl hover:shadow-lg">
           <div className="flex items-center ">
             <div className="flex h-full ">
               <div className="h-24 p-1 rounded-l-xl bg-emerald-300"></div>
